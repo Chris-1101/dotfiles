@@ -1,0 +1,21 @@
+! Scheme: Clean Install (Original)
+
+#define bkgrnd #151718
+#define frgrnd #d6d6d6
+
+#define base00 #2e2e2e
+#define base01 #664444
+#define base02 #2d8338
+#define base03 #885522
+#define base04 #224455
+#define base05 #332244
+#define base06 #537282
+#define base07 #a4a4a4
+#define base08 #676767
+#define base09 #976a6a
+#define base0A #52a25c
+#define base0B #e1a44a
+#define base0C #365869
+#define base0D #49395b
+#define base0E #768e9a
+#define base0F #ffffff

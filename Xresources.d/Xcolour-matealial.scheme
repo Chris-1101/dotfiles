@@ -1,0 +1,21 @@
+! Scheme: MaTealial
+
+#define bkgrnd #151927
+#define frgrnd #d7d8e0
+
+#define base00 #073642
+#define base01 #e60053
+#define base02 #24f438
+#define base03 #f4cb24
+#define base04 #0a81f5
+#define base05 #ff00af
+#define base06 #23a0be
+#define base07 #d7d8e0
+#define base08 #002b36
+#define base09 #dc322f
+#define base0A #50fa7b
+#define base0B #d8a156
+#define base0C #1d7188
+#define base0D #f42499
+#define base0E #56ae9d
+#define base0F #9ea1b3

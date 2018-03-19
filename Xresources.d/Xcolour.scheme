@@ -1,0 +1,22 @@
+! Scheme: Arclight
+
+!---#151927
+#define bkgrnd #0b1317
+#define frgrnd #d7d8e0
+
+#define base00 #1f3542
+#define base01 #5c7190
+#define base02 #a0a5b0
+#define base03 #6693a6
+#define base04 #574f64
+#define base05 #1f74a3
+#define base06 #d29a3d
+#define base07 #d0cfd9
+#define base08 #182c35
+#define base09 #404e63
+#define base0A #747880
+#define base0B #4e707e
+#define base0C #3b3644
+#define base0D #0d4d6e
+#define base0E #9b722d
+#define base0F #9e9da5

@@ -1,0 +1,21 @@
+! Scheme: One Dark
+
+#define bkgrnd #282c34
+#define frgrnd #abb2bf
+
+#define base00 #282c34
+#define base01 #e06c75
+#define base02 #98c379
+#define base03 #e5c07b
+#define base04 #61afef
+#define base05 #c678dd
+#define base06 #56b6c2
+#define base07 #abb2bf
+#define base08 #545862
+#define base09 #e06c75
+#define base0A #98c379
+#define base0B #e5c07b
+#define base0C #61afef
+#define base0D #c678dd
+#define base0E #56b6c2
+#define base0F #be5046

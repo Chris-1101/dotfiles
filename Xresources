@@ -1,0 +1,77 @@
+#include ".Xresources.d/Xcolour.scheme"
+
+! --- Text Rendering --- !
+
+Xft.dpi:            168
+Xft.autohint:       0
+Xft.lcdfilter:      lcddefault
+Xft.hintstyle:      hintfull
+Xft.hinting:        1
+Xft.antialiasing:   1
+Xft.rgba:           rgb
+
+! --- Cursor Appearance --- !
+
+Xcursor.theme:      Vanilla-DMZ-AA
+Xcursor.size:       48
+
+! --- URxvt Settings --- !
+
+URxvt.font:         xft:DejaVu Sans Mono:size=10
+URxvt.letterSpace:  -1
+URxvt.scrollBar:    false
+URxvt.depth:        32
+URxvt.internalBorder: 30
+!URxvt.transparent:  true
+!URxvt.shading:      20
+!URxvt.blurRadius:  10
+
+! --- URxvt Plugin Configuration --- !
+
+URxvt.perl-ext-common: default,clipboard,matcher
+URxvt.iso14755: False
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+URxvt.clipboard.copycmd: xsel -ib
+URxvt.clipboard.pastecmd: xsel -ob
+URxvt.url-launcher: /usr/bin/firefox
+URxvt.matcher.button: 1
+URxvt.matcher.rend.0: Bold fg5
+
+! --- Colour Definitions --- !
+
+*background:   bkgrnd
+*foreground:   frgrnd
+*cursorColor:  frgrnd
+
+! Black
+*.color0:	base00
+*.color8:	base08
+
+! Red
+*.color1:	base01
+*.color9:	base09
+
+! Green
+*.color2:	base02
+*.color10:	base0A
+
+! Yellow
+*.color3:	base03
+*.color11:	base0B
+
+! Blue
+*.color4:	base04
+*.color12:	base0C
+
+! Magenta
+*.color5:	base05
+*.color13:	base0D
+
+! Cyan
+*.color6:	base06
+*.color14:	base0E
+
+! White
+*.color7:	base07
+*.color15:	base0F
