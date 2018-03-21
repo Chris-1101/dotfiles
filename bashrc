@@ -24,15 +24,14 @@ function vim() {
     /usr/bin/vim -p "${args[@]}"
 }
 
-# Shell Prompt
-#PS1='\u@\h \W \$ '
-#PS1='[$(date +%H:%M)] [\W] » '
+#Shell Prompt
+PS1='$(printf "%*s\r%s" $(( COLUMNS-1 )) "$(git branch 2>/dev/null | grep '^*' | sed s/..//) [$(date +%H:%M)]" "[\W] » ")'
 
-if git rev-parse --git-dir > /dev/null 2>&1; then
-    PS1='$(printf "%*s\r%s" $(( COLUMNS-1 )) "[$(git branch 2>/dev/null | grep '^*' | sed s/..//)] [$(date +%H:%M)]" "[\W] » ")'
-else
-    PS1='$(printf "%*s\r%s" $(( COLUMNS-1 )) "[$(date +%H:%M)]" "[\W] » ")'
-fi
+#if git rev-parse --git-dir > /dev/null 2>&1; then
+#    PS1='$(printf "%*s\r%s" $(( COLUMNS-1 )) "[$(git branch 2>/dev/null | grep '^*' | sed s/..//)] [$(date +%H:%M)]" "[\W] » ")'
+#else
+#    PS1='$(printf "%*s\r%s" $(( COLUMNS-1 )) "[$(date +%H:%M)]" "[\W] » ")'
+#fi
 
 # Autorun
-neofetch
+neofetch --w3m --source ~/Pictures/anonymous.png --size 500

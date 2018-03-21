@@ -1,0 +1,25 @@
+! Scheme: Mashup (Mohabaks, Dec 2016 Rice)
+
+#define bkgrnd #0e0f15
+#define frgrnd #d7d8e0
+
+! *.foreground:   #b2a191
+! *.background:   #171717
+! *.cursorColor:  #b2a191
+
+#define base00 #202020
+#define base01 #bf3f34
+#define base02 #707d22
+#define base03 #bf7a29
+#define base04 #627a92
+#define base05 #75507b
+#define base06 #757978
+#define base07 #b2a191
+#define base08 #404040
+#define base09 #ff6c5f
+#define base0A #b8ca4b
+#define base0B #c7a551
+#define base0C #95b9de
+#define base0D #ad7fa8
+#define base0E #9fa590
+#define base0F #e8d0c3

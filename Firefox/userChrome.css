@@ -60,7 +60,8 @@
 /**/
 #nav-bar[id], #PersonalToolbar[id], #web-developer-toolbar[id], #navigator-toolbox[tabsontop="true"] > #nav-bar[id], #navigator-toolbox[tabsontop="true"]:not([customizing]) > #nav-bar[collapsed="true"][id] + toolbar, #navigator-toolbox[tabsontop="true"]:not([customizing]) > #nav-bar[collapsed="true"] + #customToolbars + #PersonalToolbar[id], #navigator-toolbox[tabsontop="false"] > #nav-bar[id], #navigator-toolbox[tabsontop="false"]:not([customizing]) > #nav-bar[collapsed="true"][id] + toolbar, #navigator-toolbox[tabsontop="false"]:not([customizing]) > #nav-bar[collapsed="true"] + #customToolbars + #PersonalToolbar[id] {
 	background-image: none !important;
-	background: #282c34 !important;
+	/*background: #282c34 !important;*/
+	background: #0e0f15 !important; 
 }
 #urlbar, .searchbar-textbox {
 	box-shadow: none !important;

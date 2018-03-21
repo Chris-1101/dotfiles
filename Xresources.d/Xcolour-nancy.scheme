@@ -1,0 +1,21 @@
+! Scheme: Nancy (Xcolors.net)
+
+#define bkgrnd #0e0f15
+#define frgrnd #d7d8e0
+
+#define base00 #1b1b1e
+#define base01 #f92672
+#define base02 #82b414
+#define base03 #fd971f
+#define base04 #4e82aa
+#define base05 #8c54fe
+#define base06 #465457
+#define base07 #ccccc6
+#define base08 #505354
+#define base09 #ff5995
+#define base0A #b6e354
+#define base0B #feed6c
+#define base0C #0c73c2
+#define base0D #9e6ffe
+#define base0E #899ca1
+#define base0F #f8f8f2

@@ -1,0 +1,21 @@
+! Scheme: Gjm (Xcolors.net)
+
+#define bkgrnd [100]#161324
+#define frgrnd #dfab9f
+
+#define base00 #161324
+#define base01 #6f3346
+#define base02 #3a426e
+#define base03 #50466c
+#define base04 #6e4a66
+#define base05 #c5603f
+#define base06 #a15760
+#define base07 #dfab9f
+#define base08 #9c776f
+#define base09 #6f3346
+#define base0A #3a426e
+#define base0B #50466c
+#define base0C #6e4a66
+#define base0D #c5603f
+#define base0E #a15760
+#define base0F #dfab9f

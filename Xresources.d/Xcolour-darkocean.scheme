@@ -1,0 +1,21 @@
+! Scheme: Dark Ocean (Xcolors.net)
+
+#define bkgrnd #0e0f15
+#define frgrnd #d7d8e0
+
+#define base00 #000000
+#define base01 #571dc2
+#define base02 #14db49
+#define base03 #403d70
+#define base04 #385a70
+#define base05 #384894
+#define base06 #4F3A5E
+#define base07 #999999
+#define base08 #38372c
+#define base09 #7c54b0
+#define base0A #a2e655
+#define base0B #9C6F59
+#define base0C #323f5c
+#define base0D #5e6c99
+#define base0E #667d77
+#define base0F #ffffff

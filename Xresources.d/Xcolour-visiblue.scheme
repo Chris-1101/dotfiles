@@ -1,0 +1,21 @@
+! Scheme: Visiblue (Xcolors.net)
+
+#define bkgrnd #0e0f15
+#define frgrnd #d7d8e0
+
+#define base00 #333366
+#define base01 #6666cc
+#define base02 #0099cc
+#define base03 #3366cc
+#define base04 #006699
+#define base05 #0066ff
+#define base06 #669999
+#define base07 #99cccc
+#define base08 #333399
+#define base09 #9999ff
+#define base0A #00ccff
+#define base0B #6699ff
+#define base0C #0099cc
+#define base0D #0099ff
+#define base0E #66cccc
+#define base0F #ccffff
