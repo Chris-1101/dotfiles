@@ -1,6 +1,6 @@
-! Scheme: Gjm (Xcolors.net)
+! Scheme: 16 Bit Sunset (pywal)
 
-#define bkgrnd [100]#161324
+#define bkgrnd #161324
 #define frgrnd #dfab9f
 
 #define base00 #161324

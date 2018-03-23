@@ -1,21 +1,21 @@
-! Scheme: Gjm (Xcolors.net)
+! Scheme: 16 Bit Sunset (pywal)
 
-#define bkgrnd #0e0f15
-#define frgrnd #d7d8e0
+#define bkgrnd #161324
+#define frgrnd #dfab9f
 
-#define base00 #1c1c1c
-#define base01 #ff005b
-#define base02 #cee318
-#define base03 #ffe755
-#define base04 #048ac7
-#define base05 #833c9f
-#define base06 #0ac1cd
-#define base07 #e5e5e5
-#define base08 #666666
-#define base09 #ff00a0
-#define base0A #ccff00
-#define base0B #ff9f00
-#define base0C #48c6ff
-#define base0D #be67e1
-#define base0E #63e7f0
-#define base0F #f3f3f3
+#define base00 #161324
+#define base01 #6f3346
+#define base02 #3a426e
+#define base03 #50466c
+#define base04 #6e4a66
+#define base05 #c5603f
+#define base06 #a15760
+#define base07 #dfab9f
+#define base08 #9c776f
+#define base09 #6f3346
+#define base0A #3a426e
+#define base0B #50466c
+#define base0C #6e4a66
+#define base0D #c5603f
+#define base0E #a15760
+#define base0F #dfab9f
