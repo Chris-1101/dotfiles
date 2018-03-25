@@ -1,0 +1,26 @@
+! Scheme: Dracula (draculatheme.com)
+
+#define bkgrnd #282a36
+! #define frgrnd #d7d8e0
+#define frgrnd #f8f8f2
+
+! #define currentline #44475a
+! #define selection #44475a
+! #define comment #6272a4
+
+#define base00 #282a36
+#define base01 #ff5555
+#define base02 #50fa7b
+#define base03 #ffb86c
+#define base04 #6272a4
+#define base05 #bd93f9
+#define base06 #8be9fd
+#define base07 #f8f8f2
+#define base08 #44475a
+#define base09 #ff5555
+#define base0A #50fa7b
+#define base0B #f1fa8c
+#define base0C #6272a4
+#define base0D #ff79c6
+#define base0E #8be9fd
+#define base0F #f8f8f2
