@@ -12,7 +12,8 @@ Xft.rgba:           rgb
 
 ! --- Cursor Appearance --- !
 
-Xcursor.theme:      Vanilla-DMZ-AA
+!Xcursor.theme:      Vanilla-DMZ-AA
+Xcursor.theme:      Oxygen_White
 Xcursor.size:       48
 
 ! --- URxvt Settings --- !
