@@ -1,0 +1,26 @@
+! Scheme: Dracula (draculatheme.com)
+! Mod: vivid (Chris-1101)
+
+#define bkgrnd #0c0e17
+#define frgrnd #d7d8e0
+
+! #define currentline #1f2231
+! #define selection #1f2231
+! #define comment #38477f
+
+#define base00 #0c0e17
+#define base01 #ff2d2d
+#define base02 #28f750
+#define base03 #ff9841
+#define base04 #38477f
+#define base05 #9f6af6
+#define base06 #61ddfc
+#define base07 #d7d8e0
+#define base08 #1f2231
+#define base09 #ff2d2d
+#define base0A #28f750
+#define base0B #e9f762
+#define base0C #38477f
+#define base0D #ff4eab
+#define base0E #61ddfc
+#define base0F #d7d8e0
