@@ -1,5 +1,4 @@
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
-@include url("treestyletab.css");
 
 /* Hide main tabs toolbar */
 #TabsToolbar {
@@ -41,7 +40,7 @@
 	margin-right: calc((var(--wide-tab-width) - var(--thin-tab-width)) * -1) !important;
 }
 
-/* flat theme /**/ 
+/* flat theme /**/
 #nav-bar textbox {
 	color: #afafaf !important;
 	background-color: transparent !important;
@@ -61,7 +60,7 @@
 #nav-bar[id], #PersonalToolbar[id], #web-developer-toolbar[id], #navigator-toolbox[tabsontop="true"] > #nav-bar[id], #navigator-toolbox[tabsontop="true"]:not([customizing]) > #nav-bar[collapsed="true"][id] + toolbar, #navigator-toolbox[tabsontop="true"]:not([customizing]) > #nav-bar[collapsed="true"] + #customToolbars + #PersonalToolbar[id], #navigator-toolbox[tabsontop="false"] > #nav-bar[id], #navigator-toolbox[tabsontop="false"]:not([customizing]) > #nav-bar[collapsed="true"][id] + toolbar, #navigator-toolbox[tabsontop="false"]:not([customizing]) > #nav-bar[collapsed="true"] + #customToolbars + #PersonalToolbar[id] {
 	background-image: none !important;
 	/*background: #282c34 !important;*/
-	background: #0e0f15 !important; 
+	background: #0c0e17 !important; 
 }
 #urlbar, .searchbar-textbox {
 	box-shadow: none !important;
@@ -94,4 +93,3 @@ display: none;
 #forward-button {
 display: none;
 }
-
