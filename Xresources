@@ -51,7 +51,13 @@ URxvt.matcher.rend.0: Bold fg5
 
 ! --- Colour Definitions --- !
 
-*background:   [100]bkgrnd
+#ifndef bgtrns
+  #define bgt 100
+#else
+  #define bgt bgtrns
+#endif
+
+*background:   [bgt]bkgrnd
 *foreground:        frgrnd
 *cursorColor:       frgrnd
 
