@@ -1,0 +1,24 @@
+! Scheme: Synthwave
+
+#define bgtrns 80
+#define bkgrnd #0c0e17
+#define frgrnd #d7d8e0
+
+#define base00 #0c0e17
+#define base01 #de1d70
+#define base02 #28f78f
+#define base03 #f4c00b
+#define base04 #1a7ec4
+#define base05 #8243e9
+#define base06 #21b3b5
+! #define base07 #a9aeb4
+#define base07 #d7d8e0
+#define base08 #0c0e17
+#define base09 #de1d70
+#define base0A #28f78f
+#define base0B #f4c00b
+#define base0C #1a7ec4
+#define base0D #8243e9
+#define base0E #21b3b5
+! #define base0F #a9aeb4
+#define base0F #d7d8e0
