@@ -13,6 +13,7 @@
 alias ls='ls --color=auto'
 alias tr='tree -a'
 alias symlink='ln -s'
+alias aurinfo='packer -Si'
 
 # Make Vim follow symbolic links
 function vim() {
