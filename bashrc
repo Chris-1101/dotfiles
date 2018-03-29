@@ -31,7 +31,7 @@ function vim() {
 }
 
 # Shell Prompt
-PS1='$(printf "%*s\r%s" $(( COLUMNS )) "$(git branch 2>/dev/null | grep '^*' | sed s/..//) [$(date +%H:%M)]" "[\W] \033[0;32m»\033[0m ")'
+PS1='$(printf "%*s\r%s" $(( COLUMNS-1 )) "$(git branch 2>/dev/null | grep '^*' | sed s/..//) [$(date +%H:%M)]" "[\W] \033[0;32m»\033[0m ")'
 
 #if git rev-parse --git-dir > /dev/null 2>&1; then
 #    PS1='$(printf "%*s\r%s" $(( COLUMNS-1 )) "[$(git branch 2>/dev/null | grep '^*' | sed s/..//)] [$(date +%H:%M)]" "[\W] » ")'
