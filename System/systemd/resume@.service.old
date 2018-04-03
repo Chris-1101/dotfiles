@@ -1,0 +1,11 @@
+[Unit]
+Description=User Resume Hooks
+After=suspend.target hibernate.target hybrid-sleep.target
+
+[Service]
+User=%I
+Type=simple
+ExecStart=/usr/bin/logger '[ARCLIGHT] Successfully resumed from suspended state'
+
+[Install]
+WantedBy=suspend.target hibernate.target hybrid-sleep.target
