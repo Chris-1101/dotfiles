@@ -12,6 +12,8 @@
 # Description  : Simple lock screen script based on `betterlockscreen` by Pavan Jadhaw
 # Dependencies : i3lock-color
 
+logger '[ARCLIGHT] Initialising lockscreen...'
+
 # ==================================
 # ------- Lock Script Proper -------
 # ==================================
@@ -40,9 +42,23 @@ lock()
         --keyhlcolor=$accentColour --bshlcolor=$accentColour --separatorcolor=$transparent \
         --insidevercolor=$transparent --insidewrongcolor=$errorColour \
         --ringvercolor=$foreground --ringwrongcolor=$foreground --indpos="x+638:h-159" \
-        --radius=22 --ring-width=3 --indicator --veriftext="" --wrongtext="" \
+        --radius=22 --ring-width=3 --veriftext="" --wrongtext="" \
         --textcolor="$foreground" --timecolor="$foreground" --datecolor="$foreground" \
         --force-clock &
+}
+
+# =======================================
+# ------- Suspend/Resume Services -------
+# =======================================
+pre_lock()
+{
+    pkill -u "$USER" -USR1 dunst
+}
+
+post_lock()
+{
+    sleep 1
+    pkill -u "$USER" -USR2 dunst
 }
 
 # ============================
@@ -62,11 +78,7 @@ help()
     echo "    -l --lock"
     echo "        Locks the screen (default)"
     echo
-    echo "    -s --suspend"
-    echo "        Locks the screen and suspends the system"
-    echo
-    echo "    -b --hibernate"
-    echo "        Locks the screen and hibernates the system"
+    echo "ps: yes, these options are rather redundant at this point :p"
     echo
 }
 
@@ -82,20 +94,6 @@ case $1 in
     -l | --lock)
 
         lock
-        ;;
-
-    -s | --suspend)
-
-        lock
-        sleep 1
-        systemctl suspend
-        ;;
-
-    -b | --hibernate)
-
-        lock
-        sleep 1
-        systemctl hibernate
         ;;
 
     -h | --help)
