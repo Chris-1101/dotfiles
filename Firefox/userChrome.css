@@ -4,15 +4,18 @@
 #TabsToolbar {
 	visibility: collapse;
 }
+
 /* Sidebar min and max width removal */
 #sidebar {
 	max-width: none !important;
 	min-width: 0px !important;
 }
+
 /* Hide splitter, when using Tree Style Tab. */
 #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] + #sidebar-splitter {
 	display: none !important;
 }
+
 /* Hide sidebar header, when using Tree Style Tab. */
 #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
 	visibility: collapse;
@@ -40,7 +43,7 @@
 	margin-right: calc((var(--wide-tab-width) - var(--thin-tab-width)) * -1) !important;
 }
 
-/* flat theme /**/
+/* Flat theme */
 #nav-bar textbox {
 	color: #afafaf !important;
 	background-color: transparent !important;
@@ -56,11 +59,10 @@
 	margin-left: 1px !important;
 	margin-right: 1px !important;
 }
-/**/
 #nav-bar[id], #PersonalToolbar[id], #web-developer-toolbar[id], #navigator-toolbox[tabsontop="true"] > #nav-bar[id], #navigator-toolbox[tabsontop="true"]:not([customizing]) > #nav-bar[collapsed="true"][id] + toolbar, #navigator-toolbox[tabsontop="true"]:not([customizing]) > #nav-bar[collapsed="true"] + #customToolbars + #PersonalToolbar[id], #navigator-toolbox[tabsontop="false"] > #nav-bar[id], #navigator-toolbox[tabsontop="false"]:not([customizing]) > #nav-bar[collapsed="true"][id] + toolbar, #navigator-toolbox[tabsontop="false"]:not([customizing]) > #nav-bar[collapsed="true"] + #customToolbars + #PersonalToolbar[id] {
 	background-image: none !important;
 	/*background: #282c34 !important;*/
-	background: #050a14 !important; 
+	background: #050a14 !important;
 }
 #urlbar, .searchbar-textbox {
 	box-shadow: none !important;
@@ -75,6 +77,7 @@
 	max-width: 0 !important;
 }
 
+/* Elements to Hide */
 #identity-icon-labels,
 #identity-icon,
 .urlbar-go-button,
@@ -86,10 +89,13 @@
 {
 	display: none !important;
 }
-/**
+
+/*
 #back-button {
 display: none;
 }
+
 #forward-button {
 display: none;
 }
+*/
