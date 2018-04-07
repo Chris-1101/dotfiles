@@ -21,16 +21,14 @@ set rtp+=~/.vim/bundle/Vundle.vim   " Set Vundle runtime path
 
 call vundle#begin()                         " <plugins>
 Plugin 'VundleVim/Vundle.vim'               " Vundle
-Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim'} " Powerline
 Plugin 'vim-airline/vim-airline'            " Airline
 Plugin 'vim-airline/vim-airline-themes'     " Airline Themes
+Plugin 'chris-1101/vim-arclight'            " Arclight Theme
 Plugin 'airblade/vim-gitgutter'             " GitGutter
 Plugin 'tpope/vim-fugitive'                 " Fugitive
 Plugin 'joshdick/onedark.vim'               " One Dark Colour Theme
 Plugin 'dracula/vim'                        " Dracula Colour Theme
 call vundle#end()                           " </plugins>
-
-set rtp-=~/.vim/bundle/powerline/powerline/bindings/vim " Disable Powerline
 
 " ===============================
 " ------- Format Settings -------
@@ -67,14 +65,14 @@ set laststatus=2    " Always show status bar
 set noshowmode      " Hide default mode text
 set mouse=a         " Enable mouse support
 
-" =====================
-" ------- Other -------
-" =====================
+" =============================
+" ------- Customisation -------
+" =============================
 
 "color dracula
 
 " Airline
-let g:airline_theme = 'deus'
+let g:airline_theme = 'arclight'
 let g:airline_extensions = ['branch', 'tabline']
 let g:airline_powerline_fonts = 1
 
@@ -94,8 +92,11 @@ let g:airline_symbols.linenr = ''
 let g:airline_symbols.maxlinenr = ''
 
 " Status Line
+call airline#parts#define_raw('file', '%f %m')
 call airline#parts#define_raw('linenr', '%l')
 call airline#parts#define_accent('linenr', 'bold')
+call airline#parts#define_raw('colnr', '%c')
+call airline#parts#define_accent('colnr', 'bold')
 let g:airline_section_x = airline#section#create_right(['%{&fileformat}', '%{&fileencoding?&fileencoding:&encoding}'])
 let g:airline_section_y = airline#section#create_right(['tagbar', 'gutentags', 'filetype'])
-let g:airline_section_z = airline#section#create(['« ', '%p%%', '    ', 'linenr', ':%c'])
+let g:airline_section_z = airline#section#create(['« %p%%', '   ', 'linenr', '   ', 'colnr'])
