@@ -100,3 +100,19 @@ call airline#parts#define_accent('colnr', 'bold')
 let g:airline_section_x = airline#section#create_right(['%{&fileformat}', '%{&fileencoding?&fileencoding:&encoding}'])
 let g:airline_section_y = airline#section#create_right(['tagbar', 'gutentags', 'filetype'])
 let g:airline_section_z = airline#section#create(['« %p%%', '   ', 'linenr', '   ', 'colnr'])
+
+" Custom Mode Text
+"let g:airline_mode_map = {
+"    \ '__' : '---',
+"    \ 'n'  : 'NML',
+"    \ 'i'  : 'INS',
+"    \ 'R'  : 'RPL',
+"    \ 'c'  : 'COM',
+"    \ 'v'  : 'VIS',
+"    \ 'V'  : 'V-L',
+"    \ ''  : 'V-B',
+"    \ 's'  : 'SEL',
+"    \ 'S'  : 'S-L',
+"    \ ''  : 'S-B',
+"    \ 't'  : 'TML'
+"\ }
