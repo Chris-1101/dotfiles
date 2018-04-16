@@ -1,33 +1,53 @@
+/* Private Browsing Tab Label */
+.tab.private-browsing .label:before {
+    content: "🕶 ";
+}
 
-/* Hide .twisty and adjust margins so favicons have 7px on left. */
+/* Tab Dividers */
+.tab {
+    border-top: solid 1px #050a14;
+    border-right: solid 1px #050a14;
+    border-bottom: solid 1px #050a14;
+    margin-top: -1px;
+}
+
+/* Fix Pinned Tab Dividers */
+.tab.pinned {
+    padding-bottom: 5px;
+}
+
+/* Favicons Alignment in Collapsed State */
 .tab .twisty {
     visibility: hidden;
     margin-left: -12px;
 }
 
-/* Push tab labels slightly to the right so they're completely hidden in collapsed state */
+/* Hide Tab Labels in Collapsed State */
 .tab .label {
     margin-left: 7px;
 }
 
-/* Hide close buttons on tabs. */
+/* Hide Close Button on Tabs
 .tab .closebox {
     visibility: collapse;
-}
+} */
 
-/* Hide sound playing/muted button. */
+/* Hide Sound Playing/Muted Button
 .sound-button::before {
     display: none !important;
-}
+} */
 
-/* Hide 'new tab' button. */
+/* Hide New Tab Button */
 .newtab-button {
-    display: none;
+    display: none; /*
+    margin-top: 3px;
+    margin-left: 2px;
+    height: 30px; */
 }
 
-/* ################################################ */
-/* ##### COLOR THEME ############################## */
-/* ################################################ */
+/* ============================ *
+ * ------- COLOUR THEME ------- *
+ * ============================ */
 @keyframes spin {
     0% {
         transform: rotate(0deg);
@@ -36,6 +56,7 @@
         transform: rotate(360deg);
     }
 }
+
 @keyframes pulse {
     0% {
         width: 0px;
@@ -50,40 +71,48 @@
         left: calc(50% - 175px);
     }
 }
+
 :root {
     background-color: transparent;
 }
+
 #tabbar {
     border-right: 0px solid #1d1d1d;
     box-shadow: none !important;
 }
+
 .tab {
     background-color: transparent;
     border-color: #292929;
     color: rgba(207,207,207,0.75);
     box-shadow: none !important;
 }
+
 .tab:hover {
     background-color: #0a84d6 !important;
     color: rgba(207,207,207,1) !important;
 }
-.tab.discarded {
-    background-color: #1d1d1d;
-    color: #383838 !important;
+
+.tab.discarded .favicon {
+    /* background-color: #1d1d1d;
+    color: #383838 !important; */
+    opacity: 0.3;
 }
-.tab.discarded:hover {
-    background-color: #292929 !important;
+
+.tab.discarded:hover .favicon {
+    /* background-color: #292929 !important; */
+    opacity: 1;
 }
 
 .tab.active {
     background-color: #bbbbbb;
 }
+
 .tab.active:hover {
     background-color: #0a84d6 !important;
 }
 
-
-/* Adjust style for tab that has sound playing. */
+/* Adjust Style for Tab That Has Sound Playing. */
 .tab.sound-playing .favicon::after {
     content: '';
     position: absolute;
@@ -96,6 +125,7 @@
     opacity: 0;
 }
 
-/* Adjust style for tab that is muted. */
+/* Adjust Style for Tab That is Muted. */
 .tab.muted {
     opacity: 0.5;
+}
