@@ -1,0 +1,9 @@
+alias grep='grep --colour=auto'
+alias ls='ls --color=auto'
+alias tr='tree'
+alias symlink='ln -s'
+alias aurinfo='packer -Si'
+alias aurlist='pacman -Sl aur'
+
+# unzip
+# rm
