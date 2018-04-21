@@ -1,0 +1,21 @@
+# Add to PATH
+export PATH=$PATH:$HOME/bin
+
+# Set Default Editor
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
+# Set Dotfiles Directory
+export DOTFILES_DIR=$HOME/.dotfiles
+
+# Highlight Matches in GREP (Deprecated)
+#export GREP_OPTIONS='--colour=auto'
+
+# Coloured Man Pages
+#export LESS_TERMCAP_mb                      # Blinking Mode
+export LESS_TERMCAP_md=$(printf '\e[01;32m') # Bold Mode
+export LESS_TERMCAP_us=$(printf '\e[33m')    # Underline Mode
+export LESS_TERMCAP_ue=$(printf '\e[0m')     # Exit Underline
+export LESS_TERMCAP_so=$(printf '\e[01;34m') # Standout Mode
+export LESS_TERMCAP_se=$(printf '\e[0m')     # Exit Standout
+export LESS_TERMCAP_me=$(printf '\e[0m')     # Exit All
