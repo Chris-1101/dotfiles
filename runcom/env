@@ -1,3 +1,10 @@
+#                       __                                            __
+#     ____   _______  _|__|______  ____   ____   _____   ____   _____/  |_
+#   _/ __ \ /    \  \/ /  \_  __ \/  _ \ /    \ /     \_/ __ \ /    \   __\
+#   \  ___/|   |  \   /|  ||  | \(  <_> )   |  \  Y Y  \  ___/|   |  \  |
+#    \___  >___|  /\_/ |__||__|   \____/|___|  /__|_|  /\___  >___|  /__|
+#        \/     \/                           \/      \/     \/     \/
+
 # Add to PATH
 export PATH=$PATH:$HOME/bin
 
@@ -12,10 +19,10 @@ export DOTFILES_DIR=$HOME/.dotfiles
 #export GREP_OPTIONS='--colour=auto'
 
 # Coloured Man Pages
-#export LESS_TERMCAP_mb                      # Blinking Mode
-export LESS_TERMCAP_md=$(printf '\e[01;32m') # Bold Mode
-export LESS_TERMCAP_us=$(printf '\e[33m')    # Underline Mode
-export LESS_TERMCAP_ue=$(printf '\e[0m')     # Exit Underline
-export LESS_TERMCAP_so=$(printf '\e[01;34m') # Standout Mode
-export LESS_TERMCAP_se=$(printf '\e[0m')     # Exit Standout
-export LESS_TERMCAP_me=$(printf '\e[0m')     # Exit All
+#export LESS_TERMCAP_mb                        # Blinking Mode
+export LESS_TERMCAP_md=$(printf '\e[01;32m')   # Bold Mode
+export LESS_TERMCAP_us=$(printf '\e[33m')      # Underline Mode
+export LESS_TERMCAP_ue=$(printf '\e[0m')       # Exit Underline
+export LESS_TERMCAP_so=$(printf '\e[01;34m')   # Standout Mode
+export LESS_TERMCAP_se=$(printf '\e[0m')       # Exit Standout
+export LESS_TERMCAP_me=$(printf '\e[0m')       # Exit All
