@@ -1,4 +1,31 @@
-#vim()
+#     _____                    __   __
+#   _/ ____\_ __  ____   _____/  |_|__| ____   ____   ______
+#   \   __\  |  \/    \_/ ___\   __\  |/  _ \ /    \ /  ___/
+#    |  | |  |  /   |  \  \___|  | |  (  <_> )   |  \\___ \
+#    |__| |____/|___|  /\___  >__| |__|\____/|___|  /____  >
+#                    \/     \/                    \/     \/
 
-#save()
-#goto()
+# Make Vim Follow Symlinks
+function vim() {
+    args=()
+    for i in $@; do
+        if [[ -h $i ]]; then
+            args+=`readlink $i`
+        else
+            args+=$i
+        fi
+    done
+
+    /usr/bin/vim -p "${args[@]}"
+}
+
+# Save/Goto Directory
+SAVE_LOC=~/.goto_dir
+
+function save() {
+    pwd > $SAVE_LOC ;
+}
+
+function goto() {
+    cd "$(cat $SAVE_LOC)" ;
+}
