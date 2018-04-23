@@ -3,7 +3,8 @@
 // ======================
 atom-text-editor .cursor
 {
-    transition: opacity 0.3s linear;
+    // Serious CPU Usage :<
+    //transition: opacity 0.3s linear;
 }
 
 atom-text-editor.vim-mode-plus.normal-mode.is-focused.editor
@@ -36,6 +37,30 @@ atom-text-editor.vim-mode-plus.normal-mode.is-focused.editor
         {
             margin-top: 3px;
             margin-right: 3px;
+        }
+    }
+}
+
+// =======================
+// ------- Ex Mode -------
+// =======================
+atom-panel.bottom
+{
+    border: 1px solid transparent !important;
+
+    div[is=ex-command-mode-input].command-mode-input
+    {
+        .ex-mode-editor
+        {
+            background-color: #182642 !important;
+            border-radius: 0px !important;
+            margin: auto;
+            width: 99% !important;
+
+            .scroll-view
+            {
+                left: 3px !important;
+            }
         }
     }
 }
