@@ -5,9 +5,43 @@
 #    \___  >___|  /\_/ |__||__|   \____/|___|  /__|_|  /\___  >___|  /__|
 #        \/     \/                           \/      \/     \/     \/
 
-# Add to PATH
-export PATH=$PATH:$HOME/bin
+# atom:set grammar=sh
 
+# ===========================
+# ------- Add to PATH -------
+# ===========================
+current_shell=$(ps -p $$ -ocomm=)
+
+# Array Initialisation Differs Per Shell ¯\_(ツ)_/¯
+case $current_shell in
+    bash)
+        declare -a path_dirs
+        ;;
+    zsh)
+        typeset -A path_dirs
+        ;;
+    *)
+        echo "Unknown shell, fireworks ahead!"
+        ;;
+esac
+
+# Directories to Add
+path_dirs[0]=$HOME/bin
+path_dirs[1]=$HOME/.dotfiles/bin
+
+# Append Directories That Exist & Not Duplicate
+for dir in "${path_dirs[@]}"; do
+    if [[ -d $dir && -z $(echo $PATH | grep -o $dir) ]]; then
+        export PATH=$PATH:$dir
+    fi
+done
+
+# Wipe Array
+unset path_dirs
+
+# =====================================
+# ------- Environment Variables -------
+# =====================================
 # Set Default Editor
 export VISUAL=vim
 export EDITOR="$VISUAL"
@@ -15,7 +49,10 @@ export EDITOR="$VISUAL"
 # Set Dotfiles Directory
 export DOTFILES_DIR=$HOME/.dotfiles
 
-# Highlight Matches in GREP (Deprecated)
+# Set Path to FIGlet Fonts
+export FIGLET_FONTDIR=$HOME/.local/share/fonts/figlet-fonts/contributed/
+
+# Highlight Matches in GREP (Deprecated » Alias)
 #export GREP_OPTIONS='--colour=auto'
 
 # Coloured Man Pages
