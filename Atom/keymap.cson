@@ -1,0 +1,12 @@
+#    __
+#   |  | __ ____ ___ __  _____ _____  ______  ______
+#   |  |/ // __ <   |  |/     \\__  \ \____ \/  ___/
+#   |    <\  ___/\___  |  Y Y  \/ __ \|  |_> >___ \
+#   |__|_ \\___  > ____|__|_|  (____  /   __/____  >
+#        \/    \/\/          \/     \/|__|       \/
+
+#?!: $HOME/.atom/keymap.cson
+
+'atom-text-editor':
+    'ctrl-c': 'core:copy'                       # Override Vim Style CTRL-C
+    'ctrl-f': 'find-and-replace:toggle'         # Toggle Find Panel Instead of Show
