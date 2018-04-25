@@ -5,6 +5,8 @@
 #    |__| |____/|___|  /\___  >__| |__|\____/|___|  /____  >
 #                    \/     \/                    \/     \/
 
+# atom:set grammar=sh
+
 # Make Vim Follow Symlinks
 function vim() {
     args=()
