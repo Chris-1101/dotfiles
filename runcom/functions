@@ -5,10 +5,12 @@
 #    |__| |____/|___|  /\___  >__| |__|\____/|___|  /____  >
 #                    \/     \/                    \/     \/
 
+#?!:void
 # atom:set grammar=sh
 
 # Make Vim Follow Symlinks
-function vim() {
+function vim
+{
     args=()
     for i in $@; do
         if [[ -h $i ]]; then
@@ -21,13 +23,15 @@ function vim() {
     /usr/bin/vim -p "${args[@]}"
 }
 
-# Save/Goto Directory
-SAVE_LOC=~/.goto_dir
+# Save/GoTo Directory
+save_loc=~/.goto_dir
 
-function save() {
-    pwd > $SAVE_LOC ;
+function save
+{
+    pwd > $save_loc
 }
 
-function goto() {
-    cd "$(cat $SAVE_LOC)" ;
+function goto
+{
+    cd "$(cat $save_loc)"
 }
