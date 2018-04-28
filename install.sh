@@ -116,7 +116,7 @@ function help
         echo
         echo "       NOTE: This script forcibly overwrites existing files and symbolic links, so review carefully!"
         echo
-        echo -e "       An omitted DIRECTORY defaults to \$DOTFILES_DIR (or exits if said variable is not set)"
+        echo -e "       An omitted DIRECTORY defaults to \$DOTFILES_DIR (if set) or ~/.dotfiles"
         echo
         echo "       ${LESS_TERMCAP_md}-h${LESS_TERMCAP_me}, ${LESS_TERMCAP_md}--help${LESS_TERMCAP_me}"
         echo "              Display this help page"
@@ -152,14 +152,10 @@ function help
 case $1 in
     "")
         if [[ -z $DOTFILES_DIR ]]; then
-            echo "Error: environment variable DOTFILES_DIR not set"
-            echo "To use this script without specifying a directory, please set DOTFILES_DIR"
-            echo "Alternatively, use install.sh path/to/dir"
-            echo "Run install.sh -h for more info"
-            exit 1
+            symlink_dotfiles "$HOME/.dotfiles"
+        else
+            symlink_dotfiles "$DOTFILES_DIR"
         fi
-
-        symlink_dotfiles "$DOTFILES_DIR"
         ;;
     -h|--help)
         help
