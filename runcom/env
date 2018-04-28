@@ -5,6 +5,7 @@
 #    \___  >___|  /\_/ |__||__|   \____/|___|  /__|_|  /\___  >___|  /__|
 #        \/     \/                           \/      \/     \/     \/
 
+#?!:void
 # atom:set grammar=sh
 
 # ===========================
@@ -29,7 +30,7 @@ esac
 path_dirs[0]=$HOME/bin
 path_dirs[1]=$HOME/.dotfiles/bin
 
-# Append Directories That Exist & Not Duplicate
+# Append Directories That Exist & Are Not Duplicates
 for dir in "${path_dirs[@]}"; do
     if [[ -d $dir && -z $(echo $PATH | grep -o $dir) ]]; then
         export PATH=$PATH:$dir
@@ -42,9 +43,11 @@ unset path_dirs
 # =====================================
 # ------- Environment Variables -------
 # =====================================
-# Set Default Editor
+# Set Defaults
 export VISUAL=vim
 export EDITOR="$VISUAL"
+export BROWSER=firefox
+export PAGER=less
 
 # Set Dotfiles Directory
 export DOTFILES_DIR=$HOME/.dotfiles
@@ -63,3 +66,6 @@ export LESS_TERMCAP_ue=$(printf '\e[0m')       # Exit Underline
 export LESS_TERMCAP_so=$(printf '\e[01;34m')   # Standout Mode
 export LESS_TERMCAP_se=$(printf '\e[0m')       # Exit Standout
 export LESS_TERMCAP_me=$(printf '\e[0m')       # Exit All
+
+# Remove Inverted Bold %
+export PROMPT_EOL_MARK=""
