@@ -5,6 +5,7 @@
 #   (____  /____/__(____  /____  >
 #        \/             \/     \/
 
+#?!:void
 # atom:set grammar=sh
 
 # General
@@ -23,5 +24,5 @@ alias aurinfo='packer -Si'
 alias aurlist='pacman -Sl aur'
 
 # Common TAR Commands
-alias zip='tar -cvfz'
-alias unzip='tar -xvf'
+alias tar='tar -cvfz'
+alias untar='tar -xvf'
