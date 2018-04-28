@@ -5,34 +5,46 @@
 #   |  |/    \ /  ___/\   __\__  \ |  | |  |
 #   |  |   |  \\___ \  |  |  / __ \|  |_|  |__
 #   |__|___|  /____  > |__| (____  /____/____/ - automatically symlink dotfiles
-#           \/     \/            \/              requires origin comments (?!:) pointing to desired installation path
+#           \/     \/            \/              requires origin comments pointing to desired installation path
 
 #?!:void
 
-# Counter Variable
-count=0
+# Guard Against Root
+if [[ $EUID -eq 0 ]]; then
+    echo "This script isn't meant to be run as root!"
+    exit 1
+fi
 
-# Recursive Install Script
-function symlink_origin
+# Recursively Find Dotfile/Origin Pairs
+function find_dotfiles
 {
+    # For the sake of readability
     local dir=$1
     local origin_regex="(?<=\?\!\:).+"
     local exclude="void"
 
+    # Guard against invalid parameters
     if [[ -d $dir ]]; then
-        #echo "RECURSION: $dir validated as a directory" # debug purposes
         for object in "$dir"/*; do
             if [[ -d $object ]]; then
-                symlink_origin "$object"
+                # Chase sub-directories
+                find_dotfiles "$object"
             else
+                # Skip if symlink or not a regular file
                 [[ -h "$object" || ! -f "$object" ]] && continue
-                #echo "FILE: $object" # debug purposes
-                local origin=$([[ -f $object || -x $object ]] && head -10 "$object" | grep -oP $origin_regex | cat)
-                # Expand $HOME or skip this file if no origin comment was found
-                [[ -n $origin ]] && origin=$(eval echo "$origin") || continue
-                #[[ -n $origin && $origin != $exclude ]] && echo "ORIGIN: $origin" && ((count++)) # debug purposes
-                [[ -n $origin && $origin != $exclude ]] && ln -sf "$object" "$origin" && ((count++))
-                echo -ne \\r$count files successfully symlinked to their origin
+
+                # Find and store origin
+                local origin=$([[ -f $object || -x $object ]] && head -10 "$object" | grep -oP $origin_regex)
+
+                # Process file paths and origins
+                if [[ -n $origin && $origin != $exclude ]]; then
+                    origin=$(eval echo "$origin")       # Expand environment variables
+                    actual=$(readlink -f "$object")     # Expand to absolute path
+                    symlinks["$actual"]="$origin"
+                    ((find_count++))
+                else
+                    continue
+                fi
             fi
         done
     else
@@ -41,19 +53,118 @@ function symlink_origin
     fi
 }
 
-# Launch the Script
-#if [[ -z $1 ]]; then
-#    symlink_origin $DOTFILES_DIR
-#else
-#    symlink_origin "$1"
-#fi
+# Create Symbolic Links
+function symlink_dotfiles
+{
+    # Associative array
+    declare -A symlinks
+    find_count=0
 
-declare -A symlinks
+    # Obtain file paths
+    find_dotfiles $1
 
-symlinks["uno"]="testing"
-symlinks["duo"]="still testing"
-symlinks["trio"]="uh huh"
+    # Check for matches
+    if [[ $find_count -ne 0 ]]; then
+        echo "The following symbolic links will be created:"
 
-for numero in "${!symlinks[@]}"; do
-    echo "$numero is ${symlinks[$numero]}"
-done | tac
+        # Print dotfile/origin pairs in reverse order
+        for f_path in "${!symlinks[@]}"; do
+            #echo "└───➤ $f_path"
+            #echo "┌$(printf '\e[36m')${symlinks[$f_path]}$(printf '\e[0m')"
+            echo "$(printf '\e[36m')${symlinks[$f_path]}$(printf '\e[0m') ─➤ $f_path"
+        done | tac
+
+        # Prompt for confirmation
+        echo "(total $find_count)"
+        read -p "Existing files/symlinks will be overwritten without confirmation, continue? [Y/n] "
+
+        # Process and link paths
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            local link_count=0
+            for f_path in "${!symlinks[@]}"; do
+                ln -sf "$f_path" "${symlinks[$f_path]}" && ((link_count++))
+                printf "\\r$link_count dotfiles successfully symlinked to their originial location"
+            done
+        fi
+    else
+        echo "No files to symlink..."
+    fi
+
+    # Not sure if this is needed
+    unset symlinks
+}
+
+# Simulated Man Page
+function help
+{
+    {
+        echo "DOTFILES INSTALLATION SCRIPT"
+        echo
+        echo "${LESS_TERMCAP_md}NAME${LESS_TERMCAP_me}"
+        echo "       install.sh - automatically symlink dotfiles to their original location"
+        echo
+        echo "${LESS_TERMCAP_md}SYNOPSIS${LESS_TERMCAP_me}"
+        echo "       install.sh ${LESS_TERMCAP_us}DIRECTORY${LESS_TERMCAP_ue}"
+        echo "       install.sh ${LESS_TERMCAP_md}-h --help${LESS_TERMCAP_me}"
+        echo "       install.sh"
+        echo
+        echo "${LESS_TERMCAP_md}DESCRIPTION${LESS_TERMCAP_me}"
+        echo "       ${LESS_TERMCAP_us}DIRECTORY${LESS_TERMCAP_ue}"
+        echo "              Runs through the specified directory & sub-directories, searching each file for an origin"
+        echo "              Once the search is complete, results are printed in 'origin ─➤ dotfile' pairs for review"
+        echo "              User is then prompted for confirmation to create the symbolic links"
+        echo
+        echo "       NOTE: This script forcibly overwrites existing files and symbolic links, so review carefully!"
+        echo
+        echo -e "       An omitted DIRECTORY defaults to \$DOTFILES_DIR (or exits if said variable is not set)"
+        echo
+        echo "       ${LESS_TERMCAP_md}-h${LESS_TERMCAP_me}, ${LESS_TERMCAP_md}--help${LESS_TERMCAP_me}"
+        echo "              Display this help page"
+        echo
+        echo "${LESS_TERMCAP_md}REQUIREMENTS${LESS_TERMCAP_me}"
+        echo "       Dotfiles must include a comment in the first ${LESS_TERMCAP_us}10${LESS_TERMCAP_ue} lines pointing to their origin"
+        echo
+        echo -e "       This script cannot be run as root due to the expansion of user-specific env variables like \$HOME"
+        echo "       As such, files that belong in locations that require root access are not supported by this script"
+        echo "       Any such files should use the void origin comment or ommit it completely"
+        echo
+        echo "${LESS_TERMCAP_md}COMMENTS FORMAT${LESS_TERMCAP_me}"
+        echo -e "       Environment variables like \$HOME may be used"
+        echo
+        echo "       ?!:/path/to/original/location/original.name    - keep"
+        echo "       ?!:void                                        - skip"
+        echo "       <no comment>                                   - skip"
+        echo
+        echo "${LESS_TERMCAP_md}AUTHOR${LESS_TERMCAP_me}"
+        echo "       Written by Chris MB"
+        echo "       Chris-1101 on GitHub: <https://github.com/Chris-1101>"
+        echo
+        echo "${LESS_TERMCAP_md}COPYRIGHT${LESS_TERMCAP_me}"
+        echo "       Copyright (c) 2018 Chris-1101"
+        echo "       MIT License: <https://opensource.org/licenses/MIT>"
+        echo
+        echo "${LESS_TERMCAP_md}SEE ALSO${LESS_TERMCAP_me}"
+        echo "       https://github.com/Chris-1101/dotfiles"
+    } | less
+}
+
+# Handle CLI Parameters
+case $1 in
+    "")
+        if [[ -z $DOTFILES_DIR ]]; then
+            echo "Error: environment variable DOTFILES_DIR not set"
+            echo "To use this script without specifying a directory, please set DOTFILES_DIR"
+            echo "Alternatively, use install.sh path/to/dir"
+            echo "Run install.sh -h for more info"
+            exit 1
+        fi
+
+        symlink_dotfiles "$DOTFILES_DIR"
+        ;;
+    -h|--help)
+        help
+        ;;
+    *)
+        symlink_dotfiles "$1"
+        ;;
+esac
