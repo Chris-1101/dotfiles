@@ -1,5 +1,15 @@
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 
+/*     _____ __                _____
+ *   _/ ____\__|______   _____/ ____\_______  ___
+ *   \   __\|  \_  __ \_/ __ \   __\/  _ \  \/  /
+ *    |  |  |  ||  | \/\  ___/|  | (  <_> >    <
+ *    |__|  |__||__|    \___  >__|  \____/__/\_ \
+ *                          \/                 \/
+ *
+ *  ?!:$HOME/.mozilla/firefox/u9208uny.default/chrome/userChrome.css
+ */
+
 /* Hide main tabs toolbar */
 #TabsToolbar {
 	visibility: collapse;
