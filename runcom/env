@@ -33,7 +33,7 @@ path_dirs[1]=$HOME/.dotfiles/bin
 # Append Directories That Exist & Are Not Duplicates
 for dir in "${path_dirs[@]}"; do
     if [[ -d $dir && -z $(echo $PATH | grep -o $dir) ]]; then
-        export PATH=$PATH:$dir
+        export PATH=$dir:$PATH
     fi
 done
 
