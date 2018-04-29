@@ -76,7 +76,7 @@ function symlink_dotfiles
 
         # Prompt for confirmation
         echo "(total $find_count)"
-        read -p "Existing files/symlinks will be overwritten without confirmation, continue? [Y/n] "
+        read -p ":: Existing files/symlinks will be overwritten without confirmation, continue? [Y/n] "
 
         # Process and link paths
         if [[ $REPLY =~ ^[Yy]$ ]]; then
