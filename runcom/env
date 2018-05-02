@@ -5,7 +5,6 @@
 #    \___  >___|  /\_/ |__||__|   \____/|___|  /__|_|  /\___  >___|  /__|
 #        \/     \/                           \/      \/     \/     \/
 
-#?!:void
 # atom:set grammar=sh
 
 # ===========================
@@ -49,10 +48,9 @@ export EDITOR="$VISUAL"
 export BROWSER=firefox
 export PAGER=less
 
-# Set Dotfiles Directory
+# Relevant Directories
+export ZDOTDIR=$HOME
 export DOTFILES_DIR=$HOME/.dotfiles
-
-# Set Path to FIGlet Fonts
 export FIGLET_FONTDIR=$HOME/.local/share/fonts/figlet-fonts/contributed/
 
 # Highlight Matches in GREP (Deprecated » Alias)
