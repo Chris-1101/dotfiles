@@ -5,7 +5,6 @@
 #   (____  /____/__(____  /____  >
 #        \/             \/     \/
 
-#?!:void
 # atom:set grammar=sh
 
 # General
@@ -24,5 +23,11 @@ alias aurinfo='packer -Si'
 alias aurlist='pacman -Sl aur'
 
 # Common TAR Commands
-alias tar='tar -cvfz'
+alias xtar='tar -cvfz'
 alias untar='tar -xvf'
+
+# Directory Navigation
+alias up='dir-parent'
+alias bk='dir-back'
+alias sv='dir-save'
+alias gt='dir-goto'
