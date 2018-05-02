@@ -4,10 +4,13 @@
 #   |__| ____   _______/  |______  |  | |  |
 #   |  |/    \ /  ___/\   __\__  \ |  | |  |
 #   |  |   |  \\___ \  |  |  / __ \|  |_|  |__
-#   |__|___|  /____  > |__| (____  /____/____/ - automatically symlink dotfiles
-#           \/     \/            \/              requires origin comments pointing to desired installation path
+#   |__|___|  /____  > |__| (____  /____/____/
+#           \/     \/            \/
 
-#?!:void
+# Author       : Chris-1101
+# GitHub       : https://github.com/Chris-1101
+# Description  : Automatically symlink dotfiles
+# Dependencies : bash > 4.0 (associative arrays)
 
 # Guard Against Root
 if [[ $EUID -eq 0 ]]; then
@@ -21,11 +24,14 @@ function find_dotfiles
     # For the sake of readability
     local dir=$1
     local origin_regex="(?<=\?\!\:).+"
-    local exclude="void"
+    local is_directory="origin.path"
+    local exclude="exclude"
 
     # Guard against invalid parameters
     if [[ -d $dir ]]; then
+
         for object in "$dir"/*; do
+
             if [[ -d $object ]]; then
                 # Chase sub-directories
                 find_dotfiles "$object"
@@ -38,15 +44,27 @@ function find_dotfiles
 
                 # Process file paths and origins
                 if [[ -n $origin && $origin != $exclude ]]; then
-                    origin=$(eval echo "$origin")       # Expand environment variables
-                    actual=$(readlink -f "$object")     # Expand to absolute path
+
+                    # Expand paths and variables
+                    origin=$(eval echo "$origin")
+                    actual=$(readlink -f "$object")
+
+                    # For directories, keep only directory name
+                    if [[ "$object" = *$is_directory ]]; then
+                        actual=$(dirname "$actual")/
+                    fi
+
+                    # Store results in hash
                     symlinks["$actual"]="$origin"
                     ((find_count++))
+
                 else
                     continue
                 fi
             fi
+
         done
+
     else
         echo "Invalid directory: $dir"
         exit 1
@@ -70,7 +88,7 @@ function symlink_dotfiles
         # Print dotfile/origin pairs in reverse order
         for f_path in "${!symlinks[@]}"; do
             #echo "└───➤ $f_path"
-            #echo "┌$(printf '\e[36m')${symlinks[$f_path]}$(printf '\e[0m')"
+            #echo "┌╼$(printf '\e[36m')${symlinks[$f_path]}$(printf '\e[0m')"
             echo "$(printf '\e[36m')${symlinks[$f_path]}$(printf '\e[0m') ─➤ $f_path"
         done | tac
 
@@ -109,10 +127,15 @@ function help
         echo "       install.sh"
         echo
         echo "${LESS_TERMCAP_md}DESCRIPTION${LESS_TERMCAP_me}"
+        echo "       This script is intended for use in repositories with custom directory structures. If you want"
+        echo "       complete freedom in organising, moving and renaming your dotfiles at will, this script will still"
+        echo "       be able to correctly link files & directories back to their originally intended location. Given,"
+        echo "       of course, that you satisfy requirements listed below (some assembly required!)"
+        echo
         echo "       ${LESS_TERMCAP_us}DIRECTORY${LESS_TERMCAP_ue}"
         echo "              Runs through the specified directory & sub-directories, searching each file for an origin"
         echo "              Once the search is complete, results are printed in 'origin ─➤ dotfile' pairs for review"
-        echo "              User is then prompted for confirmation to create the symbolic links"
+        echo "              User is then prompted for confirmation to create/update the symbolic links"
         echo
         echo "       NOTE: This script forcibly overwrites existing files and symbolic links, so review carefully!"
         echo
@@ -122,17 +145,22 @@ function help
         echo "              Display this help page"
         echo
         echo "${LESS_TERMCAP_md}REQUIREMENTS${LESS_TERMCAP_me}"
-        echo "       Dotfiles must include a comment in the first ${LESS_TERMCAP_us}10${LESS_TERMCAP_ue} lines pointing to their origin"
+        echo "       Dotfiles must include a comment in the first ${LESS_TERMCAP_us}10${LESS_TERMCAP_ue} lines pointing to their origin path"
+        echo "       If a directory is to be linked, it must contain an ${LESS_TERMCAP_us}origin.path${LESS_TERMCAP_ue} file with the relevant path"
+        echo
+        echo "       NOTE: Not all directories require such a file. Only those that are to be themselves linked"
+        echo "       WARNING: Don't mix file paths (comments) & directory paths (origin.path) in the same directory"
         echo
         echo -e "       This script cannot be run as root due to the expansion of user-specific env variables like \$HOME"
         echo "       As such, files that belong in locations that require root access are not supported by this script"
-        echo "       Any such files should use the void origin comment or ommit it completely"
+        echo "       Any such files should use the exclude comment or ommit it completely"
         echo
-        echo "${LESS_TERMCAP_md}COMMENTS FORMAT${LESS_TERMCAP_me}"
+        echo "${LESS_TERMCAP_md}PATH COMMENTS FORMAT${LESS_TERMCAP_me}"
         echo -e "       Environment variables like \$HOME may be used"
+        echo "       NOTE: This format applies to both dotfiles and origin.path files"
         echo
-        echo "       ?!:/path/to/original/location/original.name    - keep"
-        echo "       ?!:void                                        - skip"
+        echo "       ?!:/path/to/original/location/original.name    - link"
+        echo "       ?!:exclude                                     - skip"
         echo "       <no comment>                                   - skip"
         echo
         echo "${LESS_TERMCAP_md}AUTHOR${LESS_TERMCAP_me}"
