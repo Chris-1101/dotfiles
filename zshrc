@@ -1,11 +1,12 @@
-#                   __
-#   ________  _____|  |_________   ____
-#   \___   / /  ___/  |  \_  __ \_/ ___\
-#    /    /  \___ \|   Y  \  | \/\  \___
-#   /_____ \/____  >___|  /__|    \___  >
-#         \/     \/     \/            \/
 
-#?!: $HOME/.zshrc
+#   ███████╗███████╗██╗  ██╗██████╗  ██████╗
+#   ╚══███╔╝██╔════╝██║  ██║██╔══██╗██╔════╝
+#     ███╔╝ ███████╗███████║██████╔╝██║
+#    ███╔╝  ╚════██║██╔══██║██╔══██╗██║
+#   ███████╗███████║██║  ██║██║  ██║╚██████╗
+#   ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝
+
+#?!:$HOME/.zshrc
 
 # =======================
 # ------- Antigen -------
@@ -15,9 +16,10 @@ source /usr/share/zsh/share/antigen.zsh
 # Load oh-my-zsh Library
 antigen use oh-my-zsh
 
-# Default Repo Plugins: https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins
+# Load Plugins: https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins
 antigen bundle git
 antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-history-substring-search
 
 #antigen theme arclight
 
@@ -38,22 +40,43 @@ if [[ -d $runcom_dir ]]; then
     done
 fi
 
+# Zsh Line Editor - New Keymaps
+zle -N dir-back
+zle -N dir-parent
+zle -N dir-save
+zle -N dir-goto
+
 # ==============================
 # ------- Shell Settings -------
 # ==============================
 # The following lines were added by compinstall
-zstyle :compinstall filename '$HOME/.zshrc'
+#zstyle :compinstall filename '$HOME/.zshrc'
 
 # History
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 
+# History Substring Search
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+# Directory Navigation
+bindkey '^[^[[D' dir-back
+bindkey '^[^[[A' dir-parent
+bindkey '^[^[[B' dir-save
+bindkey '^[^[[C' dir-goto
+
 # Vim Mode
 bindkey -v
 
-# Enable Auto cd
+# Auto cd
 setopt autocd
 
-# Enable Auto Completion
+# Auto Completion
 autoload -Uz compinit && compinit
+
+# ========================
+# ------- Auto Run -------
+# ========================
+neofetch
