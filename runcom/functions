@@ -5,7 +5,6 @@
 #    |__| |____/|___|  /\___  >__| |__|\____/|___|  /____  >
 #                    \/     \/                    \/     \/
 
-#?!:void
 # atom:set grammar=sh
 
 # Make Vim Follow Symlinks
@@ -21,17 +20,4 @@ function vim
     done
 
     /usr/bin/vim -p "${args[@]}"
-}
-
-# Save/GoTo Directory
-save_loc=~/.goto_dir
-
-function save
-{
-    pwd > $save_loc
-}
-
-function goto
-{
-    cd "$(cat $save_loc)"
 }
