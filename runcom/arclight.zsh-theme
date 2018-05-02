@@ -5,14 +5,13 @@
 #   /_____ \/____  >___|  /         (____  /__|    \___  >____/__\___  /|___|  /__|
 #         \/     \/     \/               \/            \/       /_____/      \/
 
-#?!:void
 # atom:set grammar=sh
 
 # ==============================
 # ------- Git Formatting -------
 # ==============================
 ZSH_THEME_GIT_PROMPT_CLEAN=""
-ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[red]%}✗%{$reset_color%} "
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}✗%{$reset_color%} "
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[green]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
 
@@ -31,7 +30,7 @@ local working_dir="[%{$fg[cyan]%}%1~%{$reset_color%}]"
 local exit_code="%{$fg[red]%}%(?..%? )%{$reset_color%}"
 local prompt_char="%{$fg[green]%}»%{$reset_color%}"
 
-PROMPT='${working_dir} ${exit_code}${prompt_char} ' # ┌ └─── ➤
+PROMPT='${working_dir} ${exit_code}${prompt_char} ' # ┌╼ └───╼➤
 
 # =================================
 # ------- Right-Hand Prompt -------
