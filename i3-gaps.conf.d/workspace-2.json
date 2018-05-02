@@ -1,4 +1,6 @@
-// vim:ts=4:sw=4:et
+//?!:$HOME/.config/i3/workspace-2.json
+
+// NOTE: Technically JSON doesn't support comments, these seem to be an i3 special!
 
 // Workspace 2: Terminals
 {
