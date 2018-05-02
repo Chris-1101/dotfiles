@@ -5,7 +5,7 @@
 #   |__|_ \\___  > ____|__|_|  (____  /   __/____  >
 #        \/    \/\/          \/     \/|__|       \/
 
-#?!: $HOME/.atom/keymap.cson
+#?!:$HOME/.atom/keymap.cson
 
 'atom-text-editor':
     'ctrl-c': 'core:copy'                       # Override Vim Style CTRL-C
