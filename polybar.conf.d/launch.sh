@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 #    __                              __      ___
 #   |  | _____   __ __  ____   ____ |  |__   \_ |__ _____ _______  ______
@@ -14,7 +14,7 @@ killall -q polybar
 
 # Wait for polybar instances to be killed
 while pgrep -u $UID -x polybar > /dev/null; do
-  sleep 1
+  sleep 2
 done
 
 # Launch bars
