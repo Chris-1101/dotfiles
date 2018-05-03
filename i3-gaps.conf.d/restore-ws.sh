@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-#    __________                                __
-#   |__\_____  \          __  _  _____________|  | __  _________________    ____  ____   ______
-#   |  | _(__  <   ______ \ \/ \/ /  _ \_  __ \  |/ / /  ___/\____ \__  \ _/ ___\/ __ \ /  ___/
-#   |  |/       \ /_____/  \     (  <_> )  | \/    <  \___ \ |  |_> > __ \\  \__\  ___/ \___ \
-#   |__/______  /           \/\_/ \____/|__|  |__|_ \/____  >|   __(____  /\___  >___  >____  >
-#             \/                                   \/     \/ |__|       \/     \/    \/     \/
+#    __________                           __
+#   |__\_____  \     __  _  _____________|  | __ _________________    ____  ____   ______
+#   |  | _(__  < ____\ \/ \/ /  _ \_  __ \  |/ //  ___/\____ \__  \ _/ ___\/ __ \ /  ___/
+#   |  |/       \_____\     (  <_> )  | \/    < \___ \ |  |_> > __ \\  \__\  ___/ \___ \
+#   |__/______  /      \/\_/ \____/|__|  |__|_ \____  >|   __(____  /\___  >___  >____  >
+#             \/                              \/    \/ |__|       \/     \/    \/     \/
 
 #?!:$HOME/.config/i3/restore-ws.sh
 
@@ -13,10 +13,7 @@
 i3-msg "workspace 2; append_layout ~/.config/i3/workspace-2.json"
 
 # Restore Workspace 2
-urxvt -title 'Terminal - Ranger' -name ranger -e ranger &
+urxvt -title 'Ranger File Manager' -name ranger -e $SHELL -c "ranger && $SHELL" &
 urxvt -name urxvt1 &
-urxvt -name urxvt2 &
-urxvt -title 'Terminal - htop' -name htop -e htop &
-
-# Done
-echo "i3 workspaces restored."
+urxvt -name urxvt2 -e $SHELL -c "neofetch && dfc -dfs && echo && checkupdates && $SHELL" &
+urxvt -title 'System Monitor' -name htop -e $SHELL -c "htop && $SHELL" &
