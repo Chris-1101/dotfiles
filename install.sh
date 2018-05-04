@@ -87,10 +87,8 @@ function symlink_dotfiles
 
         # Print dotfile/origin pairs in reverse order
         for f_path in "${!symlinks[@]}"; do
-            #echo "└───➤ $f_path"
-            #echo "┌╼$(printf '\e[36m')${symlinks[$f_path]}$(printf '\e[0m')"
             echo "$(printf '\e[36m')${symlinks[$f_path]}$(printf '\e[0m') ─➤ $f_path"
-        done | tac
+        done | sort
 
         # Prompt for confirmation
         echo "(total $find_count)"
