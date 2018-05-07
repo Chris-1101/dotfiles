@@ -27,7 +27,7 @@ esac
 
 # Directories to Add
 path_dirs[0]=$HOME/bin
-path_dirs[1]=$HOME/.dotfiles/bin
+path_dirs[1]=$HOME/.dotfiles/scripts
 
 # Append Directories That Exist & Are Not Duplicates
 for dir in "${path_dirs[@]}"; do
@@ -52,6 +52,27 @@ export PAGER=less
 export ZDOTDIR=$HOME
 export DOTFILES_DIR=$HOME/.dotfiles
 export FIGLET_FONTDIR=$HOME/.local/share/fonts/figlet-fonts/contributed/
+
+# Video Acceleration
+export LIBVA_DRIVER_NAME=i965
+export VDPAU_DRIVER=va_gl
+
+# XDG Base Directory Specification
+export XDG_CONFIG_HOME=$HOME/.config       #/etc
+export XDG_CACHE_HOME=$HOME/.cache         #/var/cache
+export XDG_DATA_HOME=$HOME/.local/share    #/usr/share
+export XDG_DATA_DIRS=/usr/local/share:/usr/share
+export XDG_CONFIG_DIRS=/etc/xdg
+
+# XDG User Directories
+export XDG_DESKTOP_DIR=$HOME/Desktop
+export XDG_DOCUMENTS_DIR=$HOME/Documents
+export XDG_DOWNLOAD_DIR=$HOME/Downloads
+#export XDG_MUSIC_DIR=$HOME/Music
+export XDG_PICTURES_DIR=$HOME/Pictures
+export XDG_PUBLICSHARE_DIR=$HOME/Public
+#export XDG_TEMPLATES_DIR=$HOME/Templates
+#export XDG_VIDEOS_DIR=$HOME/Videos
 
 # Highlight Matches in GREP (Deprecated » Alias)
 #export GREP_OPTIONS='--colour=auto'
