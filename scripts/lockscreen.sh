@@ -7,9 +7,12 @@
 #   ███████╗╚██████╔╝╚██████╗██║  ██╗    ███████║╚██████╗██║  ██║███████╗███████╗██║ ╚████║
 #   ╚══════╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝    ╚══════╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚══════╝╚═╝  ╚═══╝
 
+#?!:$HOME/.dotfiles/scripts/lockscreen
+#!!:/usr/bin/lockscreen
+
 # Author       : Chris-1101
 # GitHub       : https://github.com/Chris-1101
-# Description  : Simple lock screen script based on `betterlockscreen` by Pavan Jadhaw
+# Description  : Simple lock screen script based on 'betterlockscreen' by Pavan Jadhaw
 # Dependencies : i3lock-color
 
 logger '[ARCLIGHT] Initialising lockscreen...'
