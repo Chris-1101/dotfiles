@@ -11,13 +11,27 @@
 function vim
 {
     args=()
+
     for i in $@; do
         if [[ -h $i ]]; then
-            args+=`readlink $i`
+            args+=$(readlink $i)
         else
             args+=$i
         fi
     done
 
     /usr/bin/vim -p "${args[@]}"
+}
+
+# Check Updates
+function checkupdates
+{
+    local updates=$(/usr/bin/checkupdates)
+    local num=$(wc -l <<< "$updates")
+
+    if [[ -n $updates ]]; then
+        echo "$num Pending Update(s)"
+        echo $updates
+        echo
+    fi
 }
