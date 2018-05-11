@@ -7,7 +7,7 @@
 #   |____/|___|  /__||__|  \____/|__|  |__|_|  /
 #   unicode    \/    formatting              \/
 
-#?!:$HOME/.dotfiles/scritps/uniform
+#?!:$HOME/.dotfiles/scripts/uniform
 
 # Author       : Chris-1101
 # GitHub       : https://github.com/Chris-1101
