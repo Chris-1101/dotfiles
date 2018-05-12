@@ -7,7 +7,6 @@
 #   ███████╗╚██████╔╝╚██████╗██║  ██╗    ███████║╚██████╗██║  ██║███████╗███████╗██║ ╚████║
 #   ╚══════╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝    ╚══════╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚══════╝╚═╝  ╚═══╝
 
-#?!:$HOME/.dotfiles/scripts/lockscreen
 #!!:/usr/bin/lockscreen
 
 # Author       : Chris-1101
@@ -20,7 +19,7 @@ logger '[ARCLIGHT] Initialising lockscreen...'
 # ==================================
 # ------- Lock Script Proper -------
 # ==================================
-lock()
+function lock
 {
     # Colours (rrggbbaa)
     foreground=d7d8e0ff
@@ -53,12 +52,12 @@ lock()
 # =======================================
 # ------- Suspend/Resume Services -------
 # =======================================
-pre_lock()
+function pre_lock
 {
     pkill -u "$USER" -USR1 dunst
 }
 
-post_lock()
+function post_lock
 {
     sleep 1
     pkill -u "$USER" -USR2 dunst
@@ -67,7 +66,7 @@ post_lock()
 # ============================
 # ------- List Options -------
 # ============================
-help()
+function help
 {
     echo
     echo "Simple lock screen script to automate the use of i3lock-color"
