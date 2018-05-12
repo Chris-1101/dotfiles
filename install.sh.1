@@ -1,0 +1,119 @@
+.\"    __                 __          __   __
+.\"   |__| ____   _______/  |______  |  | |  |
+.\"   |  |/    \ /  ___/\   __\__  \ |  | |  |
+.\"   |  |   |  \\___ \  |  |  / __ \|  |_|  |__
+.\"   |__|___|  /____  > |__| (____  /____/____/
+.\"           \/     \/            \/   manual
+
+.TH install.sh "1" "13 May 2018" "1.0.0" "Dotfiles Installation Script"
+
+.SH NAME
+install.sh \- automatically symlink dotfiles to their original location.
+
+.SH SYNOPSIS
+(sudo) \fBinstall.sh\fR [\fB-iv\fR] \fIDIRECTORY\fR
+       \fBinstall.sh\fR \fB-h\fR
+
+.SH DESCRIPTION
+This script is optimised for use in repositories with custom directory structures,
+allowing for complete freedom in organising, moving and renaming dotfiles at will.
+Fair warning, some assembly required ( •_•) see \fBCONFIGURATION\fR.
+
+.TP
+sudo
+This script will behave differently based on the type of user running it. The root
+mode exists to link files to locations that require root access, such as \fI/etc/\fR
+or \fI/usr/bin/\fR and should only be used when needed.
+
+.TP
+\fIDIRECTORY\fR
+Runs through the specified directory and any sub-directories, scanning the head of
+all files for an origin path. Once the scan is complete, results are displayed in
+\(aqorigin ─➤ dotfile\(aq pairs, mimicking the output of `ls -l`. In the event that
+errors have been found, the script will list them (see \fBTROUBLESHOOTING\fR) and
+exit. Otherwise, the user is prompted for confirmation to create or update any
+aforementioned symbolic links.
+
+\fBNOTE:\fR An omitted directory defaults to \fI$DOTFILES_DIR\fR if set, or
+\fI~/.dotfiles\fR
+
+.TP
+.B -i
+Interactive mode: prompt the user for confirmation to overwrite existing symlinks /
+files at the destination (swaps the script to using `ln -si` instead of `ln -sf`).
+
+.TP
+.B -v
+Verbose mode: output directories currently being scanned and files being linked.
+
+.TP
+.B -h
+Display this help page ( •_•)>⌐■-■
+
+(⌐■_■)
+
+.SH CONFIGURATION
+The principle is to make each dotfile self-sufficient in terms of installation.
+Instead of having a separate file or database keeping track of what came from
+where, the original location is embedded as a comment in the file itself (similar
+to using modelines in vim). A one time task that rarely needs to be amended.
+
+After which, moving or renaming files and creating custom directory structures will
+not compromise any of the information required to link a dotfile to its original
+location: the embedded path; and the path of the file itself.
+
+To configure your dotfiles to be detected by the script, use one of the following
+patterns in a comment in the first \fI10\fR lines of the file:
+
+.TP
+\fB?!:\fR\fI/path/to/original.file\fR
+The script will try and match this pattern when run as a regular user. This should
+be used as the default for any location that does not require root. User-dependent
+variables such as $HOME may be used.
+
+.TP
+\fB!!:\fR\fI/path/to/original.file\fR
+The script will try and match this pattern when run with sudo. This is intended to
+link files to locations that require root access.
+
+.PP
+\fBNOTE:\fR Be careful when using the script as root. Best way to handle permissions
+is to preserve those of the file being replaced. Only use root on files that require
+it. Regardless, the permissions that matter will be those of the file accessed
+through the link, not those of the link itself. Still, better safe than your
+favourite programme suddenly not working!
+
+.SH TROUBLESHOOTING
+.TP
+.I error: directory doesn't exist
+The ln command doesn't handle directory creation, and this script won't do it
+automatically either. This is to avoid creating directories that may simply be
+spelling errors of existing ones. Review all the directories in the path and
+manually create any that are missing.
+
+.TP
+.I error: location requires root
+The script has encountered a path requiring root access while running as a regular
+user. This means the wrong pattern was found. To announce a location that requires
+root, use the \fB!!:\fR pattern and run the script with sudo.
+
+.TP
+.I incorrect results are listed
+The script has some redundancy built into it, but it's not foolproof. There are
+certain ways that the embedded path can trick the script, particularly in the case
+of certain multi-line comments, whose closing tag \fI*/\fR can add an unforeseen
+wildcard to the test command's globbing. In short: avoid having anything (at all)
+on the same line after the embedded path.
+
+.SH AUTHOR
+Written by Chris MB
+.br
+Chris-1101 on GitHub: https://github.com/Chris-1101
+
+.SH COPYRIGHT
+Copyright \(co 2018 Chris-1101
+.br
+MIT License: https://opensource.org/licenses/MIT
+
+.SH SEE ALSO
+Examples: https://github.com/Chris-1101/dotfiles
