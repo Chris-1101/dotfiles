@@ -1,0 +1,22 @@
+#           __                          __                   __
+#     _____|  |   ____   ____ ______   |  |__   ____   ____ |  | __
+#    /  ___/  | _/ __ \_/ __ \\____ \  |  |  \ /  _ \ /  _ \|  |/ /
+#    \___ \|  |_\  ___/\  ___/|  |_> > |   Y  (  <_> |  <_> )    <
+#   /____  >____/\___  >\___  >   __/  |___|  /\____/ \____/|__|_ \
+#        \/          \/     \/|__|          \/                   \/
+
+#!!:/etc/systemd/system/sleep@.service
+
+[Unit]
+Description=User Suspend Hooks
+Before=sleep.target
+
+[Service]
+User=%I
+Type=forking
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/lockscreen
+ExecStartPost=/usr/bin/sleep 1
+
+[Install]
+WantedBy=sleep.target
