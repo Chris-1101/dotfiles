@@ -77,11 +77,9 @@ The script will try and match this pattern when run with sudo. This is intended 
 link files to locations that require root access.
 
 .PP
-\fBNOTE:\fR Be careful when using the script as root. Best way to handle permissions
-is to preserve those of the file being replaced. Only use root on files that require
-it. Regardless, the permissions that matter will be those of the file accessed
-through the link, not those of the link itself. Still, better safe than your
-favourite programme suddenly not working!
+\fBNOTE:\fR Keep in mind that using the script as sudo will create the links as
+root. Limit this to files that were originally root-owned or in a location that
+requires root access to be safe.
 
 .SH TROUBLESHOOTING
 .TP
