@@ -50,7 +50,7 @@ function find_dotfiles
 
                     # Expand paths and variables
                     local actual=$(readlink -f "$object")
-                    origin=$(eval echo "$origin")
+                    origin=$(eval echo "${origin//$'\r'}")
 
                     # For directories, keep only directory name
                     if [[ "$object" = *$is_directory ]]; then
@@ -109,16 +109,11 @@ function symlink_dotfiles
         # Evaluate and print dotfile/origin pairs
         for f_path in "${!symlinks[@]}"; do
             if [[ $(grep ^dir_err <<< $f_path) ]]; then
-                echo " • [$(printf '\e[31m')✘$(printf '\e[0m')]" \
-                     "$(printf '\e[33m')${symlinks[$f_path]}$(printf '\e[0m') —" \
-                     "$(printf '\e[31m')directory doesn't exist$(printf '\e[0m')"
+                echo -e " • [\e[31m✘\e[0m] \e[33m${symlinks[$f_path]}\e[0m — \e[31mdirectory doesn't exist\e[0m"
             elif [[ $(grep ^write_err <<< $f_path) ]]; then
-                echo " • [$(printf '\e[31m')✘$(printf '\e[0m')]" \
-                     "$(printf '\e[33m')${symlinks[$f_path]}$(printf '\e[0m') —" \
-                     "$(printf '\e[31m')location requires root$(printf '\e[0m')"
+                echo -e " • [\e[31m✘\e[0m] \e[33m${symlinks[$f_path]}\e[0m — \e[31mlocation requires root\e[0m"
             else
-                echo " • [$(printf '\e[32m')✔$(printf '\e[0m')]" \
-                     "$(printf '\e[36m')${symlinks[$f_path]}$(printf '\e[0m') ─➤ $f_path"
+                echo -e " • [\e[32m✔\e[0m] \e[36m${symlinks[$f_path]}\e[0m ─➤ $f_path"
             fi
         done | sort
 
