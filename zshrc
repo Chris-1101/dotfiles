@@ -50,7 +50,7 @@ zle -N dir-goto
 # ------- Shell Settings -------
 # ==============================
 # The following lines were added by compinstall
-#zstyle :compinstall filename '$HOME/.zshrc'
+zstyle :compinstall filename '$HOME/.zshrc'
 
 # History
 HISTFILE=~/.histfile
@@ -75,8 +75,3 @@ setopt autocd
 
 # Auto Completion
 autoload -Uz compinit && compinit
-
-# ========================
-# ------- Auto Run -------
-# ========================
-neofetch
