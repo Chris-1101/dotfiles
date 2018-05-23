@@ -1,3 +1,4 @@
+"?!:$HOME/.vimrc
 
 "   ██╗   ██╗██╗███╗   ███╗██████╗  ██████╗
 "   ██║   ██║██║████╗ ████║██╔══██╗██╔════╝
@@ -26,6 +27,7 @@ Plugin 'vim-airline/vim-airline-themes'     " Airline Themes
 Plugin 'chris-1101/vim-arclight'            " Arclight Theme
 Plugin 'airblade/vim-gitgutter'             " GitGutter
 Plugin 'tpope/vim-fugitive'                 " Fugitive
+Plugin 'scrooloose/nerdtree'                " Nerd Tree
 Plugin 'joshdick/onedark.vim'               " One Dark Colour Theme
 Plugin 'dracula/vim'                        " Dracula Colour Theme
 call vundle#end()                           " </plugins>
