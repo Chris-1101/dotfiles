@@ -13,6 +13,7 @@ alias symlink='ln -s'
 alias speedtest='wget -O /dev/null http://speed.transip.nl/100mb.bin'
 alias please='sudo'
 alias refresh='neofetch && dfc -dfs && echo && checkupdates'
+alias mvi='mpv -profile image'
 
 # Modifiers & Implicit Options
 alias grep='grep --colour=auto'
