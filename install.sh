@@ -18,10 +18,10 @@ function find_dotfiles
     local dir=$1
     local is_directory="origin.path"
 
-    [[ -n $verbose ]] && echo "Scanning directory $dir"
-
     # Guard against invalid parameters
     if [[ -d $dir ]]; then
+        
+        [[ -n $verbose ]] && echo "Scanning directory $dir"
 
         for object in "$dir"/*; do
 
