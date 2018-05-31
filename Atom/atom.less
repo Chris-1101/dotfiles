@@ -16,11 +16,45 @@ atom-text-editor .cursor
     //transition: opacity 0.3s linear;
 }
 
+// Vim Mode Block-Cursor Style
 atom-text-editor.vim-mode-plus.normal-mode.is-focused.editor
 {
     .cursor
     {
         background-color: rgb(140, 145, 155);
+    }
+}
+
+// Git Diff Gutter Style
+atom-text-editor .gutter
+{
+    @gutterWidth     : 2px;
+    @gutterAddColour : rgba( 38, 255,  44, 1);
+    @gutterModColour : rgba(255, 124,  72, 1);
+    @gutterBGColour  : #0e1527;
+
+    .line-number.git-line-added
+    {
+        border-left-width: @gutterWidth;
+        border-image: -webkit-linear-gradient(
+            top,
+            @gutterBGColour  10%,
+            @gutterAddColour 10%,
+            @gutterAddColour 90%,
+            @gutterBGColour  90%
+        ) 1;
+    }
+
+    .line-number.git-line-modified
+    {
+        border-left-width: @gutterWidth;
+        border-image: -webkit-linear-gradient(
+            top,
+            @gutterBGColour  10%,
+            @gutterModColour 10%,
+            @gutterModColour 90%,
+            @gutterBGColour  90%
+        ) 1;
     }
 }
 
@@ -44,8 +78,8 @@ atom-text-editor.vim-mode-plus.normal-mode.is-focused.editor
 
         .close-icon
         {
-            margin-top: 3px;
-            margin-right: 3px;
+            margin-top   : 3px;
+            margin-right : 3px;
         }
     }
 }
@@ -76,10 +110,10 @@ atom-panel.bottom
     {
         .ex-mode-editor
         {
-            background-color: #182642 !important;
-            border-radius: 0px !important;
-            margin: auto;
-            width: 99% !important;
+            background-color : #182642 !important;
+            border-radius    : 0px !important;
+            margin           : auto;
+            width            : 99% !important;
 
             .scroll-view
             {
@@ -94,26 +128,26 @@ atom-panel.bottom
 // =============================
 #status-bar-vim-mode-plus
 {
-    @normalBG  : rgb(105, 238, 103);
-    @insertBG  : rgb(130, 217, 255);
-    @visualBG  : rgb(238, 217, 103);
-    @operatorBG: rgb(255,  95,  95);
+    @normalBG   : rgb(105, 238, 103);
+    @insertBG   : rgb(130, 217, 255);
+    @visualBG   : rgb(238, 217, 103);
+    @operatorBG : rgb(255,  95,  95);
 
-    @lightFG: rgb(209, 217, 232);
-    @darkFG : rgb(  5,  10,  20);
+    @lightFG : rgb(209, 217, 232);
+    @darkFG  : rgb(  5,  10,  20);
 
     height: 100%;
 
     .vim-mode-format
     {
-        color         : @darkFG;
-        height        : 16px;
-        margin-top    : 6px;
-        padding       : 0 13px;
-        font-weight   : bold;
-        line-height   : 16px;
-        text-transform: uppercase;
-        border-radius : 17px;
+        color          : @darkFG;
+        height         : 16px;
+        margin-top     : 6px;
+        padding        : 0 13px;
+        font-weight    : bold;
+        line-height    : 16px;
+        text-transform : uppercase;
+        border-radius  : 17px;
     }
 
     .status-bar-vim-mode-plus-normal
