@@ -13,7 +13,9 @@
 # Description  : Control main sink volume & notify changes
 # Dependencies : pulseaudio, dunstify
 
-# Manage Parameters
+# =======================================
+# ------- 𝙋𝙖𝙧𝙖𝙢𝙚𝙩𝙚𝙧 𝙈𝙖𝙣𝙖𝙜𝙚𝙢𝙚𝙣𝙩 -------
+# =======================================
 case "$1" in
     "")
         printf "Missing argument - "
@@ -39,7 +41,9 @@ case "$1" in
         ;;
 esac
 
-# Get State of Main Audio Sink
+# ===========================
+# ------- 𝙑𝙤𝙡𝙪𝙢𝙚 𝘽𝙖𝙧 -------
+# ===========================
 vol_current=$(pactl list sinks | grep '^\s*Volume' | awk '{print $5}' | sed s/%//g)
 vol_muted=$(pactl list sinks | grep Mute | awk '{print $2}')
 
