@@ -81,7 +81,7 @@ function ac_unplugged
     local bat_level=`get_bat_info pct`
     local message=$(echo -e "A/C Supply Unplugged\nBattery is at")
 
-    dunstify "$script_name" "$message ${bat_level}%" -u critical -t 7000 -r $not_id
+    dunstify "$script_name" "$message ${bat_level}%" -t 7000 -r $not_id
     light -S $bl_bat
 }
 
@@ -90,7 +90,7 @@ function ac_pluggedin
 {
     local message="A/C Supply Plugged In"
 
-    dunstify "$script_name" "$message" -u critical -t 7000 -r $not_id
+    dunstify "$script_name" "$message" -t 7000 -r $not_id
     light -S $bl_ac
 }
 
