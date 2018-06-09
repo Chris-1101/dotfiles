@@ -13,7 +13,8 @@
 # Description  : Monitor, and notify of, changes related to the power supply
 # Dependencies : acpi, dunstify
 
-# NOTE: This script is designed with automation in mind via acpi events and/or systemd timers (or equivalent)
+# NOTE: This script should be automated via udev rules and/or systemd timers
+# NOTE: The usage of 'sudo systemctl' will require sudoers rule
 
 # ==============================
 # ------- 𝙎𝙘𝙧𝙞𝙥𝙩 𝙊𝙥𝙩𝙞𝙤𝙣𝙨 -------
@@ -73,7 +74,7 @@ function check_bat
     local lf=$(echo -e "\n(")
 
     if [[ $bat_level -le $bat_critical ]]; then
-        systemctl $sys_action
+        sudo systemctl $sys_action
     elif [[ $bat_level -le $bat_low ]]; then
         dunstify "$script_name" "Battery Critically Low: ${bat_level}%${lf}${bat_time})" \
         -u critical -t 0 -r $not_id
