@@ -37,6 +37,11 @@ bl_bat=30
 # ID used for notifications, can be ignored
 not_id=90271
 
+# Required for udev notifications
+export DISPLAY=:0
+export XAUTHORITY=$HOME/.Xauthority
+export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$UID/bus"
+
 # ===================================
 # ------- 𝙁𝙪𝙣𝙘𝙩𝙞𝙤𝙣 𝘿𝙚𝙛𝙞𝙣𝙞𝙩𝙞𝙤𝙣𝙨 -------
 # ===================================
