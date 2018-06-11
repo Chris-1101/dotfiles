@@ -1,0 +1,16 @@
+#    __         __      _____            __
+#   |  |   ____/  \    /  \_ |__ _____ _/  |_
+#   |  |  /  _ \   \/\/   /| __ \\__  \\   __\
+#   |  |_(  <_> )        / | \_\ \/ __ \|  |
+#   |____/\____/ \__/\  /  |___  (____  /__|
+#                     \/       \/     \/
+
+#!!:/etc/systemd/system/lowbat.service
+
+[Unit]
+Description=Have powerctl check battery levels and take appropriate action
+ConditionACPower=false
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/su chris -c '/usr/bin/powerctl low'
