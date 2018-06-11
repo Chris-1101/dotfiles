@@ -1,0 +1,18 @@
+#    __         __      _____            __
+#   |  |   ____/  \    /  \_ |__ _____ _/  |_
+#   |  |  /  _ \   \/\/   /| __ \\__  \\   __\
+#   |  |_(  <_> )        / | \_\ \/ __ \|  |
+#   |____/\____/ \__/\  /  |___  (____  /__|
+#                     \/       \/     \/
+
+#!!:/etc/systemd/system/lowbat.timer
+
+[Unit]
+Description=Run lowbat.service every 3 mins
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=3min
+
+[Install]
+WantedBy=timers.target
