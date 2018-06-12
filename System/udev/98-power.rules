@@ -1,0 +1,11 @@
+#   ______   ______  _  __ ___________
+#   \____ \ /  _ \ \/ \/ // __ \_  __ \
+#   |  |_> >  <_> )     /\  ___/|  | \/
+#   |   __/ \____/ \/\_/  \___  >__|
+#   |__|                      \/
+
+#!!:/etc/udev/rules.d/98-power.rules
+
+# Power State Actions: Battery/AC Supply
+SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_ONLINE}=="0", RUN+="/usr/bin/su chris -c '/usr/bin/powerctl bat'"
+SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_ONLINE}=="1", RUN+="/usr/bin/su chris -c '/usr/bin/powerctl ac'"
