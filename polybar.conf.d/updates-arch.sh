@@ -9,5 +9,5 @@
 #?!:$HOME/.config/polybar/updates-arch.sh
 
 # Updates: Arch Official Repositories
-updates_aor=$(checkupdates 2> /dev/null | wc -l) || "0"
+updates_aor=$(/usr/bin/checkupdates 2> /dev/null | wc -l) || "0"
 echo "$updates_aor"
