@@ -30,7 +30,12 @@ function checkupdates
     local num=$(wc -l <<< "$updates")
 
     if [[ -n $updates ]]; then
-        echo "$num Pending Update(s)"
+        if [[ $num -eq 1 ]]; then
+            echo "$num Pending Update"
+        else
+            echo "$num Pending Updates"
+        fi
+        
         echo $updates
         echo
     fi
