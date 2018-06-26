@@ -1,8 +1,8 @@
 # .dotfiles
 
-### Main Applications
+#### Main Applications
 
-| ---                      | ---     | ---                  | ---     |
+|                          |         |                      |         |
 |-------------------------:|:-------:|---------------------:|:-------:|
 | **Window Manager**       | i3-gaps | **Editor**           | Vim     |
 | **Status Bar**           | Polybar | **Graphical Editor** | Atom    |
