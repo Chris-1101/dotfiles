@@ -1,5 +1,7 @@
 # .dotfiles
 
+[screenshots]
+
 #### Main Applications
 
 |                          |         |                      |         |
