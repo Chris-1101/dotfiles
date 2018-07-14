@@ -8,5 +8,8 @@
 #?!:$HOME/.atom/keymap.cson
 
 'atom-text-editor':
-    'ctrl-c': 'core:copy'                       # Override Vim Style CTRL-C
-    'ctrl-f': 'find-and-replace:toggle'         # Toggle Find Panel Instead of Show
+  'ctrl-c': 'core:copy'                       # Override Vim-Style CTRL-C
+  'ctrl-t': 'fuzzy-finder:toggle-file-finder' # Override Vim-Style CTRL-T
+  'ctrl-w': 'core:close'                      # Override Vim-Style CTRL-W
+  'ctrl-<': 'vim-mode-plus:reset-normal-mode' # Vim set Normal Mode Keymap
+  'ctrl-f': 'find-and-replace:toggle'         # Toggle Find Panel Instead of Show
