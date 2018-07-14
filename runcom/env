@@ -28,6 +28,7 @@ esac
 # Directories to Add
 path_dirs[0]=$HOME/bin
 path_dirs[1]=$HOME/.dotfiles/scripts
+path_dirs[2]=$(ruby -e 'print Gem.user_dir')/bin
 
 # Append Directories That Exist & Are Not Duplicates
 for dir in "${path_dirs[@]}"; do
@@ -50,6 +51,7 @@ export PAGER=less
 
 # Relevant Directories
 export ZDOTDIR=$HOME
+export GEM_HOME=$HOME/.gem
 export DOTFILES_DIR=$HOME/.dotfiles
 export FIGLET_FONTDIR=$HOME/.local/share/fonts/figlet-fonts/contributed/
 
