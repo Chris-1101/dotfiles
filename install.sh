@@ -123,7 +123,7 @@ function symlink_dotfiles
     if [[ $error_count -eq 0 ]]; then
       # Prompt for confirmation
       if [[ -z $ln_interactive ]]; then
-        read -p ":: Existing files/symlinks will be overwritten without confirmation, continue? [Y/n] "
+        read -p ":: Existing files/symlinks will be overwritten without confirmation, continue? [y/N] "
       else
         read -p ":: You'll be prompted to overwrite existing files/symlinks, continue? [y/N] "
       fi
