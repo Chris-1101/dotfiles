@@ -10,33 +10,46 @@
 # Make Vim Follow Symlinks
 function vim
 {
-    args=()
+  args=()
 
-    for i in $@; do
-        if [[ -h $i ]]; then
-            args+=$(readlink $i)
-        else
-            args+=$i
-        fi
-    done
+  for i in $@; do
+    if [[ -h $i ]]; then
+      args+=$(readlink $i)
+    else
+      args+=$i
+    fi
+  done
 
-    /usr/bin/vim -p "${args[@]}"
+  /usr/bin/vim -p "${args[@]}"
 }
 
 # Check Updates
 function checkupdates
 {
-    local updates=$(/usr/bin/checkupdates)
-    local num=$(wc -l <<< "$updates")
+  local aor_updates=$(/usr/bin/checkupdates)
+  local aor_num=$(wc -l <<< "$aor_updates")
 
-    if [[ -n $updates ]]; then
-        if [[ $num -eq 1 ]]; then
-            echo "$num Pending Update"
-        else
-            echo "$num Pending Updates"
-        fi
-        
-        echo $updates
-        echo
-    fi
+  local aur_updates=$(/usr/bin/aurcheck -d aur)
+  local aur_num=$(wc -l <<< "$aur_updates")
+
+  if [[ -n $aor_updates ]]; then
+    local update_str="Update"
+    [[ $aor_num -gt 1 ]] && update_str+="s"
+
+    echo
+    echo "$aor_num Pending $update_str on the Arch Official Repositories"
+    echo $aor_updates
+    echo
+  fi
+
+  if [[ -n $aur_updates ]]; then
+    [[ -z $aor_updates ]] && echo
+
+    local update_str="Update"
+    [[ $aur_num -gt 1 ]] && update_str+="s"
+
+    echo "$aur_num Pending $update_str on the Arch User Repository"
+    echo $aur_updates
+    echo
+  fi
 }
