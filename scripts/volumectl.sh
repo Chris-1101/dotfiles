@@ -17,28 +17,28 @@
 # ------- 𝙋𝙖𝙧𝙖𝙢𝙚𝙩𝙚𝙧 𝙈𝙖𝙣𝙖𝙜𝙚𝙢𝙚𝙣𝙩 -------
 # =======================================
 case "$1" in
-    "")
-        printf "Missing argument - "
-        ;&
-    -h|--help)
-        printf "usage: $(basename $0) [tog/dec/inc/get]\n"
-        exit 0
-        ;;
-    tog)
-        pactl set-sink-mute 0 toggle
-        ;;
-    dec)
-        pactl set-sink-volume 0 -10%
-        ;;
-    inc)
-        pactl set-sink-volume 0 +10%
-        ;;
-    get)
-        ;;
-    *)
-        (>&2 echo "Unknown command: $1")
-        exit 1
-        ;;
+  "")
+    printf "Missing argument - "
+    ;&
+  -h|--help)
+    printf "usage: $(basename $0) [tog/dec/inc/get]\n"
+    exit 0
+    ;;
+  tog)
+    pactl set-sink-mute 0 toggle
+    ;;
+  dec)
+    pactl set-sink-volume 0 -10%
+    ;;
+  inc)
+    pactl set-sink-volume 0 +10%
+    ;;
+  get)
+    ;;
+  *)
+    (>&2 echo "Unknown command: $1")
+    exit 1
+    ;;
 esac
 
 # ===========================
@@ -46,38 +46,44 @@ esac
 # ===========================
 vol_current=$(pactl list sinks | grep '^\s*Volume' | awk '{print $5}' | sed s/%//g)
 vol_muted=$(pactl list sinks | grep Mute | awk '{print $2}')
+vol_max=150
+
+if [[ $vol_current -gt $vol_max ]]; then
+  pactl set-sink-volume 0 150%
+  vol_current=150
+fi
 
 function is_muted
 {
-    test "$vol_muted" = 'yes'
+  test "$vol_muted" = 'yes'
 }
 
 # Build Volume Bar
 if is_muted; then
-    fill_type="▧ "
+  fill_type="▧ "
 else
-    fill_type="■ "
+  fill_type="■ "
 fi
 
 # First 100% - ■ ▦ ▣ ▧ □
 for (( i = 10; i <= 100; i += 10 )); do
-    if [[ $i -le $vol_current ]]; then
-        vol_bar+="$fill_type"
-    else
-        vol_bar+="□ "
-    fi
+  if [[ $i -le $vol_current ]]; then
+    vol_bar+="$fill_type"
+  else
+    vol_bar+="□ "
+  fi
 done
 
 # Amplified Beyond 100%
 if [[ $vol_current -gt 100 ]]; then
-    vol_bar+="| "
-    for (( i = 110; i <= 150; i += 10 )); do
-        if [[ $i -le $vol_current ]]; then
-            vol_bar+="$fill_type"
-        else
-            vol_bar+="□ "
-        fi
-    done
+  vol_bar+="| "
+  for (( i = 110; i <= 150; i += 10 )); do
+    if [[ $i -le $vol_current ]]; then
+      vol_bar+="$fill_type"
+    else
+      vol_bar+="□ "
+    fi
+  done
 fi
 
 # Forward to Notification Daemon
