@@ -4,109 +4,109 @@
 
 // Workspace 2: Terminals
 {
-    // Left Container
-    "border": "normal",
-    "floating": "auto_off",
-    "layout": "splitv",
-    "percent": 0.62,
-    "type": "con",
-    "nodes": [
-        // North-West: Ranger
+  // Left Container
+  "border": "normal",
+  "floating": "auto_off",
+  "layout": "splitv",
+  "percent": 0.62,
+  "type": "con",
+  "nodes": [
+    // North-West: Ranger
+    {
+      "border": "pixel",
+      "current_border_width": 0,
+      "floating": "auto_off",
+      "geometry": {
+        "height": 732,
+        "width": 1180,
+        "x": 0,
+        "y": 0
+      },
+      "percent": 0.375032821693113,
+      "swallows": [
         {
-            "border": "pixel",
-            "current_border_width": 0,
-            "floating": "auto_off",
-            "geometry": {
-               "height": 732,
-               "width": 1180,
-               "x": 0,
-               "y": 0
-            },
-            "percent": 0.373823038397329,
-            "swallows": [
-               {
-                  "class": "^URxvt$",
-                  "instance": "ranger",
-                  "title": "Ranger File Manager"
-                //"transient_for": "^$"
-               }
-            ],
-            "type": "con"
-        },
-        // South-West: URxvt
-        {
-            "border": "pixel",
-            "current_border_width": 0,
-            "floating": "auto_off",
-            "geometry": {
-               "height": 732,
-               "width": 1180,
-               "x": 0,
-               "y": 0
-            },
-            "percent": 0.626176961602671,
-            "swallows": [
-               {
-                  "class": "^URxvt$",
-                  "instance": "urxvt1"
-                //"transient_for": "^$"
-               }
-            ],
-            "type": "con"
+          "class": "^URxvt$",
+          "instance": "ranger",
+          "title": "Ranger File Manager"
+          //"transient_for": "^$"
         }
-    ]
+      ],
+      "type": "con"
+    },
+    // South-West: URxvt
+    {
+      "border": "pixel",
+      "current_border_width": 0,
+      "floating": "auto_off",
+      "geometry": {
+        "height": 732,
+        "width": 1180,
+        "x": 0,
+        "y": 0
+      },
+      "percent": 0.624967178306887,
+      "swallows": [
+        {
+          "class": "^URxvt$",
+          "instance": "urxvt1"
+          //"transient_for": "^$"
+        }
+      ],
+      "type": "con"
+    }
+  ]
 }
 
 {
-    // Right Container
-    "border": "normal",
-    "floating": "auto_off",
-    "layout": "splitv",
-    "percent": 0.38,
-    "type": "con",
-    "nodes": [
-        // North-East: URxvt
+  // Right Container
+  "border": "normal",
+  "floating": "auto_off",
+  "layout": "splitv",
+  "percent": 0.38,
+  "type": "con",
+  "nodes": [
+    // North-East: URxvt
+    {
+      "border": "pixel",
+      "current_border_width": 0,
+      "floating": "auto_off",
+      "geometry": {
+        "height": 732,
+        "width": 1180,
+        "x": 0,
+        "y": 0
+      },
+      "percent": 0.845367600736836,
+      "swallows": [
         {
-            "border": "pixel",
-            "current_border_width": 0,
-            "floating": "auto_off",
-            "geometry": {
-               "height": 732,
-               "width": 1180,
-               "x": 0,
-               "y": 0
-            },
-            "percent": 0.845367600736836,
-            "swallows": [
-               {
-                  "class": "^URxvt$",
-                  "instance": "urxvt2"
-                //"transient_for": "^$"
-               }
-            ],
-            "type": "con"
-        },
-        // South-East: htop
-        {
-            "border": "pixel",
-            "current_border_width": 0,
-            "floating": "auto_off",
-            "geometry": {
-               "height": 732,
-               "width": 1180,
-               "x": 0,
-               "y": 0
-            },
-            "percent": 0.154632399263164,
-            "swallows": [
-               {
-                  "class": "^URxvt$",
-                  "instance": "htop",
-                  "title": "System Monitor"
-                //"transient_for": "^$"
-               }
-            ],
-            "type": "con"
+          "class": "^URxvt$",
+          "instance": "urxvt2"
+          //"transient_for": "^$"
         }
-    ]
+      ],
+      "type": "con"
+    },
+    // South-East: htop
+    {
+      "border": "pixel",
+      "current_border_width": 0,
+      "floating": "auto_off",
+      "geometry": {
+        "height": 732,
+        "width": 1180,
+        "x": 0,
+        "y": 0
+      },
+      "percent": 0.154632399263164,
+      "swallows": [
+        {
+          "class": "^URxvt$",
+          "instance": "htop",
+          "title": "System Monitor"
+          //"transient_for": "^$"
+        }
+      ],
+      "type": "con"
+    }
+  ]
 }
