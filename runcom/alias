@@ -12,7 +12,8 @@ alias tr='tree'
 alias symlink='ln -s'
 alias speedtest='wget -O /dev/null http://speed.transip.nl/100mb.bin'
 alias please='sudo'
-alias sysinfo='neofetch && dfc -dfs && checkupdates'
+alias represent='neofetch && dfc -dfs && checkupdates'
+alias sysinfo='dfc -dfs && checkupdates'
 alias mvi='mpv -profile image'
 
 # Modifiers & Implicit Options
