@@ -15,5 +15,5 @@ i3-msg "workspace 2; append_layout ~/.config/i3/workspace-2.json"
 # Restore Workspace 2
 urxvt -title 'Ranger File Manager' -name ranger -e $SHELL -c "ranger && $SHELL" &
 urxvt -name urxvt1 &
-urxvt -name urxvt2 -e $SHELL -c "neofetch && dfc -dfs && checkupdates && $SHELL" &
+urxvt -name urxvt2 -e $SHELL -c "neofetch && dfc -dfs && echo && $SHELL" &
 urxvt -title 'System Monitor' -name htop -e $SHELL -c "htop && $SHELL" &
