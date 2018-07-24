@@ -32,19 +32,18 @@ function checkupdates
   local aur_updates=$(/usr/bin/aurcheck -d aur)
   local aur_num=$(wc -l <<< "$aur_updates")
 
+  echo
+
   if [[ -n $aor_updates ]]; then
     local update_str="Update"
     [[ $aor_num -gt 1 ]] && update_str+="s"
 
-    echo
     echo "$aor_num Pending $update_str on the Arch Official Repositories"
     echo $aor_updates
     echo
   fi
 
   if [[ -n $aur_updates ]]; then
-    [[ -z $aor_updates ]] && echo
-
     local update_str="Update"
     [[ $aur_num -gt 1 ]] && update_str+="s"
 
