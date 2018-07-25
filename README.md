@@ -4,24 +4,40 @@
 
 ![July Rice Screenshot 02](https://user-images.githubusercontent.com/28808441/43039698-398bb260-8d33-11e8-917c-67add2de7ebf.png)
 
-#### Main Applications
+### Main Applications
+```
+                      __   __               __   __                      
+_____  ______ ______ |  | |__| ____ _____ _/  |_|__| ____   ____   ______
+\__  \ \____ \\____ \|  | |  |/ ___\\__  \\   __\  |/  _ \ /    \ /  ___/
+ / __ \|  |_> >  |_> >  |_|  \  \___ / __ \|  | |  (  <_> )   |  \\___ \
+(____  /   __/|   __/|____/__|\___  >____  /__| |__|\____/|___|  /____  >
+     \/|__|   |__|                \/     \/                    \/     \/
 
-|                          |                                                  |
-|-------------------------:|:------------------------------------------------:|
-| **Window Manager**       | [i3-gaps](https://github.com/Airblader/i3)       |
-| **Status Bar**           | [Polybar](https://github.com/jaagr/polybar)      |
-| **Compositor**           | [Compton](https://github.com/chjj/compton)       |
-| **Notification Daemon**  | [Dunst](https://github.com/dunst-project/dunst)  |
-| **Terminal Emulator**    | [URxvt](https://github.com/exg/rxvt-unicode)     |
-| **Shell / CLI**          | [Z-Shell](https://github.com/zsh-users/zsh)      |
-| **Application Launcher** | [Rofi](https://github.com/DaveDavenport/rofi)    |
-| **Editor**               | [Vim](https://github.com/vim/vim)                |
-| **Graphical Editor**     | [Atom](https://atom.io)                          |
-| **Browser**              | [Firefox](https://www.mozilla.org/en-US/firefox) |
-| **Media Player**         | [mpv](https://github.com/mpv-player/mpv)         |
-| **System Monitor**       | [htop](https://github.com/hishamhm/htop)         |
-| **File Manager**         | [Ranger](https://github.com/ranger/ranger)       |
 
+Window Manager                    » i3-gaps
+Status Bar                        » Polybar
+Compositor                        » Compton
+Notification Daemon               » Dunst, Dunstify
+Terminal Emulator                 » URxvt
+Terminal Font                     » DejaVu Sans Mono (Nerd Font Patch)
+Shell / CLI                       » Z-Shell (custom prompt)
+Application Launcher              » Rofi
+Editor                            » Vim
+Graphical Editor/IDE              » Atom
+Browser                           » Firefox
+Media Player                      » mpv
+System Monitor                    » htop
+System Information                » neofetch, inxi
+File Manager                      » Ranger, Nemo
+Image Viewer                      » feh
+IRC Client                        » WeeChat
+Others                            » figlet, taskwarrior
+```
+
+<!-- system info: neofetch, inxi -->
+<!-- zsh theme/prompt: custom, terminal font: dejavu sans mono nerdfont,  -->
+
+<!-- disclaimer about high resolution and install script -->
 <!-- Keybinds -->
 <!-- notes on functionality (ctrl-t) -->
 <!-- credits section -->
