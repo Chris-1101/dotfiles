@@ -2,9 +2,7 @@
 
 ![July Rice Screenshot 01](https://user-images.githubusercontent.com/28808441/43039687-01b5a094-8d33-11e8-98f1-e0a3c118dae4.png)
 
-![July Rice Screenshot 02](https://user-images.githubusercontent.com/28808441/43039698-398bb260-8d33-11e8-917c-67add2de7ebf.png)
-
-<img src="https://user-images.githubusercontent.com/28808441/43039698-398bb260-8d33-11e8-917c-67add2de7ebf.png" width="209" height="118" /><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png" width="21" height="21" /><img src="https://user-images.githubusercontent.com/28808441/43039698-398bb260-8d33-11e8-917c-67add2de7ebf.png" width="209" height="118" /><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png" width="20" height="20" /><img src="https://user-images.githubusercontent.com/28808441/43039698-398bb260-8d33-11e8-917c-67add2de7ebf.png" width="209" height="118" /><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png" width="21" height="21" /><img src="https://user-images.githubusercontent.com/28808441/43039698-398bb260-8d33-11e8-917c-67add2de7ebf.png" width="209" height="118" />
+<img src="https://user-images.githubusercontent.com/28808441/43039698-398bb260-8d33-11e8-917c-67add2de7ebf.png" width="208" height="117" /><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png" width="22" height="22" /><img src="https://user-images.githubusercontent.com/28808441/43039698-398bb260-8d33-11e8-917c-67add2de7ebf.png" width="208" height="117" /><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png" width="22" height="22" /><img src="https://user-images.githubusercontent.com/28808441/43039698-398bb260-8d33-11e8-917c-67add2de7ebf.png" width="208" height="117" /><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png" width="22" height="22" /><img src="https://user-images.githubusercontent.com/28808441/43039698-398bb260-8d33-11e8-917c-67add2de7ebf.png" width="208" height="117" />
 
 ### Main Applications
 ```
