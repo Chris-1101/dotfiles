@@ -44,4 +44,4 @@ function file_name
 file_name=$(file_name)
 
 scrot $file_name -e 'mv $f ~/Pictures/Screenshots/'
-dunstify "Screenshot Control" "Taken $(basename $file_name)" -t 7000 -r 5571
+dunstify "Screenshot Taken" "$(basename $file_name)" -t 7000 -r 5571
