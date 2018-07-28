@@ -8,10 +8,7 @@ Here be dragons! :dragon_face:
 ![August 2018 Rice: Terminals](https://user-images.githubusercontent.com/28808441/43341696-9384f5a4-91e0-11e8-99e8-a9da34ce3482.png)
 
 <img src="https://user-images.githubusercontent.com/28808441/43340751-9f702440-91dd-11e8-9c57-046f975ed1dd.png" alt="August 2018 Rice: Lockscreen" width="208" height="117" /><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png" width="22" height="22" /><img src="https://user-images.githubusercontent.com/28808441/43340752-9f9d01f4-91dd-11e8-9594-f28f0e448c7c.png" alt="August 2018 Rice: Browser" width="208" height="117" /><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png" width="22" height="22" /><img src="https://user-images.githubusercontent.com/28808441/43340753-9fc291e4-91dd-11e8-9ba1-c576ec4b0fc9.png" alt="August 2018 Rice: Project Editor" width="208" height="117" /><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png" width="22" height="22" /><img src="https://user-images.githubusercontent.com/28808441/43340754-9fe479d0-91dd-11e8-98bd-6f8f7cf9c4b4.png" alt="August 2018 Rice: Split Editor" width="208" height="117" />
-<!-- Move this above screenshots without title -->
-<!-- #### Notes and Disclaimers -->
 
-### Main Applications
 ```
                       __   __               __   __                      
 _____  ______ ______ |  | |__| ____ _____ _/  |_|__| ____   ____   ______
