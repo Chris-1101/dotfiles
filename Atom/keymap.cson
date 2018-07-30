@@ -8,9 +8,10 @@
 #?!:$HOME/.atom/keymap.cson
 
 'atom-text-editor':
-  'ctrl-c': 'core:copy'                       # Restore Native Keymap
-  'ctrl-t': 'fuzzy-finder:toggle-file-finder' # Restore Native Keymap
-  'ctrl-w': 'core:close'                      # Restore Native Keymap
-  'ctrl-shift-I': 'window:toggle-dev-tools'   # Restore Native Keymap
-  'ctrl-<': 'vim-mode-plus:reset-normal-mode' # Vim set Normal Mode Keymap
-  'ctrl-f': 'find-and-replace:toggle'         # Toggle Find Panel Instead of Show
+  'ctrl-c': 'core:copy'                         # Restore Native Keymap
+  'ctrl-t': 'fuzzy-finder:toggle-file-finder'   # Restore Native Keymap
+  'ctrl-w': 'core:close'                        # Restore Native Keymap
+  'ctrl-shift-I': 'window:toggle-dev-tools'     # Restore Native Keymap
+  'ctrl-<': 'vim-mode-plus:reset-normal-mode'   # Vim set Normal Mode Keymap
+  'ctrl-f': 'find-and-replace:toggle'           # Toggle Find Panel Instead of Show
+  'ctrl-r': 'find-and-replace:select-all'       # Toggle Find and Replace All
