@@ -22,7 +22,7 @@ function dir-parent
 }
 
 # Save Location
-save_loc=~/.goto_dir
+save_loc=~/.cache/goto_dir
 
 # Save Working Directory
 function dir-save
