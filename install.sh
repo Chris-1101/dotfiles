@@ -37,13 +37,13 @@ function find_dotfiles
 
         # Check User Permissions
         if [[ $EUID -eq 0 ]]; then
-          local origin_regex="(?<=\!{2}\:).+"
+          local origin_regex="(?<=install:set type=root path=).+"
         else
-          local origin_regex="(?<=\?\!\:).+"
+          local origin_regex="(?<=install:set type=user path=).+"
         fi
 
         # Find and store origin
-        local origin=$([[ -f $object || -x $object ]] && head -10 "$object" | grep -oP $origin_regex)
+        local origin=$([[ -f $object || -x $object ]] && head -10 "$object" | grep -oP "$origin_regex")
 
         # Process file paths and origins
         if [[ -n $origin ]]; then
@@ -181,6 +181,9 @@ function run_gc
   unset find_count
   unset error_count
   unset ln_interactive
+  unset estimate_dir
+  unset find_dotfiles
+  unset symlink_dotfiles
 }
 
 # Handle Options
@@ -213,5 +216,5 @@ elif [[ -n $1 ]]; then
   symlink_dotfiles $1
 fi
 
-# Clean Up
 run_gc
+unset run_gc
