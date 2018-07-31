@@ -6,15 +6,22 @@
 #   /____  >\___  >__|    \___  >\___  >___|  /____  >___|  /\____/|__|  \___  >__| |____/
 #        \/     \/            \/     \/     \/     \/     \/                 \/
 
-#!!:/usr/bin/screenshotctl
+# install:set type=root path=/usr/bin/screenshotctl
 
 # Author       : Chris-1101
 # GitHub       : https://github.com/Chris-1101
 # Description  : Take screenshots and guard against overwriting existing files
 # Dependencies : scrot, dunstify
 
-function file_name
+# ===========================
+# ------- 𝙈𝙖𝙞𝙣 𝙎𝙘𝙧𝙞𝙥𝙩 -------
+# ===========================
+function take_screenshot
 {
+  local script_title="Screenshot Taken"
+  local not_duration=7000
+  local not_id=5571
+
   local date=$(date +%Y.%m.%d-%H%M)
   local scrot_dir=~/Pictures/Screenshots
   local scrot_ext=".png"
@@ -35,13 +42,14 @@ function file_name
   done
 
   if [[ $iterator -eq 1 ]]; then
-    echo "${scrot}$scrot_ext"
+    local file_name="${scrot}$scrot_ext"
   else
-    echo "${scrot}_${iterator}$scrot_ext"
+    local file_name="${scrot}_${iterator}$scrot_ext"
   fi
+
+  scrot $file_name
+  dunstify "$script_title" "$(basename $file_name)" -t $not_duration -r $not_id
 }
 
-file_name=$(file_name)
-
-scrot $file_name -e 'mv $f ~/Pictures/Screenshots/'
-dunstify "Screenshot Taken" "$(basename $file_name)" -t 7000 -r 5571
+take_screenshot
+unset take_screenshot
