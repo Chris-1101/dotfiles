@@ -12,6 +12,23 @@
 # Description  : Automatically symlink dotfiles
 # Dependencies : bash >= 4.0 (associative arrays)
 
+# ==================================
+# ------- 𝙁𝙤𝙧𝙢𝙖𝙩 𝘿𝙚𝙛𝙞𝙣𝙞𝙩𝙞𝙤𝙣𝙨 -------
+# ==================================
+f_bld=$(tput bold)
+f_blk=$(tput setaf 0)
+f_red=$(tput setaf 1)
+f_grn=$(tput setaf 2)
+f_ylw=$(tput setaf 3)
+f_blu=$(tput setaf 4)
+f_mag=$(tput setaf 5)
+f_cyn=$(tput setaf 6)
+f_wht=$(tput setaf 7)
+f_rst=$(tput sgr0)
+
+# ====================================
+# ------- 𝙁𝙪𝙣𝙘𝙩𝙞𝙤𝙣　𝘿𝙚𝙛𝙞𝙣𝙞𝙩𝙞𝙤𝙣𝙨 -------
+# ====================================
 # Recursively Find Dotfile/Origin Pairs
 function find_dotfiles
 {
@@ -43,7 +60,8 @@ function find_dotfiles
         fi
 
         # Find and store origin
-        local origin=$([[ -f $object || -x $object ]] && head -10 "$object" | grep -oP "$origin_regex")
+        [[ -z $scan_lines ]] && scan_lines=10
+        local origin=$([[ -f $object || -x $object ]] && head -$scan_lines "$object" | grep -oP "$origin_regex")
 
         # Process file paths and origins
         if [[ -n $origin ]]; then
@@ -109,23 +127,23 @@ function symlink_dotfiles
     # Evaluate and print dotfile/origin pairs
     for f_path in "${!symlinks[@]}"; do
       if [[ $(grep ^dir_err <<< $f_path) ]]; then
-        echo -e " • [\e[31m✘\e[0m] \e[33m${symlinks[$f_path]}\e[0m — \e[31mdirectory doesn't exist\e[0m"
+        echo -e " • [${f_red}✘${f_rst}] ${f_ylw}${symlinks[$f_path]}${f_rst} — ${f_red}directory doesn't exist${f_rst}"
       elif [[ $(grep ^write_err <<< $f_path) ]]; then
-        echo -e " • [\e[31m✘\e[0m] \e[33m${symlinks[$f_path]}\e[0m — \e[31mlocation requires root\e[0m"
+        echo -e " • [${f_red}✘${f_rst}] ${f_ylw}${symlinks[$f_path]}${f_rst} — ${f_red}location requires root${f_rst}"
       else
-        echo -e " • [\e[32m✔\e[0m] \e[36m${symlinks[$f_path]}\e[0m ─➤ $f_path"
+        echo -e " • [${f_grn}✔${f_rst}] ${f_cyn}${symlinks[$f_path]}${f_rst} ─➤ $f_path"
       fi
     done | sort
 
-    echo "(total $find_count) (errors $error_count)"
+    echo "(total ${f_ylw}${find_count}${f_rst}) (errors ${f_ylw}${error_count}${f_rst})"
 
     # Check for errors
     if [[ $error_count -eq 0 ]]; then
       # Prompt for confirmation
       if [[ -z $ln_interactive ]]; then
-        read -p ":: Existing files/symlinks will be overwritten without confirmation, continue? [y/N] "
+        read -p "${f_blu}::${f_rst} ${f_bld}Existing files/symlinks will be overwritten without confirmation, continue? [y/N]${f_rst} "
       else
-        read -p ":: You'll be prompted to overwrite existing files/symlinks, continue? [y/N] "
+        read -p "${f_blu}::${f_rst} ${f_bld}You'll be prompted to overwrite existing files/symlinks, continue? [y/N]${f_rst} "
       fi
 
       # Process and link paths
@@ -137,7 +155,8 @@ function symlink_dotfiles
         local link_count=0
 
         for f_path in "${!symlinks[@]}"; do
-          ln $ln_opts "$f_path" "${symlinks[$f_path]}" && ((link_count++))
+          ln $ln_opts "$f_path" "${symlinks[$f_path]}"
+          [[ $? -eq 0 ]] && ((link_count++))
         done
 
         echo "$link_count dotfiles successfully symlinked to their originial location"
@@ -151,53 +170,32 @@ function symlink_dotfiles
   fi
 }
 
-# Estimate Directory When Unspecified
-function estimate_dir
-{
-  local install_dir
-
-  if [[ $EUID -eq 0 ]]; then
-    if [[ -z $DOTFILES_DIR ]]; then
-      install_dir="$(eval echo ~$SUDO_USER)/.dotfiles"
-    else
-      install_dir="$(sudo -u $SUDO_USER eval echo $DOTFILES_DIR)"
-    fi
-  else
-    if [[ -z $DOTFILES_DIR ]]; then
-      install_dir="$HOME/.dotfiles"
-    else
-      install_dir="$DOTFILES_DIR"
-    fi
-  fi
-
-  symlink_dotfiles $install_dir
-}
-
-# Clean Up (Needed?)
-function run_gc
-{
-  unset verbose
-  unset symlinks
-  unset find_count
-  unset error_count
-  unset ln_interactive
-  unset estimate_dir
-  unset find_dotfiles
-  unset symlink_dotfiles
-}
-
-# Handle Options
-while getopts ":hiv" opt; do
+# =======================================
+# ------- 𝙋𝙖𝙧𝙖𝙢𝙚𝙩𝙚𝙧 𝙈𝙖𝙣𝙖𝙜𝙚𝙢𝙚𝙣𝙩 -------
+# =======================================
+while getopts ":hivs:" opt; do
   case $opt in
     h)
       man -l "$(dirname $0)"/install.sh.1
       exit 0
+      ;;
+    s)
+      if [[ $OPTARG =~ [0-9]+ ]]; then
+        scan_lines=$OPTARG
+      else
+        echo "Invalid argument passed to -l: $OPTARG. Must be an integral number."
+        exit 1
+      fi
       ;;
     i)
       ln_interactive=true
       ;;
     v)
       verbose=true
+      ;;
+    :)
+      echo "Option -$OPTARG requires an argument"
+      exit 1
       ;;
     *)
       echo "Invalid option: -$OPTARG, run install.sh -h for usage instructions"
@@ -211,10 +209,7 @@ shift "$((OPTIND-1))"
 
 # Execute Script
 if [[ $# -eq 0 ]]; then
-  estimate_dir
+  symlink_dotfiles .
 elif [[ -n $1 ]]; then
   symlink_dotfiles $1
 fi
-
-run_gc
-unset run_gc
