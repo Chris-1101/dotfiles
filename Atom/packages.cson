@@ -1,0 +1,54 @@
+#                        __
+#   ___________    ____ |  | _______     ____   ____   ______
+#   \____ \__  \ /  ___\|  |/ /\__  \   / __ \/  __ \ /  ___/
+#   |  |_) ) __ \\  \___|    <  / __ \_/ /_/  >  ___/ \___ \
+#   |   __(____  /\___  >__|_ \(____  /\___  / \___  >____  >
+#   |__|       \/     \/     \/     \/(_____/      \/     \/
+
+# install:set type=user path=$HOME/.atom/packages.cson
+
+packages: [
+  "arclight-syntax"
+  "atom-alignment"
+  "atom-uniform"
+  "auto-indent"
+  "busy-signal"
+  "character-table"
+  "charcode-display"
+  "dracula-syntax"
+  "dracula-ui"
+  "editorconfig"
+  "ex-mode"
+  "file-icons"
+  "highlight-selected"
+  "indent-detective"
+  "indent-guide-improved"
+  "intentions"
+  "jackhammer-syntax"
+  "language-fortran"
+  "language-generic-config"
+  "language-ini"
+  "language-lua"
+  "language-roff"
+  "language-todofile"
+  "language-viml"
+  "linter"
+  "linter-jscs"
+  "linter-jshint"
+  "linter-shellcheck"
+  "linter-ui-default"
+  "minimap"
+  "minimap-highlight-selected"
+  "nord-atom-syntax"
+  "nord-atom-ui"
+  "nv-dark-syntax"
+  "nv-dark-ui"
+  "package-sync"
+  "project-manager"
+  "relative-numbers"
+  "seti-syntax"
+  "seti-ui"
+  "todo-show"
+  "vim-mode-plus"
+  "vim-modeline"
+]
