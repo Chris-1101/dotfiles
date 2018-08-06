@@ -1,17 +1,19 @@
 #    __
 #   |  | __ ____ ___ __  _____ _____  ______  ______
 #   |  |/ // __ <   |  |/     \\__  \ \____ \/  ___/
-#   |    <\  ___/\___  |  Y Y  \/ __ \|  |_> >___ \
+#   |    <\  ___/\___  |  Y Y  \/ __ \|  |_) )___ \
 #   |__|_ \\___  > ____|__|_|  (____  /   __/____  >
 #        \/    \/\/          \/     \/|__|       \/
 
-#?!:$HOME/.atom/keymap.cson
+# install:set type=user path=$HOME/.atom/keymap.cson
 
 'atom-text-editor':
   'ctrl-c': 'core:copy'                         # Restore Native Keymap
   'ctrl-t': 'fuzzy-finder:toggle-file-finder'   # Restore Native Keymap
-  'ctrl-w': 'core:close'                        # Restore Native Keymap
   'ctrl-shift-I': 'window:toggle-dev-tools'     # Restore Native Keymap
   'ctrl-<': 'vim-mode-plus:reset-normal-mode'   # Vim set Normal Mode Keymap
   'ctrl-f': 'find-and-replace:toggle'           # Toggle Find Panel Instead of Show
   'ctrl-r': 'find-and-replace:select-all'       # Toggle Find and Replace All
+
+'atom-text-editor.vim-mode-plus':
+  'ctrl-w ctrl-w': 'core:close'                 # Work Around Vim's ^W
