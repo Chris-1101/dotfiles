@@ -1,11 +1,11 @@
 //           __
 //   _____ _/  |_  ____   _____
 //   \__  \\   __\/  _ \ /     \
-//    / __ \|  | (  <_> )  Y Y  \
+//    / __ \|  | (  (_) )  Y Y  \
 //   (____  /__|  \____/|__|_|  /
 //        \/                  \/
 
-//?!:$HOME/.atom/styles.less
+// install:set type=user path=$HOME/.atom/styles.less
 
 @import "ui-variables";
 @import "syntax-variables";
@@ -20,11 +20,13 @@ atom-text-editor .cursor
 }
 
 // Vim Mode Block-Cursor Style
-atom-text-editor.vim-mode-plus.normal-mode.is-focused.editor
+atom-text-editor.vim-mode-plus.normal-mode.is-focused.editor,
+atom-text-editor.vim-mode-plus.visual-mode.is-focused.editor
 {
   .cursor
   {
-    background-color: rgb(140, 145, 155);
+    background-color: rgba(140, 145, 155, 0);
+    border-bottom: 3px dashed white;
   }
 }
 
