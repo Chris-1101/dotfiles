@@ -1,6 +1,4 @@
-//?!:$HOME/.config/i3/workspace-2.json
-
-// NOTE: Technically JSON doesn't support comments, these seem to be an i3 special!
+// install:set type=user path=$HOME/.config/i3/workspace-2.json
 
 // Workspace 2: Terminals
 {
@@ -28,7 +26,6 @@
           "class": "^URxvt$",
           "instance": "ranger",
           "title": "Ranger File Manager"
-          //"transient_for": "^$"
         }
       ],
       "type": "con"
@@ -49,7 +46,6 @@
         {
           "class": "^URxvt$",
           "instance": "urxvt1"
-          //"transient_for": "^$"
         }
       ],
       "type": "con"
@@ -81,7 +77,6 @@
         {
           "class": "^URxvt$",
           "instance": "urxvt2"
-          //"transient_for": "^$"
         }
       ],
       "type": "con"
@@ -103,7 +98,6 @@
           "class": "^URxvt$",
           "instance": "htop",
           "title": "System Monitor"
-          //"transient_for": "^$"
         }
       ],
       "type": "con"
