@@ -1,128 +1,128 @@
-/*     __                                    __           __             __        ___
- *   _/  |________   ____   ____     _______/  |_ ___ __ |  |   ____   _/  |______ \_ |__
- *   \   __\_  __ \_/ __ \_/ __ \   /  ___/\   __<   |  ||  | _/ __ \  \   __\__  \ | __ \
- *    |  |  |  | \/\  ___/\  ___/   \___ \  |  |  \___  ||  |_\  ___/   |  |  / __ \| \_\ \
- *    |__|  |__|    \___  >\___  > /____  > |__|  / ____||____/\___  >  |__| (____  /___  /
- *                      \/     \/       \/        \/               \/             \/    \/
+/*     __                                    __          __             __        ___
+ *   _/  |________   ____   ____     _______/  |_ ___ __|  |   ____   _/  |______ \_ |__
+ *   \   __\_  __ \/  __ \/  __ \   /  ___/\   __<   |  |  | /  __ \  \   __\__  \ | __ \
+ *    |  |  |  | \/\  ___/\  ___/   \___ \  |  |  \___  |  |_\  ___/   |  |  / __ \| \_\ \
+ *    |__|  |__|    \___  >\___  > /____  > |__|  / ____|____/\___  >  |__| (____  /___  /
+ *                      \/     \/       \/        \/              \/             \/    \/
  *
  * Add the contents of this file to tree style tab's css:
  * Firefox Menu » Add-ons » Tree Style Tab » Advanced » Extra style rules for sidebar contents */
 
 /* Private Browsing Tab Label */
 .tab.private-browsing .label:before {
-    content: "🕶 ";
+  content: "🕶 ";
 }
 
 /* Favicons Alignment in Collapsed State */
 .tab .twisty {
-    visibility: hidden;
-    margin-left: -12px;
+  visibility: hidden;
+  margin-left: -12px;
 }
 
 /* Hide Tab Labels in Collapsed State */
 .tab .label {
-    margin-left: 7px;
+  margin-left: 7px;
 }
 
 /* Hide close buttons on tabs.
 .tab .closebox {
-    visibility: collapse;
+  visibility: collapse;
 } */
 
 /* Hide sound playing/muted button.
 .sound-button::before {
-    display: none !important;
+  display: none !important;
 } */
 
 /* Hide 'new tab' button. */
 .newtab-button {
-    display: none; /*
-    margin-top: 3px;
-    margin-left: 2px;
-    height: 30px; */
+  display: none; /*
+  margin-top: 3px;
+  margin-left: 2px;
+  height: 30px; */
 }
 
 /* ============================ *
  * ------- COLOUR THEME ------- *
  * ============================ */
 @keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes pulse {
-    0% {
-        width: 0px;
-        height: 0px;
-        opacity: 1;
-    }
-    100% {
-        width: 350px;
-        height: 350px;
-        opacity: 0;
-        top: calc(50% - 175px);
-        left: calc(50% - 175px);
-    }
+  0% {
+    width: 0px;
+    height: 0px;
+    opacity: 1;
+  }
+  100% {
+    width: 350px;
+    height: 350px;
+    opacity: 0;
+    top: calc(50% - 175px);
+    left: calc(50% - 175px);
+  }
 }
 
 :root {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 #tabbar {
-    border-right: 0px solid #1d1d1d;
-    box-shadow: none !important;
+  border-right: 0px solid #1d1d1d;
+  box-shadow: none !important;
 }
 
 .tab {
-    background-color: transparent;
-    border-color: #292929;
-    color: rgba(207,207,207,0.75);
-    box-shadow: none !important;
+  background-color: transparent;
+  border-color: #292929;
+  color: rgba(207,207,207,0.75);
+  box-shadow: none !important;
 }
 
 .tab:hover {
-    background-color: #0a84d6 !important;
-    color: rgba(207,207,207,1) !important;
+  background-color: #0a84d6 !important;
+  color: rgba(207,207,207,1) !important;
 }
 
 .tab.discarded .favicon {
-    /* background-color: #1d1d1d;
-    color: #383838 !important; */
-    opacity: 0.3;
+  /* background-color: #1d1d1d;
+  color: #383838 !important; */
+  opacity: 0.3;
 }
 
 .tab.discarded:hover .favicon {
-    /* background-color: #292929 !important; */
-    opacity: 1;
+  /* background-color: #292929 !important; */
+  opacity: 1;
 }
 
 .tab.active {
-    background-color: #bbbbbb;
+  background-color: #bbbbbb;
 }
 
 .tab.active:hover {
-    background-color: #0a84d6 !important;
+  background-color: #0a84d6 !important;
 }
 
 /* Adjust Style for Tab That Has Sound Playing. */
 .tab.sound-playing .favicon::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    border-radius: 50%;
-    background: #FFFFFF;
-    animation: pulse 2s ease-out 0s infinite;
-    z-index: -1;
-    opacity: 0;
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  background: #FFFFFF;
+  animation: pulse 2s ease-out 0s infinite;
+  z-index: -1;
+  opacity: 0;
 }
 
 /* Adjust Style for Tab That is Muted. */
 .tab.muted {
-    opacity: 0.5;
+  opacity: 0.5;
 }
