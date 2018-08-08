@@ -2,12 +2,12 @@
 
 /*     _____ __                _____
  *   _/ ____\__|______   _____/ ____\_______  ___
- *   \   __\|  \_  __ \_/ __ \   __\/  _ \  \/  /
- *    |  |  |  ||  | \/\  ___/|  | (  <_> >    <
+ *   \   __\|  \_  __ \/  __ \   __\/  _ \  \/  /
+ *    |  |  |  ||  | \/\  ___/|  | (  (_) >    <
  *    |__|  |__||__|    \___  >__|  \____/__/\_ \
  *                          \/                 \/
  *
- *  ?!:$HOME/.mozilla/firefox/u9208uny.default/chrome/userChrome.css
+ *  install:set type=user path=$HOME/.mozilla/firefox/u9208uny.default/chrome/userChrome.css
  */
 
 /* Hide main tabs toolbar */
@@ -54,6 +54,9 @@
 }
 
 /* Flat theme */
+* {
+	font-family: "Roboto Mono Medium";
+}
 #nav-bar textbox {
 	color: #afafaf !important;
 	background-color: transparent !important;
@@ -71,7 +74,6 @@
 }
 #nav-bar[id], #PersonalToolbar[id], #web-developer-toolbar[id], #navigator-toolbox[tabsontop="true"] > #nav-bar[id], #navigator-toolbox[tabsontop="true"]:not([customizing]) > #nav-bar[collapsed="true"][id] + toolbar, #navigator-toolbox[tabsontop="true"]:not([customizing]) > #nav-bar[collapsed="true"] + #customToolbars + #PersonalToolbar[id], #navigator-toolbox[tabsontop="false"] > #nav-bar[id], #navigator-toolbox[tabsontop="false"]:not([customizing]) > #nav-bar[collapsed="true"][id] + toolbar, #navigator-toolbox[tabsontop="false"]:not([customizing]) > #nav-bar[collapsed="true"] + #customToolbars + #PersonalToolbar[id] {
 	background-image: none !important;
-	/*background: #282c34 !important;*/
 	background: #050a14 !important;
 }
 #urlbar, .searchbar-textbox {
@@ -79,9 +81,6 @@
 }
 #urlbar .urlbar-input-box {
 	text-align: center;
-}
-* {
-	font-family: "Roboto Mono Medium";
 }
 #identity-box {
 	max-width: 0 !important;
@@ -102,10 +101,10 @@
 
 /*
 #back-button {
-display: none;
+	display: none;
 }
 
 #forward-button {
-display: none;
+	display: none;
 }
 */
