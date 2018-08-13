@@ -18,9 +18,8 @@
 # ====================================
 function generate_quote
 {
-  # TODO move location to ~/.cache
   # Path to the quotes file, each line is assumed to be a separate quote
-  local quotes_db=~/.dotfiles/scripts/QUOTES
+  local quotes_db=~/Documents/QUOTES
 
   # Process the file, ignoring empty lines and comments (#)
   local quotes && mapfile -t quotes < <(grep -v -E '^$|^#.*$' "$quotes_db")
@@ -28,22 +27,23 @@ function generate_quote
   # Count eligible lines in file
   local quotes_total=${#quotes[@]}
 
-  # Start printing quotes
   if [[ -z $quotes_num ]]; then
+    # Print single quote
     local quotes_rand=$(( RANDOM % $quotes_total ))
-    eval echo "${quotes[$quotes_rand]}" $quotes_clr
+    echo -e "${quotes[$quotes_rand]/'—'/'\n\n—'}"
   else
-    # Guard against user asking for more quotes than are available
+    # Guard against too many quotes via -n
     if [[ $quotes_num -gt $quotes_total ]]; then
       quotes_num=$quotes_total
     fi
 
+    # Print multiple quotes
     for (( i = 0; i < $quotes_num; i++ )); do
-      # Print a random quote
       local quotes_rand=$(( RANDOM % $quotes_total ))
       echo "${quotes[$quotes_rand]}"
+      echo
 
-      # Remove processed elements from array to avoid duplicates
+      # Avoid duplicates
       unset quotes[$quotes_rand]
       quotes=("${quotes[@]}")
       quotes_total=${#quotes[@]}
@@ -51,6 +51,7 @@ function generate_quote
   fi
 }
 
+# Usage
 function help
 {
   local f_grn=$(tput setaf 2)
@@ -58,12 +59,9 @@ function help
   local f_clr=$(tput sgr0)
 
   echo "Usage: ${f_grn}quotegen${f_clr}"\
-       "[${f_grn}-c${f_clr}]"\
        "[${f_grn}-n${f_clr} ${f_ylw}num${f_clr}]"\
        "[${f_grn}-h${f_clr}]"
 
-  echo "   ${f_grn}-c${f_clr}: colour output"
-  echo "   ${f_grn}-a${f_clr}: animate output, assumes ${f_grn}-c${f_clr}"
   echo "   ${f_grn}-n${f_clr}: number of quotes to print, defaults to 1"
   echo "   ${f_grn}-h${f_clr}: print these usage instructions"
 }
@@ -73,12 +71,6 @@ function help
 # =======================================
 while getopts ":hcan:" opt; do
   case $opt in
-    c)
-      quotes_clr='| lolcat'
-      ;;
-    a)
-      quotes_clr='| lolcat -a -d 30 -s 30'
-      ;;
     n)
       if [[ $OPTARG =~ [0-9]+ ]]; then
         quotes_num=$OPTARG
