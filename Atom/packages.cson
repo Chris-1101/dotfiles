@@ -1,15 +1,16 @@
 #                        __
-#   ___________    ____ |  | _______     ____   ____   ______
-#   \____ \__  \ /  ___\|  |/ /\__  \   / __ \/  __ \ /  ___/
-#   |  |_) ) __ \\  \___|    <  / __ \_/ /_/  >  ___/ \___ \
-#   |   __(____  /\___  >__|_ \(____  /\___  / \___  >____  >
-#   |__|       \/     \/     \/     \/(_____/      \/     \/
+#   ___________    ____ |  | _______     ____   ____  ______
+#   \____ \__  \ /  ___\|  |/ /\__  \   / ___\_/ __ \/  ___/
+#   |  |_) ) __ \\  \___|    <  / __ \_/ /_/  >  ___/\___ \
+#   |   __(____  /\___  >__|_ \(____  /\___  / \___  >___  )
+#   |__|       \/     \/     \/     \/(_____/      \/    \/
 
 # install:set type=user path=$HOME/.atom/packages.cson
 
 packages: [
   "arclight-syntax"
   "atom-alignment"
+  "atom-beautify"
   "atom-uniform"
   "auto-indent"
   "busy-signal"
@@ -18,6 +19,7 @@ packages: [
   "dracula-syntax"
   "dracula-ui"
   "editorconfig"
+  "emmet"
   "ex-mode"
   "file-icons"
   "highlight-selected"
