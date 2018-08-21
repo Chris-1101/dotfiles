@@ -136,8 +136,18 @@ function process_input
 
 starr=".... ..... .......... .......$lf ...."
 
-while read line; do
-  for word in "$line"; do
-    echo "X $word"
-  done
-done <<< "$starr"
+readarray -d ' ' words <<< "$starr "
+unset 'words[-1]'
+declare -p words
+for i in ${!words[@]}; do
+  if [[ ${words[i]} = *$'\n'* ]]; then
+    echo "-${words[i]%% }-"
+    echo "BOOM, LINE FEED!"
+  else
+    echo -e "-${words[i]%% }-"
+  fi
+done
+# for word in ${words[@]}; do
+#   echo $'${word}'
+# done
+# declare -p words
