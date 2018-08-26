@@ -6,32 +6,40 @@
 #    |______  /\____/__/\_ \\___  >\___  >___|  /\____/
 #           \/            \/    \/     \/     \/
 
-# ====================================================
-# ------- 𝙃𝙖𝙣𝙙𝙡𝙚 𝙋𝙞𝙥𝙚𝙙 𝙖𝙣𝙙 𝙍𝙚𝙙𝙞𝙧𝙚𝙘𝙩𝙚𝙙 𝙊𝙪𝙩𝙥𝙪𝙩 -------
-# ====================================================
+# Author       : Chris MB
+# GitHub       : https://github.com/Chris-1101
+# Description  : Frame and centre input based on terminal width
+# Dependencies : none
+
+# ==================================================
+# ------- 𝙍𝙚𝙖𝙙 𝙋𝙞𝙥𝙚𝙙 𝙖𝙣𝙙 𝙍𝙚𝙙𝙞𝙧𝙚𝙘𝙩𝙚𝙙 𝙊𝙪𝙩𝙥𝙪𝙩 -------
+# ==================================================
 declare lf=$'\n'
-declare stdin
+declare input
 
 # Normalise Input
 if [[ -p /dev/stdin ]]; then
   while IFS= read line; do
-    stdin+="${line}$lf"
+    input+="${line}$lf"
   done
+  input=${input%?}
 else
-  stdin="$@"
+  input="$@"
 fi
 
 # Simulate echo's behaviour
-[[ -z $stdin ]] && echo && exit 0
+[[ -z $input ]] && printf "$lf" && exit 0
 
 # ====================================
 # ------- 𝙁𝙪𝙣𝙘𝙩𝙞𝙤𝙣　𝘿𝙚𝙛𝙞𝙣𝙞𝙩𝙞𝙤𝙣𝙨 -------
 # ====================================
-declare width_term=$(tput cols)
-declare width_box=$((width_term - 8))
-declare width_content=$((width_box - 6))
+# Various widths to keep track of
+declare -i width_term=$(tput cols)
+declare -i width_frame=$((width_term - 8))
+declare -i width_content=$((width_frame - 6))
 
-function build_line
+# Frame Input
+function build_frame
 {
   case "$1" in
     top)
@@ -50,104 +58,125 @@ function build_line
       local char_end="╝"
       ;;
     *)
-      local char_beg="║"
-      local char_mid="$1"
-      local char_end="║"
+      return
       ;;
   esac
 
-  local line_builder="   $char_beg"
+  local frame_builder
 
-  for (( i = 0; i < $width_box; i++ )); do
-    line_builder+="$char_mid"
+  for (( i = 0; i < $width_frame; i++ )); do
+    frame_builder+="$char_mid"
   done
 
-  echo "${line_builder}$char_end"
+  printf "   ${char_beg}${frame_builder}${char_end}\n"
 }
 
-function process_input
+# Centre Input
+function build_content
 {
-  local str_input=$(echo -e "$1")
-  local str_section
-  local str_temp
-  local c
-  local ws_padding
+  local -r input="$1"
+  local -i count
+  local string_builder
 
-  while (( ${#str_input} > 0 )); do
-    str_section="${str_input:0:$width_content}"
-    str_temp="   ║   "
-    c=0
-    ws_padding=0
+  # Reset Line
+  function sb_reset
+  {
+    count=0
+    string_builder=""
+  }
 
-    while IFS='' read -d '' -n 1 char; do
-      (( c++ ))
+  # Append to Line
+  function sb_append
+  {
+    (( count += ${#1} ))
+    string_builder+="$1"
+  }
 
-      if [[ $char = $'\n' ]]; then
-        str_temp+=" "
-        break
-      else
-        str_temp+="$char"
-      fi
-    done < <(echo -ne "$str_section")
+  # Prepend to Line
+  function sb_prepend
+  {
+    (( count += ${#1} ))
+    string_builder="${1}$string_builder"
+  }
 
-    ws_padding=$(( width_content - $c ))
+  # Print Line
+  function sb_print
+  {
+    local -i width_string=${#string_builder}
+    local -i width_padding=$(( (width_content - width_string) / 2 ))
+    local -i parity_string=$(( width_string % 2 ))
+    local -i parity_term=$(( width_term % 2 ))
+    local padding=""
 
-    if [[ $c -lt $width_content ]]; then
-      for (( i = 0; i < $ws_padding; i++ )); do
-        str_temp+=" "
+    if [[ $width_string -lt $width_content ]]; then
+
+      # Keep parity of string inline with that of terminal
+      [[ $parity_term -ne $parity_string ]] && sb_prepend " "
+
+      # Override padding for blank lines
+      [[ $count -eq 0 ]] && width_padding=$(( width_content / 2 ))
+
+      # Build padding to centre input
+      for (( i = 0; i < $width_padding; i++ )); do
+        padding+=" "
       done
+
     fi
 
-    echo "$str_temp   ║"
+    # Formatting all done, print result
+    printf "   ║   ${padding}${string_builder}${padding}   ║\n"
+  }
 
-    str_input="${str_input:$c}"
+  # Break down input line-by-line
+  local -a sentences && readarray -d $'\n' sentences <<< "$input"
+
+  # NOTE `for foo in ${bar[@]}` nukes blank lines ¯\_(ツ)_/¯
+  for i in ${!sentences[@]}; do
+
+    # Break down sentence into words
+    local sentence="${sentences[i]}"
+    local -a words=($sentence)
+
+    # Initialise/reset string builder
+    sb_reset
+
+    # Process word-by-word
+    for word in ${words[@]}; do
+
+      local -i width_sofar=${#string_builder}+${#word}
+
+      # Concatenate based on current line length
+      if [[ $width_sofar -gt $width_content ]]; then
+        sb_print
+        sb_reset
+        sb_append "$word"
+      elif [[ $width_sofar -eq $width_content ]]; then
+        sb_append "$word"
+        sb_print
+        sb_reset
+      else
+        sb_append "$word"
+      fi
+
+      # At the end of the word, add a space
+      # Unless at start of a new line (count = 0)
+      [[ $count -ne 0 ]] && sb_append " "
+
+    done
+
+    # At the end of the line, print line
+    sb_print
+
   done
 }
 
-# ============================
-# ------- 𝘽𝙪𝙞𝙡𝙙 𝙊𝙪𝙩𝙥𝙪𝙩 -------
-# ============================
-# echo
-#
-# build_line top
-# build_line spacer
-# process_input "$stdin"
-# build_line spacer
-# build_line bottom
-#
-# echo
-
-# TODO
-# break input into words array
-# str += |···
-# foreach word in array
-#   count += word_length
-#   if word = lf
-#     str += word + space(content_width - count) + '···|'
-#     print str
-#     reset count
-#   elseif count > content_width - 3 (min)
-#     str += word(substring to maxlength-1) + '-' + '···|'
-#     print str
-#     str = '|···' + rest_of_word
-#     reset count
-#   else
-#     str += word + ' '
-
-starr=".... ..... .......... .......$lf ...."
-
-readarray -d ' ' words <<< "$starr "
-unset 'words[-1]'
-declare -p words
-for i in ${!words[@]}; do
-  if [[ ${words[i]} = *$'\n'* ]]; then
-    echo "-${words[i]%% }-"
-    echo "BOOM, LINE FEED!"
-  else
-    echo -e "-${words[i]%% }-"
-  fi
-done
-# for word in ${words[@]}; do
-#   echo $'${word}'
-# done
-# declare -p words
+# ==========================
+# ------- 𝙍𝙪𝙣 𝙎𝙘𝙧𝙞𝙥𝙩 -------
+# ==========================
+printf "$lf"
+build_frame top
+build_frame spacer
+build_content "$input"
+build_frame spacer
+build_frame bottom
+printf "$lf"
