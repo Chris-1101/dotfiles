@@ -1,9 +1,9 @@
-#                   __                                    __   __        __     __
-#   ________  _____|  |__           _____ _______   ____ |  | |__| ____ |  |___/  |_
-#   \___   / /  ___/  |  \   ______ \__  \\_  __ \_/ ___\|  | |  |/ ___\|  |  \   __\
-#    /    /  \___ \|   Y  \ /_____/  / __ \|  | \/\  \___|  |_|  / /_/  >   Y  \  |
-#   /_____ \/____  >___|  /         (____  /__|    \___  >____/__\___  /|___|  /__|
-#         \/     \/     \/               \/            \/       /_____/      \/
+#                  __                               __   __        __     __
+#   ________ _____|  |__      _____ _______  _____ |  | |__| ____ |  |___/  |_
+#   \___   //  ___/  |  \ ____\__  \\_  __ \/  ___\|  | |  |/ ___\|  |  \   __\
+#    /  __/ \___ \|   Y  \ ___ / __ \|  | \/\  \___|  |_|  / /_/  >   Y  \  |
+#   /_____ \____  >___|  /    (____  /__|    \___  >____/__\___  /|___|  /__|
+#         \/    \/     \/          \/            \/       (_____/      \/
 
 # atom:set grammar=sh
 
@@ -37,11 +37,11 @@ PROMPT='${working_dir} ${exit_code}${prompt_char} ' # ┌╼ └───╼➤
 # =================================
 function git_prompt_right()
 {
-    local branch=$(current_branch)
+  local branch=$(current_branch)
 
-    if [ -n "$branch" ]; then
-        echo "$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX$branch$ZSH_THEME_GIT_PROMPT_SUFFIX %{$fg[yellow]%}$(git_prompt_short_sha)%{$reset_color%}"
-    fi
+  if [ -n "$branch" ]; then
+    echo "$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX$branch$ZSH_THEME_GIT_PROMPT_SUFFIX %{$fg[yellow]%}$(git_prompt_short_sha)%{$reset_color%}"
+  fi
 }
 
 local time="[%D{%H:%M}]"
