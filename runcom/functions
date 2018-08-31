@@ -1,7 +1,7 @@
 #     _____                    __   __
-#   _/ ____\_ __  ____   _____/  |_|__| ____   ____   ______
-#   \   __\  |  \/    \_/ ___\   __\  |/  _ \ /    \ /  ___/
-#    |  | |  |  /   |  \  \___|  | |  (  <_> )   |  \\___ \
+#   _/ ____\_ __  ____  ______/  |_|__| ____   ____   ______
+#   \   __\  |  \/    \/  ___\   __\  |/  _ \ /    \ /  ___/
+#    |  | |  |  /   |  \  \___|  | |  (  (_) )   |  \\___ \
 #    |__| |____/|___|  /\___  >__| |__|\____/|___|  /____  >
 #                    \/     \/                    \/     \/
 
@@ -14,13 +14,25 @@ function vim
 
   for i in $@; do
     if [[ -h $i ]]; then
-      args+=$(readlink $i)
+      args+=$(readlink "$i")
     else
-      args+=$i
+      args+="$i"
     fi
   done
 
   /usr/bin/vim -p "${args[@]}"
+}
+
+# Set Size & Position of Floating Terminal
+function termsetup
+{
+  local -i size_w=84
+  local -i size_h=20
+  local -i loc_x=1520
+  local -i loc_y=1043
+
+  resize -s $size_h $size_w > /dev/null
+  printf "\e[3;${loc_x};${loc_y}t"
 }
 
 # Check Updates
