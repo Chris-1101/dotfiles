@@ -6,6 +6,8 @@
 #    \___  > ____|\___  >____/\___  >\__/\  / |   __/
 #        \/\/         \/          \/      \/  |__|
 
+# install:set type=root path=/usr/bin/cyclewp
+
 # Author       : Chris MB
 # GitHub       : https://github.com/Chris-1101
 # Description  : Cycle through images in a directory and set them as wallpaper
@@ -19,6 +21,7 @@ function cycle_wp
   # Verify directory
   if [[ -z $1 ]]; then
     printf "Please specify a directory\n"
+    exit 1
   elif [[ ! -d $1 ]]; then
     printf "Invalid directory $1\n"
     exit 1
