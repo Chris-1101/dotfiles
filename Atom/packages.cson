@@ -36,8 +36,6 @@ packages: [
   "language-viml"
   "linter"
   "linter-jscs"
-  "linter-jshint"
-  "linter-shellcheck"
   "linter-ui-default"
   "minimap"
   "minimap-highlight-selected"
@@ -51,6 +49,7 @@ packages: [
   "seti-syntax"
   "seti-ui"
   "todo-show"
+  "trailing-spaces"
   "vim-mode-plus"
   "vim-modeline"
 ]
