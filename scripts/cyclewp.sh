@@ -16,7 +16,7 @@
 # ====================================
 # ------- 𝙁𝙪𝙣𝙘𝙩𝙞𝙤𝙣　𝘿𝙚𝙛𝙞𝙣𝙞𝙩𝙞𝙤𝙣𝙨 -------
 # ====================================
-function cycle_wp
+function set_next_wp
 {
   # Verify directory
   if [[ -z $1 ]]; then
@@ -43,27 +43,32 @@ function cycle_wp
     fi
   }
 
-  # Determine next wallpaper
-  function determine_next_wp
+  # Cycle wallpaper
+  function set_next_wp
   {
-    (( current_index++ ))
-    local -i len_walls=$(( ${#wallpapers[@]} - 1 ))
+    local -i first_index=0
+    local -i last_index=$(( ${#wallpapers[@]} - 1 ))
+    local -i next_index=$current_index
+    local -i init_index
 
-    if [[ current_index -gt len_walls ]]; then
-      current_index=0
+    if [[ $wp_cycleback = 'true' ]]; then
+      (( next_index-- ))
+      init_index=$last_index
+    else
+      (( next_index++ ))
+      init_index=$first_index
     fi
-  }
 
-  # Set wallpaper
-  function set_wp
-  {
-    [[ ! $1 =~ [0-9]+ ]] && $1=0
-    feh --bg-scale "${wallpapers[$1]}" 2> /dev/null
-    echo "${wallpapers[$1]}" > "$path_cache"
+    if [[ next_index -gt last_index ]]; then
+      next_index=$init_index
+    fi
+
+    feh --bg-scale "${wallpapers[$next_index]}" 2> /dev/null
+    echo "${wallpapers[$next_index]}" > "$path_cache"
   }
 
   # Initial index set higher than probable directory count
-  # so determine_next_wp() sets index to first
+  # so set_next_wp() sets index to first in cycle
   local -i current_index=10000
   local -a wallpapers=()
 
@@ -101,13 +106,10 @@ function cycle_wp
       printf "[$i]: ${wallpapers[$i]}\n"
     done
     printf ":: Current wallpaper: [$current_index]\n"
-    determine_next_wp
-    printf ":: Next wallpaper: [$current_index]\n"
     return
   fi # ---
 
-  determine_next_wp
-  set_wp $current_index
+  set_next_wp
 }
 
 # Usage
@@ -118,10 +120,12 @@ function help
   local f_clr=$(tput sgr0)
 
   printf "Usage: ${f_grn}cyclewp${f_clr} ${f_ylw}DIRECTORY${f_clr}\n"
+  printf "       ${f_grn}cyclewp${f_clr} [${f_grn}-b${f_clr} ${f_ylw}DIRECTORY${f_clr}]\n"
   printf "       ${f_grn}cyclewp${f_clr} [${f_grn}-r${f_clr} ${f_ylw}DIRECTORY${f_clr}]\n"
   printf "       ${f_grn}cyclewp${f_clr} [${f_grn}-d${f_clr} ${f_ylw}DIRECTORY${f_clr}]\n"
   printf "       ${f_grn}cyclewp${f_clr} [${f_grn}-h${f_clr}]\n"
   printf "\n"
+  printf "   ${f_grn}-b${f_clr}: reverse cycle order\n"
   printf "   ${f_grn}-r${f_clr}: randomise wallpaper selection\n"
   printf "   ${f_grn}-d${f_clr}: debug: print current wallpaper and those found in ${f_ylw}DIRECTORY${f_clr}\n"
   printf "   ${f_grn}-h${f_clr}: print these usage instructions\n"
@@ -130,7 +134,7 @@ function help
 # =======================================
 # ------- 𝙋𝙖𝙧𝙖𝙢𝙚𝙩𝙚𝙧 𝙈𝙖𝙣𝙖𝙜𝙚𝙢𝙚𝙣𝙩 -------
 # =======================================
-while getopts ":dhr:" opt; do
+while getopts ":dbhr:" opt; do
   case $opt in
 
     r)
@@ -145,6 +149,10 @@ while getopts ":dhr:" opt; do
 
     d)
       wp_debug=true
+      ;;
+
+    b)
+      wp_cycleback=true
       ;;
 
     h)
@@ -167,4 +175,4 @@ done
 
 shift $(( OPTIND - 1 ))
 
-cycle_wp "$1"
+set_next_wp "$1"
