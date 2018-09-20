@@ -34,6 +34,7 @@ packages: [
   "language-roff"
   "language-todofile"
   "language-viml"
+  "language-x86-64-assembly"
   "linter"
   "linter-jscs"
   "linter-ui-default"
