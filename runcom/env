@@ -7,39 +7,6 @@
 
 # atom:set grammar=sh
 
-# ===========================
-# ------- Add to PATH -------
-# ===========================
-current_shell=$(ps -p $$ -ocomm=)
-
-# Array Initialisation Differs Per Shell ¯\_(ツ)_/¯
-case $current_shell in
-  bash)
-    declare -a path_dirs
-    ;;
-  zsh)
-    typeset -A path_dirs
-    ;;
-  *)
-    echo "Unknown shell, fireworks ahead!"
-    ;;
-esac
-
-# Directories to Add
-path_dirs[0]=$HOME/bin
-path_dirs[1]=$HOME/.dotfiles/scripts
-path_dirs[2]=$(ruby -e 'print Gem.user_dir')/bin
-
-# Append Directories That Exist & Are Not Duplicates
-for dir in "${path_dirs[@]}"; do
-  if [[ -d $dir && -z $(echo $PATH | grep -o $dir) ]]; then
-    export PATH=$dir:$PATH
-  fi
-done
-
-# Wipe Array
-unset path_dirs
-
 # =====================================
 # ------- Environment Variables -------
 # =====================================
