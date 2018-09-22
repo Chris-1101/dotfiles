@@ -1,0 +1,43 @@
+#                 __  __
+#   ___________ _/  ||  |__
+#   \____ \__  \\   __\ |  \
+#   |  |_) ) __ \|  ||   Y  \
+#   |   __(____  /__||___|  /
+#   |__|       \/         \/
+
+# atom:set grammar=sh
+
+# ===========================
+# ------- Add to PATH -------
+# ===========================
+current_shell=$(ps -p $$ -ocomm=)
+
+# Array Initialisation Differs Per Shell ¯\_(ツ)_/¯
+case $current_shell in
+  bash)
+    declare -a path_dirs
+    ;;
+  zsh)
+    typeset -A path_dirs
+    ;;
+  *)
+    echo "Unknown shell, PATH not changed."
+    return 1
+    ;;
+esac
+
+# Directories to Add
+path_dirs[0]=$HOME/bin
+path_dirs[1]=$HOME/.dotfiles/scripts
+path_dirs[2]=$(ruby -e 'print Gem.user_dir')/bin
+
+# Append Directories That Exist & Are Not Duplicates
+for dir in "${path_dirs[@]}"; do
+  if [[ -d $dir && -z $(echo $PATH | grep -o $dir) ]]; then
+    export PATH=$dir:$PATH
+  fi
+done
+
+# Clear Variables
+unset current_shell
+unset path_dirs
