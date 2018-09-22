@@ -6,7 +6,7 @@
 #   ███████╗███████║██║  ██║██║  ██║╚██████╗
 #   ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝
 
-#?!:$HOME/.zshrc
+# install:set type=user path=$HOME/.zshrc
 
 # =======================
 # ------- Antigen -------
@@ -26,7 +26,7 @@ antigen bundle zsh-users/zsh-history-substring-search
 antigen apply
 
 # Load Prompt Theme
-source ~/.dotfiles/runcom/arclight.zsh-theme
+source ~/.dotfiles/runcom/prompt/arclight.zsh-theme
 
 # ============================
 # ------- Run Commands -------
@@ -35,9 +35,9 @@ runcom_dir=$HOME/.dotfiles/runcom
 
 # Automatically Source Files
 if [[ -d $runcom_dir ]]; then
-    for file in "$runcom_dir"/*; do
-        [[ -f $file ]] && source $file
-    done
+  for file in "$runcom_dir"/*; do
+    [[ -f $file ]] && source "$file"
+  done
 fi
 
 # Zsh Line Editor - New Keymaps
@@ -57,6 +57,9 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 
+# Vim Mode
+bindkey -v
+
 # History Substring Search
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
@@ -66,9 +69,6 @@ bindkey '^[^[[D' dir-back
 bindkey '^[^[[A' dir-parent
 bindkey '^[^[[B' dir-save
 bindkey '^[^[[C' dir-goto
-
-# Vim Mode
-bindkey -v
 
 # Auto cd
 setopt autocd
