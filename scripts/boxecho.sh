@@ -19,10 +19,7 @@ declare input
 
 # Normalise Input
 if [[ -p /dev/stdin ]]; then
-  while IFS= read line; do
-    input+="${line}$lf"
-  done
-  input=${input%?}
+  input=$(awk '{print}' /dev/stdin)
 else
   input="$@"
 fi
