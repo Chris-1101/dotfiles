@@ -1,11 +1,11 @@
 #            __                            __   __          __
 #     _____ |__|_____________  ___________|  | |__| _______/  |_
 #    /     \|  \_  __ \_  __ \/  _ \_  __ \  | |  |/  ___/\   __\
-#   |  Y Y  \  ||  | \/|  | \(  <_> )  | \/  |_|  |\___ \  |  |
+#   |  Y Y  \  ||  | \/|  | \(  (_) )  | \/  |_|  |\___ \  |  |
 #   |__|_|  /__||__|   |__|   \____/|__|  |____/__/____  > |__|
 #         \/                                           \/
 
-#!!:/etc/pacman.d/mirrorlist
+# install:set type=root path=/etc/pacman.d/mirrorlist
 
 # Arch Official Repositories: Mirror List
 # Last Update: 2018-05-15
@@ -17,7 +17,7 @@
 # ------- Fastest mirrors -------
 # ===============================
 # 2018-05-18
-Server = http://mirrors.evowise.com/archlinux/$repo/os/$arch
+# Server = http://mirrors.evowise.com/archlinux/$repo/os/$arch
 Server = http://arch.yourlabs.org/$repo/os/$arch
 Server = http://archlinux.cu.be/$repo/os/$arch
 Server = http://k42.ch/mirror/archlinux/$repo/os/$arch
