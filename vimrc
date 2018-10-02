@@ -1,4 +1,4 @@
-"?!:$HOME/.vimrc
+" install:set type=user path=$HOME/.vimrc
 
 "   ██╗   ██╗██╗███╗   ███╗██████╗  ██████╗
 "   ██║   ██║██║████╗ ████║██╔══██╗██╔════╝
@@ -6,6 +6,8 @@
 "   ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "    ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "     ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
+
+" TODO Hybrid relative line numbers
 
 " ===============================
 " ------- System Settings -------
@@ -50,7 +52,7 @@ set encoding=utf8           " Use UTF-8 internally
 
 syntax on           " Enable syntax highlight
 set ruler           " Show line and cursor position
-set number          " Enable line numbers
+set number relativenumber " Enable line numbers
 set showmatch       " Highlight code blocks
 set hlsearch        " Highlight search results
 set incsearch       " Highlight results while typing
@@ -80,7 +82,7 @@ let g:airline_powerline_fonts = 1
 
 " Symbols Array
 if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
+  let g:airline_symbols = {}
 endif
 
 " Powerline Symbols
