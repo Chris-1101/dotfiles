@@ -7,7 +7,7 @@
 #   ██╔╝ ██╗██║██║ ╚████║██║   ██║   ██║  ██║╚██████╗
 #   ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝╚═╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝
 
-#?!:$HOME/.xinitrc
+# install:set type=user path=$HOME/.xinitrc
 
 # Path Definitions
 userresources=$HOME/.Xresources
@@ -23,10 +23,10 @@ sysmodmap=/etc/X11/xinit/.Xmodmap
 
 # Source Shell Scripts Found in xinitrc.d
 if [[ -d /etc/X11/xinit/xinitrc.d ]] ; then
-    for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
-        [[ -x $f ]] && . "$f"
-    done
-    unset f
+  for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
+    [[ -x $f ]] && . "$f"
+  done
+  unset f
 fi
 
 # High DPI Settings
@@ -35,6 +35,8 @@ fi
 #export QT_SCREEN_SCALE_FACTORS=0.9
 #export QT_AUTO_SCREEN_SCALE_FACTOR=2
 #export QT_SCALE_FACTOR=2
+# xrandr --output eDP-1 --scale 1.5x1.5
+# xrandr --output eDP-1 --panning 3200x1800
 
 # Autorun
 exec i3
