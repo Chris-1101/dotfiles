@@ -75,3 +75,6 @@ setopt autocd
 
 # Auto Completion
 autoload -Uz compinit && compinit
+
+# Source SSH Keys
+test -f ~/.keychain/${HOST}-sh && source $_
