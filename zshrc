@@ -1,4 +1,4 @@
-r
+
 #   ███████╗███████╗██╗  ██╗██████╗  ██████╗
 #   ╚══███╔╝██╔════╝██║  ██║██╔══██╗██╔════╝
 #     ███╔╝ ███████╗███████║██████╔╝██║
@@ -75,6 +75,3 @@ setopt autocd
 
 # Auto Completion
 autoload -Uz compinit && compinit
-
-# Load SSH Agent & Keys
-eval $(keychain --eval --quiet --noask github)

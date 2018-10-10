@@ -20,9 +20,6 @@ if [[ -d $runcom_dir ]]; then
   done
 fi
 
-# Load SSH Agent & Keys
-eval $(keychain --eval --quiet --noask github)
-
 # Shell Prompt
 PS1='$(printf "%*s\r%s" $(( COLUMNS-1 )) "$(git branch 2>/dev/null | grep '^*' | sed s/..//) [$(date +%H:%M)]" "[\W] \033[0;32m»\033[0m ")'
 
