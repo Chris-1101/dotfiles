@@ -7,6 +7,23 @@
 
 # atom:set grammar=sh
 
+# ==================================
+# ------- 𝙁𝙤𝙧𝙢𝙖𝙩 𝘿𝙚𝙛𝙞𝙣𝙞𝙩𝙞𝙤𝙣𝙨 -------
+# ==================================
+f_bld=$(tput bold)
+f_blk=$(tput setaf 0)
+f_red=$(tput setaf 1)
+f_grn=$(tput setaf 2)
+f_ylw=$(tput setaf 3)
+f_blu=$(tput setaf 4)
+f_mag=$(tput setaf 5)
+f_cyn=$(tput setaf 6)
+f_wht=$(tput setaf 7)
+f_rst=$(tput sgr0)
+
+# ====================================
+# ------- 𝙁𝙪𝙣𝙘𝙩𝙞𝙤𝙣　𝘿𝙚𝙛𝙞𝙣𝙞𝙩𝙞𝙤𝙣𝙨 -------
+# ====================================
 # Make Vim Follow Symlinks
 function vim
 {
@@ -21,6 +38,24 @@ function vim
   done
 
   /usr/bin/vim -p "${args[@]}"
+}
+
+# Print Alert
+function printa
+{
+  printf "${f_grn}=>${f_rst} ${f_bld}$@${f_rst}\n"
+}
+
+# Print Notice
+function printn
+{
+  printf "${f_blu}::${f_rst} ${f_bld}$@${f_rst}\n"
+}
+
+# Print Error
+function printe
+{
+  printf "${f_red}:✘${f_rst} ${f_bld}$@${f_rst}\n"
 }
 
 # Set Size & Position of Floating Terminal
