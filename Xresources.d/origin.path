@@ -1,2 +1,1 @@
-
-#?!:$HOME/.Xresources.d
+# install:set type=user path=$HOME/.Xresources.d
