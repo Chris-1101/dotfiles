@@ -5,19 +5,19 @@
 .\"   |__|___|  /____  > |__| (____  /____/____/
 .\"           \/     \/            \/   manual
 
-.TH install.sh "1" "13 May 2018" "1.0.0" "Dotfiles Installation Script"
+.TH "install.sh" "1" "02 August 2018" "1.1.0" "Dotfiles Installation Script"
 
 .SH NAME
 install.sh \- automatically symlink dotfiles to their original location.
 
 .SH SYNOPSIS
-(sudo) \fBinstall.sh\fR [\fB-iv\fR] \fIDIRECTORY\fR
-       \fBinstall.sh\fR \fB-h\fR
+(sudo) \fBinstall.sh\fR [\fB-s\fR \fIscan depth\fR] [\fB-i\fR] [\fB-v\fR] \fIDIRECTORY\fR
+       \fBinstall.sh\fR [\fB-h\fR]
 
 .SH DESCRIPTION
-This script is optimised for use in repositories with custom directory structures,
-allowing for complete freedom in organising, moving and renaming dotfiles at will.
-Fair warning, some assembly required ( •_•) see \fBCONFIGURATION\fR.
+Manage dotfiles using embedded modelines that contain all the information needed to
+link them to their original location. Fair warning, some assembly required ( •_•) see
+\fBCONFIGURATION\fR.
 
 .TP
 sudo
@@ -27,24 +27,28 @@ or \fI/usr/bin/\fR and should only be used when needed.
 
 .TP
 \fIDIRECTORY\fR
-Runs through the specified directory and any sub-directories, scanning the head of
-all files for an origin path. Once the scan is complete, results are displayed in
+Scans the specified directory and any sub-directories, searching the head of each
+file for an installation path. Once the scan is complete, results are displayed in
 \(aqorigin ─➤ dotfile\(aq pairs, mimicking the output of `ls -l`. In the event that
-errors have been found, the script will list them (see \fBTROUBLESHOOTING\fR) and
-exit. Otherwise, the user is prompted for confirmation to create or update any
+errors are found, the script will list them (see \fBTROUBLESHOOTING\fR) and exit.
+Otherwise, the user is prompted for confirmation to create or update any
 aforementioned symbolic links.
 
-\fBNOTE:\fR An omitted directory defaults to \fI$DOTFILES_DIR\fR if set, or
-\fI~/.dotfiles\fR
+\fBNOTE:\fR An omitted directory defaults to the current directory.
+
+.TP
+.B -s
+\fIScan depth\fR: tells the script how deep to scan each file. Argument provided should
+be a positive integer. Defaults to the first \fI10\fR lines of a file.
 
 .TP
 .B -i
-Interactive mode: prompt the user for confirmation to overwrite existing symlinks /
+\fIInteractive mode\fR: prompts the user for confirmation to overwrite existing symlinks /
 files at the destination (swaps the script to using `ln -si` instead of `ln -sf`).
 
 .TP
 .B -v
-Verbose mode: output directories currently being scanned and files being linked.
+\fIVerbose mode\fR: outputs directories currently being scanned and files being linked.
 
 .TP
 .B -h
@@ -53,26 +57,28 @@ Display this help page ( •_•)>⌐■-■
 (⌐■_■)
 
 .SH CONFIGURATION
-The principle is to make each dotfile self-sufficient in terms of installation.
-Instead of having a separate file or database keeping track of what came from
-where, the original location is embedded as a comment in the file itself (similar
-to using modelines in vim). A one time task that rarely needs to be amended.
+The idea is to make each dotfile self-sufficient in terms of installation. Instead
+of having a separate file or database keeping track of what came from where, the
+original location is embedded as a comment in the file itself (similar to using
+modelines in vim). A one time task that rarely needs to be amended.
 
 After which, moving or renaming files and creating custom directory structures will
 not compromise any of the information required to link a dotfile to its original
 location: the embedded path; and the path of the file itself.
 
 To configure your dotfiles to be detected by the script, use one of the following
-patterns in a comment in the first \fI10\fR lines of the file:
+modeline patterns in a comment in the first \fI10\fR lines of the file. If, for
+whatever reason, your comment needs to go deeper in the file, use the scan-depth
+option \fB-s\fR. See \fBDESCRIPTION\fR.
 
 .TP
-\fB?!:\fR\fI/path/to/original.file\fR
+\fBinstall:set type=user path=\fR\fI/path/to/original.file\fR
 The script will try and match this pattern when run as a regular user. This should
 be used as the default for any location that does not require root. User-dependent
 variables such as $HOME may be used.
 
 .TP
-\fB!!:\fR\fI/path/to/original.file\fR
+\fBinstall:set type=root path=\fR\fI/path/to/original.file\fR
 The script will try and match this pattern when run with sudo. This is intended to
 link files to locations that require root access.
 
@@ -80,6 +86,11 @@ link files to locations that require root access.
 \fBNOTE:\fR Keep in mind that using the script as sudo will create the links as
 root. Limit this to files that were originally root-owned or in a location that
 requires root access to be safe.
+
+.PP
+\fBALSO NOTE:\fR The regular expression that governs the modeline is very simple.
+You cannot swap the arguments around (ie path before type), the above syntax must
+be respected.
 
 .SH TROUBLESHOOTING
 .TP
@@ -92,8 +103,8 @@ manually create any that are missing.
 .TP
 .I error: location requires root
 The script has encountered a path requiring root access while running as a regular
-user. This means the wrong pattern was found. To announce a location that requires
-root, use the \fB!!:\fR pattern and run the script with sudo.
+user. This means that the wrong type was used. To announce a location that requires
+root, use \fBtype=root\fR in the modeline and run the script with sudo.
 
 .TP
 .I incorrect results are listed
