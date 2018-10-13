@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 #    __                 __          __   __
 #   |__| ____   _______/  |______  |  | |  |
 #   |  |/    \ /  ___/\   __\__  \ |  | |  |
@@ -11,6 +10,8 @@
 # GitHub       : https://github.com/Chris-1101
 # Description  : Automatically symlink dotfiles
 # Dependencies : bash >= 4.0 (associative arrays)
+
+# TODO implement check mode? => checks for errors, lists both user and root, and exists
 
 # ==================================
 # ------- 𝙁𝙤𝙧𝙢𝙖𝙩 𝘿𝙚𝙛𝙞𝙣𝙞𝙩𝙞𝙤𝙣𝙨 -------
@@ -38,7 +39,7 @@ function find_dotfiles
   # Guard against invalid parameters
   if [[ -d $dir ]]; then
 
-    [[ -n $verbose ]] && echo "Scanning directory $dir"
+    [[ -n $verbose ]] && printf "Scanning directory $dir\n"
 
     for object in "$dir"/*; do
 
@@ -68,7 +69,7 @@ function find_dotfiles
 
           # Expand paths and variables
           local actual=$(readlink -f "$object")
-          origin=$(eval echo "${origin//$'\r'}")
+          origin=$(eval printf "${origin//$'\r'}\n")
 
           # For directories, keep only directory name
           if [[ "$object" = *$is_directory ]]; then
@@ -96,7 +97,7 @@ function find_dotfiles
     done
 
   else
-    echo "Invalid directory: $dir"
+    printf "Invalid directory: $dir\n"
     exit 1
   fi
 }
@@ -121,21 +122,21 @@ function symlink_dotfiles
 
   # Check for matches
   if [[ $find_count -ne 0 ]]; then
-    [[ -n $verbose ]] && echo
-    echo "The following symbolic links will be created:"
+    [[ -n $verbose ]] && printf "\n"
+    printf "The following symbolic links will be created:\n"
 
     # Evaluate and print dotfile/origin pairs
     for f_path in "${!symlinks[@]}"; do
       if [[ $(grep ^dir_err <<< $f_path) ]]; then
-        echo -e " • [${f_red}✘${f_rst}] ${f_ylw}${symlinks[$f_path]}${f_rst} — ${f_red}directory doesn't exist${f_rst}"
+        printf " • [${f_red}✘${f_rst}] ${f_ylw}${symlinks[$f_path]}${f_rst} — ${f_red}directory doesn't exist${f_rst}\n"
       elif [[ $(grep ^write_err <<< $f_path) ]]; then
-        echo -e " • [${f_red}✘${f_rst}] ${f_ylw}${symlinks[$f_path]}${f_rst} — ${f_red}location requires root${f_rst}"
+        printf " • [${f_red}✘${f_rst}] ${f_ylw}${symlinks[$f_path]}${f_rst} — ${f_red}location requires root${f_rst}\n"
       else
-        echo -e " • [${f_grn}✔${f_rst}] ${f_cyn}${symlinks[$f_path]}${f_rst} ─➤ $f_path"
+        printf " • [${f_grn}✔${f_rst}] ${f_cyn}${symlinks[$f_path]}${f_rst} ─➤ ${f_path}\n"
       fi
     done | sort
 
-    echo "(total ${f_ylw}${find_count}${f_rst}) (errors ${f_ylw}${error_count}${f_rst})"
+    printf "(total ${f_ylw}${find_count}${f_rst}) (errors ${f_ylw}${error_count}${f_rst})\n"
 
     # Check for errors
     if [[ $error_count -eq 0 ]]; then
@@ -159,14 +160,14 @@ function symlink_dotfiles
           [[ $? -eq 0 ]] && ((link_count++))
         done
 
-        echo "$link_count dotfiles successfully symlinked to their originial location"
+        printf "$link_count dotfiles successfully processed\n"
       fi
     else
-      echo "Errors found: resolve them and run the script again"
-      echo "Run install.sh -h for troubleshooting tips"
+      printf "Errors found: resolve them and run the script again\n"
+      printf "Run install.sh -h for troubleshooting tips\n"
     fi
   else
-    echo "No files to symlink..."
+    printf "No files to symlink...\n"
   fi
 }
 
@@ -183,7 +184,7 @@ while getopts ":hivs:" opt; do
       if [[ $OPTARG =~ [0-9]+ ]]; then
         scan_lines=$OPTARG
       else
-        echo "Invalid argument passed to -l: $OPTARG. Must be an integral number."
+        printf "Invalid argument passed to -l: $OPTARG. Must be an integral number.\n"
         exit 1
       fi
       ;;
@@ -194,11 +195,11 @@ while getopts ":hivs:" opt; do
       verbose=true
       ;;
     :)
-      echo "Option -$OPTARG requires an argument"
+      printf "Option -$OPTARG requires an argument\n"
       exit 1
       ;;
     *)
-      echo "Invalid option: -$OPTARG, run install.sh -h for usage instructions"
+      printf "Invalid option: -$OPTARG, run install.sh -h for usage instructions\n"
       exit 1
       ;;
   esac
