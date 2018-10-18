@@ -1,11 +1,11 @@
 #    __     __
 #   |  |___/  |_  ____ ______
 #   |  |  \   __\/  _ \\____ \
-#   |   Y  \  | (  <_> )  |_> >
+#   |   Y  \  | (  (_) )  |_) )
 #   |___|  /__|  \____/|   __/
 #        \/            |__|
 
-#?!:$HOME/.config/htop/htoprc
+# install:set type=user path=$HOME/.config/htop/htoprc
 
 # This file is rewritten by htop when settings are changed in the interface.
 # The parser is also very primitive, and not human-friendly.
