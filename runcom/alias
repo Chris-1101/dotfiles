@@ -15,6 +15,7 @@ alias please='sudo'
 alias represent='neofetch && dfc -dfs && checkupdates'
 alias sysinfo='dfc -dfs && checkupdates'
 alias mvi='mpv -profile image'
+alias icp='cling'
 
 # Modifiers & Implicit Options
 alias grep='grep --colour=auto'
