@@ -1,12 +1,3 @@
-#                        __
-#   ___________    ____ |  | _______     ____   ____  ______
-#   \____ \__  \ /  ___\|  |/ /\__  \   / ___\_/ __ \/  ___/
-#   |  |_) ) __ \\  \___|    <  / __ \_/ /_/  >  ___/\___ \
-#   |   __(____  /\___  >__|_ \(____  /\___  / \___  >___  )
-#   |__|       \/     \/     \/     \/(_____/      \/    \/
-
-# install:set type=user path=$HOME/.atom/packages.cson
-
 packages: [
   "arclight-syntax"
   "atom-alignment"
@@ -40,12 +31,15 @@ packages: [
   "linter-ui-default"
   "minimap"
   "minimap-highlight-selected"
+  "minimap-pigments"
   "nord-atom-syntax"
   "nord-atom-ui"
   "nv-dark-syntax"
   "nv-dark-ui"
   "package-sync"
+  "pigments"
   "project-manager"
+  "regex-railroad-diagram"
   "relative-numbers"
   "seti-syntax"
   "seti-ui"
