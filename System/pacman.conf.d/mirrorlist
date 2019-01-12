@@ -18,7 +18,7 @@
 # ===============================
 # 2018-05-18
 # Server = http://mirrors.evowise.com/archlinux/$repo/os/$arch
-Server = http://arch.yourlabs.org/$repo/os/$arch
+# Server = http://arch.yourlabs.org/$repo/os/$arch
 Server = http://archlinux.cu.be/$repo/os/$arch
 Server = http://k42.ch/mirror/archlinux/$repo/os/$arch
 Server = http://mirror.metalgamer.eu/archlinux/$repo/os/$arch
