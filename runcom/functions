@@ -76,7 +76,7 @@ function checkupdates
   local aor_updates=$(/usr/bin/checkupdates)
   local aor_num=$(wc -l <<< "$aor_updates")
 
-  local aur_updates=$(/usr/bin/aurcheck -d aur)
+  local aur_updates=$(/usr/bin/aur repo -u)
   local aur_num=$(wc -l <<< "$aur_updates")
 
   echo

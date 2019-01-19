@@ -9,5 +9,5 @@
 # install:set type=user path=$HOME/.config/polybar/updates-aur.sh
 
 # Updates: Arch User Repository (aurutils)
-updates_aur=$(aurcheck -d aur 2> /dev/null | wc -l) || "0"
+updates_aur=$(aur repo -u 2> /dev/null | wc -l) || "0"
 echo "$updates_aur"
