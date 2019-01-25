@@ -25,6 +25,7 @@ alias rm='rm -Iv'
 # AUR Utilities
 alias aurinfo='packer -Si'
 alias aurlist='pacman -Sl aur'
+alias aursearch='aur search'
 
 # Common TAR Commands
 alias tarr='tar -cvfz'
