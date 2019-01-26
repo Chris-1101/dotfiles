@@ -99,3 +99,17 @@ function checkupdates
     echo
   fi
 }
+
+# Pacman Lists
+function pacbackup
+{
+  local backup_aur=~/.dotfiles/System/pacman.conf.d/aurlist
+  local backup_pak=~/.dotfiles/System/pacman.conf.d/paklist
+
+  local foreign=$(pacman -Qqm)
+  local aurlist=$(aurlist | awk '{print $2}')
+  local paklist=$(pacman -Qqe | grep -v "$foreign" | grep -v "$aurlist")
+
+  echo "$aurlist" > "$backup_aur"
+  echo "$paklist" > "$backup_pak"
+}
