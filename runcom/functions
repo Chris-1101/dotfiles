@@ -113,3 +113,41 @@ function pacbackup
   echo "$aurlist" > "$backup_aur"
   echo "$paklist" > "$backup_pak"
 }
+
+# Pattern Search
+function psearch
+{
+  local usage()
+  {
+    echo "usage: psearch [-l] [directory] [pattern]"
+    return 1
+  }
+
+  local opts="-rnwl"
+  [[ $1 = "-l" ]] && opts="${opts%?}" && shift
+
+  if [[ $# -eq 2 ]]; then
+    grep $opts "$1" -e "$2" 2> /dev/null || usage
+  elif [[ $# -eq 1 ]]; then
+    grep $opts "." -e "$1" 2> /dev/null || usage
+  fi
+}
+
+# File Search
+function fsearch
+{
+  local usage()
+  {
+    echo "usage: fsearch [-i] [directory] [pattern]"
+    return 1
+  }
+
+  local opts="-name"
+  [[ $1 = "-i" ]] && opts="-i${opts:1}" && shift
+
+  if [[ $# -eq 2 ]]; then
+    find "$1" $opts "$2" 2> /dev/null || usage
+  elif [[ $# -eq 1 ]]; then
+    find "." $opts "$1" 2> /dev/null || usage
+  fi
+}
