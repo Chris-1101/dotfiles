@@ -39,4 +39,4 @@ export GDK_DPI_SCALE=0.5
 # xrandr --output eDP-1 --panning 3200x1800
 
 # Autorun
-exec i3
+# exec i3
