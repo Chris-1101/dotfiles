@@ -15,6 +15,9 @@ alias please='sudo'
 alias represent='neofetch && dfc -dfsp /dev -q name && checkupdates'
 alias sysinfo='dfc -dfs && checkupdates'
 alias mvi='mpv -profile image'
+
+# Interactive Interpreters
+alias ijv='java -cp /usr/share/java/bsh.jar bsh.Interpreter'
 alias icp='cling'
 
 # Modifiers & Implicit Options
