@@ -28,7 +28,7 @@ printf $'\n'
 
 # Load Custom udev Rules
 printa "Triggering custom udev rules"
-sudo udevadm control --reload-rules && udevadm trigger && \
+sudo udevadm control --reload-rules && sudo udevadm trigger && \
 sleep 1 && \
 printn "Custom rules successfully loaded" || \
 printe "Failed to load custom rules"
