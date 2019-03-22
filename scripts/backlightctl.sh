@@ -54,6 +54,9 @@ function display_notification
 
   # Forward to Notification Daemon
   dunstify "$script_name" "$bl_bar" -t $not_duration -r $not_id
+
+  # Fix Decimal Loss in Brightness Levels
+  light -S $bl_pct
 }
 
 # =======================================
