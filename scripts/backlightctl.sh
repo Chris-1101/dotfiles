@@ -21,6 +21,7 @@ script_name="Backlight Control"
 
 # Symbols used to build the notification bar
 symbol_active="■"
+symbol_half="▣"
 symbol_empty="□"
 
 # Duration to display the notification in ms
@@ -36,11 +37,12 @@ function display_notification
 {
   # Current Brightness Level
   bl_pct=$(awk '{$i = int( ($i + 2) / 5) * 5 ""} 1' <<< "$(light -G)")
-  bl_val=$(( $bl_pct / 10 ))
 
   # Build Notification Bar - □ ▣ ■
-  for (( i = 1; i <= 10; i++ )); do
-    if [[ $i -le $bl_val ]]; then
+  for (( i = 10; i <= 100; i += 10 )); do
+    if [[ $bl_pct -eq $(( i - 5 )) ]]; then
+      bl_bar+="$symbol_half "
+    elif [[ $i -le $bl_pct ]]; then
       bl_bar+="$symbol_active "
     else
       bl_bar+="$symbol_empty "
