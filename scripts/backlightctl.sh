@@ -63,10 +63,10 @@ case "$1" in
     exit 0
     ;;
   dec)
-    light -U 10
+    light -U 5
     ;;
   inc)
-    light -A 10
+    light -A 5
     ;;
   get)
     ;;
