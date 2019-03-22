@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-#   ___                   __    __   __        __     __          __   __
-#   \_ |__ _____   _____ |  | _|  | |__| ____ |  |___/  |_ ______/  |_|  |
-#    | __ \\__  \ /  ___\|  |/ /  | |  |/ ___\|  |  \   __\  ___\   __\  |
-#    | \_\ \/ __ \\  \___|    <|  |_|  / /_/  >   Y  \  | \  \___|  | |  |__
-#    |___  (____  /\___  >__|_ \____/__\___  /|___|  /__|  \___  >__| |____/
-#        \/     \/     \/     \/      /_____/      \/          \/
+#   __________                __    __   __        __     __          __   __
+#   \______   \_____   _____ |  | _|  | |__| ____ |  |___/  |_ ______/  |_|  |
+#    |    |  _/\__  \ /  ___\|  |/ /  | |  |/ ___\|  |  \   __\  ___\   __\  |
+#    |    |   \ / __ \\  \___|    <|  |_|  / /_/  >   Y  \  | \  \___|  | |  |__
+#    |______  /(____  /\___  >__|_ \____/__\___  /|___|  /__|  \___  >__| |____/
+#           \/      \/     \/     \/      /_____/      \/          \/
 
 # install:set type=root path=/usr/bin/backlightctl
 
@@ -19,7 +19,10 @@
 # The name of the script as it appears on notifications
 script_name="Backlight Control"
 
-# Symbols used to build the notification bar
+# Brightness Step (%)
+bl_step=5
+
+# Symbols used to build the notification bar □ ▣ ■
 symbol_active="■"
 symbol_half="▣"
 symbol_empty="□"
@@ -38,9 +41,9 @@ function display_notification
   # Current Brightness Level
   bl_pct=$(awk '{$i = int( ($i + 2) / 5) * 5 ""} 1' <<< "$(light -G)")
 
-  # Build Notification Bar - □ ▣ ■
+  # Build Notification Bar
   for (( i = 10; i <= 100; i += 10 )); do
-    if [[ $bl_pct -eq $(( i - 5 )) ]]; then
+    if [[ $bl_pct -eq $(( i - $bl_step )) ]]; then
       bl_bar+="$symbol_half "
     elif [[ $i -le $bl_pct ]]; then
       bl_bar+="$symbol_active "
@@ -65,10 +68,10 @@ case "$1" in
     exit 0
     ;;
   dec)
-    light -U 5
+    light -U $bl_step
     ;;
   inc)
-    light -A 5
+    light -A $bl_step
     ;;
   get)
     ;;
