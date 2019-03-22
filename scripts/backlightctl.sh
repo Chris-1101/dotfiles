@@ -22,10 +22,10 @@ script_name="Backlight Control"
 # Brightness Step (%)
 bl_step=5
 
-# Symbols used to build the notification bar □ ▣ ■
+# Symbols used to build the notification bar ▫ □ ▣ ■ ▪
 symbol_active="■"
-symbol_half="▣"
-symbol_empty="□"
+symbol_half="▪"
+symbol_empty="▫"
 
 # Duration to display the notification in ms
 not_duration=3000
