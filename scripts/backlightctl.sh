@@ -82,4 +82,3 @@ case "$1" in
 esac
 
 display_notification
-unset display_notification
