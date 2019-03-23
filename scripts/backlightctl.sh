@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-#   ___                   __    __   __        __     __          __   __
-#   \_ |__ _____   _____ |  | _|  | |__| ____ |  |___/  |_ ______/  |_|  |
-#    | __ \\__  \ /  ___\|  |/ /  | |  |/ ___\|  |  \   __\  ___\   __\  |
-#    | \_\ \/ __ \\  \___|    <|  |_|  / /_/  >   Y  \  | \  \___|  | |  |__
-#    |___  (____  /\___  >__|_ \____/__\___  /|___|  /__|  \___  >__| |____/
-#        \/     \/     \/     \/      /_____/      \/          \/
+#   __________                __    __   __        __     __          __   __
+#   \______   \_____   _____ |  | _|  | |__| ____ |  |___/  |_ ______/  |_|  |
+#    |    |  _/\__  \ /  ___\|  |/ /  | |  |/ ___\|  |  \   __\  ___\   __\  |
+#    |    |   \ / __ \\  \___|    <|  |_|  / /_/  >   Y  \  | \  \___|  | |  |__
+#    |______  /(____  /\___  >__|_ \____/__\___  /|___|  /__|  \___  >__| |____/
+#           \/      \/     \/     \/      /_____/      \/          \/
 
 # install:set type=root path=/usr/bin/backlightctl
 
@@ -19,9 +19,13 @@
 # The name of the script as it appears on notifications
 script_name="Backlight Control"
 
-# Symbols used to build the notification bar
+# Brightness Step (%)
+bl_step=5
+
+# Symbols used to build the notification bar ▫ □ ▣ ■ ▪
 symbol_active="■"
-symbol_empty="□"
+symbol_half="▪"
+symbol_empty="▫"
 
 # Duration to display the notification in ms
 not_duration=3000
@@ -36,11 +40,12 @@ function display_notification
 {
   # Current Brightness Level
   bl_pct=$(awk '{$i = int( ($i + 2) / 5) * 5 ""} 1' <<< "$(light -G)")
-  bl_val=$(( $bl_pct / 10 ))
 
-  # Build Notification Bar - □ ▣ ■
-  for (( i = 1; i <= 10; i++ )); do
-    if [[ $i -le $bl_val ]]; then
+  # Build Notification Bar
+  for (( i = 10; i <= 100; i += 10 )); do
+    if [[ $bl_pct -eq $(( i - $bl_step )) ]]; then
+      bl_bar+="$symbol_half "
+    elif [[ $i -le $bl_pct ]]; then
       bl_bar+="$symbol_active "
     else
       bl_bar+="$symbol_empty "
@@ -49,6 +54,9 @@ function display_notification
 
   # Forward to Notification Daemon
   dunstify "$script_name" "$bl_bar" -t $not_duration -r $not_id
+
+  # Fix Decimal Loss in Brightness Levels
+  light -S $bl_pct
 }
 
 # =======================================
@@ -63,10 +71,10 @@ case "$1" in
     exit 0
     ;;
   dec)
-    light -U 10
+    light -U $bl_step
     ;;
   inc)
-    light -A 10
+    light -A $bl_step
     ;;
   get)
     ;;
@@ -77,4 +85,3 @@ case "$1" in
 esac
 
 display_notification
-unset display_notification
