@@ -27,6 +27,7 @@ antigen apply
 
 # Load Prompt Theme
 source ~/.dotfiles/runcom/prompt/arclight.zsh-theme
+ZLE_RPROMPT_INDENT=0
 
 # ============================
 # ------- Run Commands -------
@@ -40,11 +41,17 @@ if [[ -d $runcom_dir ]]; then
   done
 fi
 
-# Zsh Line Editor - New Keymaps
+# Vi-Mode
+zle -N zle-keymap-select
+
+# Directory Navigation
 zle -N dir-back
 zle -N dir-parent
 zle -N dir-save
 zle -N dir-goto
+
+# NOTE: Adding Functions to Zsh
+# Zsh Line Editor -New function-name
 
 # ==============================
 # ------- Shell Settings -------

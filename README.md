@@ -22,8 +22,9 @@ Status Bar              » Polybar
 Compositor              » Compton
 Notification Daemon     » Dunst, Dunstify
 Terminal Emulator       » URxvt
-Terminal Font           » DejaVu Sans Mono (Nerd Font Patch)
 Shell / CLI             » Z-Shell (custom prompt)
+Terminal Font           » DejaVu Sans Mono (Nerd Font Patch)
+Terminal Multiplexer    » Tmux
 Application Launcher    » Rofi
 CLI Editor              » Vim
 Graphical Editor/IDE    » Atom
