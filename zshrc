@@ -27,6 +27,7 @@ antigen apply
 
 # Load Prompt Theme
 source ~/.dotfiles/runcom/prompt/arclight.zsh-theme
+ZLE_RPROMPT_INDENT=0
 
 # ============================
 # ------- Run Commands -------
