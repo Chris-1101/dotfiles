@@ -16,13 +16,17 @@
 # ======================
 # ------- 𝘾𝙤𝙣𝙛𝙞𝙜 -------
 # ======================
-# Symbols used to build the notification bar
+# Symbols used to build the notification bar - ■ ▦ ▣ ▧ □
 symbol_active="■"
 symbol_muted="▧"
 symbol_empty="□"
+symbol_step="▣"
 
 # Maximum volume (endless amplification can be damaging to speakers)
 vol_max=150
+
+# Volume Step (%)
+vol_step=5
 
 # ===========================
 # ------- 𝙑𝙤𝙡𝙪𝙢𝙚 𝘽𝙖𝙧 -------
@@ -42,31 +46,37 @@ function display_notification
   local vol_current=$(get_vol)
   local vol_muted=$(pactl list sinks | grep Mute | awk '{print $2}')
 
-  # Build Volume Bar
+  # Determine Symbols Based on Muted State
   if is_muted; then
-    fill_type="$symbol_muted "
+    main_fill_type="$symbol_muted"
+    step_fill_type="$symbol_muted"
   else
-    fill_type="$symbol_active "
+    main_fill_type="$symbol_active"
+    step_fill_type="$symbol_step"
   fi
 
-  # First 100% - ■ ▦ ▣ ▧ □
-  for (( i = 10; i <= 100; i += 10 )); do
-    if [[ $i -le $vol_current ]]; then
-      vol_bar+="$fill_type"
+  # Build Volume Bar
+  function get_symbol
+  {
+    if [[ $vol_current -eq $(( $1 - $vol_step )) ]]; then
+      echo $step_fill_type
+    elif [[ $1 -le $vol_current ]]; then
+      echo $main_fill_type
     else
-      vol_bar+="$symbol_empty "
+      echo $symbol_empty
     fi
+  }
+
+  # First 100%
+  for (( i = 10; i <= 100; i += 10 )); do
+    vol_bar+="$(get_symbol $i) "
   done
 
   # Amplified Beyond 100%
   if [[ $vol_current -gt 100 ]]; then
     vol_bar+="| "
-    for (( i = 110; i <= 150; i += 10 )); do
-      if [[ $i -le $vol_current ]]; then
-        vol_bar+="$fill_type"
-      else
-        vol_bar+="$symbol_empty "
-      fi
+    for (( i = 110; i <= $vol_max; i += 10 )); do
+      vol_bar+="$(get_symbol $i) "
     done
   fi
 
@@ -91,14 +101,14 @@ case "$1" in
     ;;
   dec)
     pactl set-sink-mute 0 false
-    pactl set-sink-volume 0 -10%
+    pactl set-sink-volume 0 -${vol_step}%
     ;;
   inc)
     pactl set-sink-mute 0 false
     if [[ $(get_vol) -ge $vol_max ]]; then
       pactl set-sink-volume 0 150%
     else
-      pactl set-sink-volume 0 +10%
+      pactl set-sink-volume 0 +${vol_step}%
     fi
     ;;
   get)
