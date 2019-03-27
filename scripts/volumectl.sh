@@ -22,18 +22,23 @@ symbol_muted="▧"
 symbol_empty="□"
 symbol_step="▣"
 
-# Maximum volume (endless amplification can be damaging to speakers)
+# Maximum volume (safeguard speakers)
 vol_max=150
 
-# Volume Step (%)
-vol_step=5
-
-# ===========================
-# ------- 𝙑𝙤𝙡𝙪𝙢𝙚 𝘽𝙖𝙧 -------
-# ===========================
-function is_muted
+# =================================
+# ------- 𝙑𝙤𝙡𝙪𝙢𝙚 𝙁𝙪𝙣𝙘𝙩𝙞𝙤𝙣𝙨 -------
+# =================================
+function validate_input
 {
-  test "$vol_muted" = 'yes'
+  if [[ $2 =~ [^0-9]+ ]]; then
+    printf "Invalid argument passed to $1: ${2/%/\%}, must be integer\n"
+    exit 1
+  fi
+}
+
+function set_vol_step
+{
+  vol_step=$1
 }
 
 function get_vol
@@ -41,6 +46,38 @@ function get_vol
   pactl list sinks | grep '^\s*Volume' | awk '{print $5}' | sed s/%//g
 }
 
+function unmute
+{
+  pactl set-sink-mute 0 false
+}
+
+function toggle_mute_state
+{
+  pactl set-sink-mute 0 toggle
+}
+
+function is_muted
+{
+  test "$vol_muted" = 'yes'
+}
+
+function increase_volume
+{
+  if [[ $(get_vol) -ge $vol_max ]]; then
+    pactl set-sink-volume 0 150%
+  else
+    pactl set-sink-volume 0 +${vol_step}%
+  fi
+}
+
+function decrease_volume
+{
+  pactl set-sink-volume 0 -${vol_step}%
+}
+
+# ===========================
+# ------- 𝙑𝙤𝙡𝙪𝙢𝙚 𝘽𝙖𝙧 -------
+# ===========================
 function display_notification
 {
   local vol_current=$(get_vol)
@@ -58,7 +95,7 @@ function display_notification
   # Build Volume Bar
   function get_symbol
   {
-    if [[ $vol_current -eq $(( $1 - $vol_step )) ]]; then
+    if [[ $(( vol_step % 10 )) -ne 0 && $vol_current -eq $(( $1 - $vol_step )) ]]; then
       echo $step_fill_type
     elif [[ $1 -le $vol_current ]]; then
       echo $main_fill_type
@@ -97,19 +134,19 @@ case "$1" in
     exit 0
     ;;
   tog)
-    pactl set-sink-mute 0 toggle
+    toggle_mute_state
     ;;
   dec)
-    pactl set-sink-mute 0 false
-    pactl set-sink-volume 0 -${vol_step}%
+    validate_input dec $2
+    unmute
+    set_vol_step $2
+    decrease_volume
     ;;
   inc)
-    pactl set-sink-mute 0 false
-    if [[ $(get_vol) -ge $vol_max ]]; then
-      pactl set-sink-volume 0 150%
-    else
-      pactl set-sink-volume 0 +${vol_step}%
-    fi
+    validate_input inc $2
+    unmute
+    set_vol_step $2
+    increase_volume
     ;;
   get)
     ;;
