@@ -36,11 +36,6 @@ function validate_input
   fi
 }
 
-function set_vol_step
-{
-  vol_step=$1
-}
-
 function get_vol
 {
   pactl list sinks | grep '^\s*Volume' | awk '{print $5}' | sed s/%//g
@@ -66,13 +61,13 @@ function increase_volume
   if [[ $(get_vol) -ge $vol_max ]]; then
     pactl set-sink-volume 0 150%
   else
-    pactl set-sink-volume 0 +${vol_step}%
+    pactl set-sink-volume 0 +${1}%
   fi
 }
 
 function decrease_volume
 {
-  pactl set-sink-volume 0 -${vol_step}%
+  pactl set-sink-volume 0 -${1}%
 }
 
 # ===========================
@@ -141,14 +136,12 @@ case "$1" in
   dec)
     validate_input $1 $2
     unmute
-    set_vol_step $2
-    decrease_volume
+    decrease_volume $2
     ;;
   inc)
     validate_input $1 $2
     unmute
-    set_vol_step $2
-    increase_volume
+    increase_volume $2
     ;;
   get)
     ;;
