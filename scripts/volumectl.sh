@@ -95,10 +95,12 @@ function display_notification
   # Build Volume Bar
   function get_symbol
   {
-    if [[ $(( vol_step % 10 )) -ne 0 && $vol_current -eq $(( $1 - $vol_step )) ]]; then
-      echo $step_fill_type
-    elif [[ $1 -le $vol_current ]]; then
+    local vol_diff=$(( vol_current % 10 ))
+
+    if [[ $1 -le $vol_current ]]; then
       echo $main_fill_type
+    elif [[ $vol_diff -ne 0 && $vol_current -eq $(( $1 - $vol_diff )) ]]; then
+      echo $step_fill_type
     else
       echo $symbol_empty
     fi
@@ -137,13 +139,13 @@ case "$1" in
     toggle_mute_state
     ;;
   dec)
-    validate_input dec $2
+    validate_input $1 $2
     unmute
     set_vol_step $2
     decrease_volume
     ;;
   inc)
-    validate_input inc $2
+    validate_input $1 $2
     unmute
     set_vol_step $2
     increase_volume
