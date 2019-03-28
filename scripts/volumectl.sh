@@ -16,20 +16,24 @@
 # ======================
 # ------- 𝘾𝙤𝙣𝙛𝙞𝙜 -------
 # ======================
-# Symbols used to build the notification bar
+# Symbols used to build the notification bar - ■ ▦ ▣ ▧ □
 symbol_active="■"
 symbol_muted="▧"
 symbol_empty="□"
+symbol_step="▣"
 
-# Maximum volume (endless amplification can be damaging to speakers)
+# Maximum volume (safeguard speakers)
 vol_max=150
 
-# ===========================
-# ------- 𝙑𝙤𝙡𝙪𝙢𝙚 𝘽𝙖𝙧 -------
-# ===========================
-function is_muted
+# =================================
+# ------- 𝙑𝙤𝙡𝙪𝙢𝙚 𝙁𝙪𝙣𝙘𝙩𝙞𝙤𝙣𝙨 -------
+# =================================
+function validate_input
 {
-  test "$vol_muted" = 'yes'
+  if [[ $2 =~ [^0-9]+ ]]; then
+    printf "Invalid argument passed to $1: ${2/%/\%}, must be integer\n"
+    exit 1
+  fi
 }
 
 function get_vol
@@ -37,36 +41,76 @@ function get_vol
   pactl list sinks | grep '^\s*Volume' | awk '{print $5}' | sed s/%//g
 }
 
+function unmute
+{
+  pactl set-sink-mute 0 false
+}
+
+function toggle_mute_state
+{
+  pactl set-sink-mute 0 toggle
+}
+
+function is_muted
+{
+  test "$vol_muted" = 'yes'
+}
+
+function increase_volume
+{
+  if [[ $(get_vol) -ge $vol_max ]]; then
+    pactl set-sink-volume 0 150%
+  else
+    pactl set-sink-volume 0 +${1}%
+  fi
+}
+
+function decrease_volume
+{
+  pactl set-sink-volume 0 -${1}%
+}
+
+# ===========================
+# ------- 𝙑𝙤𝙡𝙪𝙢𝙚 𝘽𝙖𝙧 -------
+# ===========================
 function display_notification
 {
   local vol_current=$(get_vol)
   local vol_muted=$(pactl list sinks | grep Mute | awk '{print $2}')
 
-  # Build Volume Bar
+  # Determine Symbols Based on Muted State
   if is_muted; then
-    fill_type="$symbol_muted "
+    main_fill_type="$symbol_muted"
+    step_fill_type="$symbol_muted"
   else
-    fill_type="$symbol_active "
+    main_fill_type="$symbol_active"
+    step_fill_type="$symbol_step"
   fi
 
-  # First 100% - ■ ▦ ▣ ▧ □
-  for (( i = 10; i <= 100; i += 10 )); do
-    if [[ $i -le $vol_current ]]; then
-      vol_bar+="$fill_type"
+  # Build Volume Bar
+  function get_symbol
+  {
+    local vol_diff=$(( vol_current % 10 ))
+
+    if [[ $1 -le $vol_current ]]; then
+      echo $main_fill_type
+    elif [[ $vol_diff -ne 0 && $vol_current -eq $(( $1 - $vol_diff )) ]]; then
+      echo $step_fill_type
     else
-      vol_bar+="$symbol_empty "
+      echo $symbol_empty
     fi
+  }
+
+  # First 100%
+  for (( i = 10; i <= 100; i += 10 )); do
+    vol_bar+="$(get_symbol $i) "
   done
 
   # Amplified Beyond 100%
   if [[ $vol_current -gt 100 ]]; then
     vol_bar+="| "
-    for (( i = 110; i <= 150; i += 10 )); do
-      if [[ $i -le $vol_current ]]; then
-        vol_bar+="$fill_type"
-      else
-        vol_bar+="$symbol_empty "
-      fi
+    for (( i = 110; i <= $vol_max; i += 10 )); do
+      vol_bar+="$(get_symbol $i) "
     done
   fi
 
@@ -87,19 +131,17 @@ case "$1" in
     exit 0
     ;;
   tog)
-    pactl set-sink-mute 0 toggle
+    toggle_mute_state
     ;;
   dec)
-    pactl set-sink-mute 0 false
-    pactl set-sink-volume 0 -10%
+    validate_input $1 $2
+    unmute
+    decrease_volume $2
     ;;
   inc)
-    pactl set-sink-mute 0 false
-    if [[ $(get_vol) -ge $vol_max ]]; then
-      pactl set-sink-volume 0 150%
-    else
-      pactl set-sink-volume 0 +10%
-    fi
+    validate_input $1 $2
+    unmute
+    increase_volume $2
     ;;
   get)
     ;;
