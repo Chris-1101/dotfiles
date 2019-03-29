@@ -19,9 +19,6 @@
 # The name of the script as it appears on notifications
 script_name="Backlight Control"
 
-# Brightness Step (%)
-bl_step=5
-
 # Symbols used to build the notification bar ▫ □ ▣ ■ ▪
 symbol_active="■"
 symbol_half="▪"
@@ -43,10 +40,12 @@ function display_notification
 
   # Build Notification Bar
   for (( i = 10; i <= 100; i += 10 )); do
-    if [[ $bl_pct -eq $(( i - $bl_step )) ]]; then
-      bl_bar+="$symbol_half "
-    elif [[ $i -le $bl_pct ]]; then
+    local bl_diff=$(( bl_pct % 10 ))
+
+    if [[ $i -le $bl_pct ]]; then
       bl_bar+="$symbol_active "
+    elif [[ $bl_diff -ne 0 && $bl_pct -eq $(( $i - $bl_diff )) ]]; then
+      bl_bar+="$symbol_half "
     else
       bl_bar+="$symbol_empty "
     fi
@@ -57,6 +56,14 @@ function display_notification
 
   # Fix Decimal Loss in Brightness Levels
   light -S $bl_pct
+}
+
+function validate_input
+{
+  if [[ -z $2 || $2 =~ [^0-9]+ ]]; then
+    printf "Invalid argument passed to $1: ${2/%/\%}, must be integer\n"
+    exit 1
+  fi
 }
 
 # =======================================
@@ -71,10 +78,12 @@ case "$1" in
     exit 0
     ;;
   dec)
-    light -U $bl_step
+    validate_input $1 $2
+    light -U $2
     ;;
   inc)
-    light -A $bl_step
+    validate_input $1 $2
+    light -A $2
     ;;
   get)
     ;;
