@@ -30,7 +30,7 @@ vol_max=150
 # =================================
 function validate_input
 {
-  if [[ $2 =~ [^0-9]+ ]]; then
+  if [[ -z $2 || $2 =~ [^0-9]+ ]]; then
     printf "Invalid argument passed to $1: ${2/%/\%}, must be integer\n"
     exit 1
   fi
