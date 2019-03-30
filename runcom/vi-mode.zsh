@@ -11,5 +11,5 @@ function zle-keymap-select
   echo ${${KEYMAP/vicmd/cmd}/(main|viins)/ins} > "$tmp"
 
   # Resfresh Tmux
-  sleep 0.1 && tmux refresh-client
+  sleep 0.1 && tmux refresh-client 2> /dev/null
 }
