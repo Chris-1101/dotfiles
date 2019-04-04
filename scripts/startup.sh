@@ -28,6 +28,7 @@ printf $'\n'
 
 # Load Custom udev Rules
 printa "Triggering custom udev rules"
+printa "Privilege escalation required"
 sudo udevadm control --reload-rules && sudo udevadm trigger && \
 sleep 1 && \
 printn "Custom rules successfully loaded" || \
@@ -41,4 +42,13 @@ systemctl start lowbat.timer && \
 sleep 1 && \
 printn "powerctl timers successfully started, run ${f_grn}systemctl list-timers --all${f_rst} for more info" || \
 printe "Failed to load powerctl timers"
+printf $'\n'
+
+# Clear Pacman Cache
+printa "Clearing pacman cache"
+paccache -ruk0 > /dev/null && \
+paccache -rk2 > /dev/null && \
+sleep 1 && \
+printn "Pacman cache successfully cleared" || \
+printe "Failed to clear pacman cache"
 printf $'\n'
