@@ -111,7 +111,3 @@ URxvt.matcher.rend.0: Bold fg5
 *color7:	base07
 *.color15:	base0F
 *color15:	base0F
-
-! Black Unaffected by Bold Highlighting
-*.color66:  base00
-*color66:   base00
