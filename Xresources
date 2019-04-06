@@ -11,6 +11,11 @@
 
 #include ".Xresources.d/Xcolour.scheme"
 
+! --- Cursor Appearance --- !
+
+Xcursor.theme:      Oxygen_White
+Xcursor.size:       48
+
 ! --- Text Rendering --- !
 
 Xft.dpi:            168
@@ -21,24 +26,13 @@ Xft.hinting:        1
 Xft.antialiasing:   1
 Xft.rgba:           rgb
 
-! --- Cursor Appearance --- !
+! --- URxvt Font Settings --- !
 
-!Xcursor.theme:      Vanilla-DMZ-AA
-Xcursor.theme:      Oxygen_White
-Xcursor.size:       48
+URxvt.font: xft:DejaVu Sans Mono for Powerline:size=10:minspace=False,\
+            xft:DejaVuSansMono Nerd Font:size=10:minspace=False,\
+            -*-unifont-*-*-*-*-*-*-*-*-*-*-*-*
 
-! --- URxvt Settings --- !
-
-!URxvt.font:            xft:SauceCodePro Nerd Font:size=12
-!URxvt.font:            xft:xos4 Terminus:style=Bold:size=12:minspace=False
-URxvt.font:            xft:DejaVu Sans Mono for Powerline:size=10:minspace=False,\
-                       xft:DejaVuSansMono Nerd Font:size=10:minspace=False,\
-                       -*-unifont-*-*-*-*-*-*-*-*-*-*-*-*
-URxvt.letterSpace:     -1
-URxvt.scrollBar:       false
-URxvt.cursorUnderline: 1
-URxvt.internalBorder:  30
-URxvt.depth:           32
+URxvt.letterSpace: -1
 
 ! --- URxvt Plugin Configuration --- !
 
