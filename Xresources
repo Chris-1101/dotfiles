@@ -28,10 +28,17 @@ Xft.rgba:           rgb
 
 ! --- URxvt Font Settings --- !
 
-URxvt.font:           xft:DejaVuSansMono Nerd Font Mono:style=Book:size=10
-URxvt.boldFont:       xft:DejaVuSansMono Nerd Font Mono:style=Bold:size=10
-URxvt.italicFont:     xft:DejaVuSansMono Nerd Font Mono:style=Oblique:size=10
-URxvt.boldItalicFont: xft:DejaVuSansMono Nerd Font Mono:style=Bold Oblique:size=10
+#define fnt_sz 10
+#define fnt_nm DejaVuSansMono Nerd Font Mono
+#define fnt_reg Book
+#define fnt_bld Bold
+#define fnt_ita Oblique
+#define fnt_bit Bold Oblique
+
+URxvt.font:           xft:fnt_nm:style=fnt_reg:size=fnt_sz
+URxvt.boldFont:       xft:fnt_nm:style=fnt_bld:size=fnt_sz
+URxvt.italicFont:     xft:fnt_nm:style=fnt_ita:size=fnt_sz
+URxvt.boldItalicFont: xft:fnt_nm:style=fnt_bit:size=fnt_sz
 
 ! URxvt.font: xft:DejaVu Sans Mono for Powerline:size=10:minspace=False,\
 !             xft:DejaVuSansMono Nerd Font:size=10:minspace=False,\
