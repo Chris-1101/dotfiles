@@ -1,24 +1,63 @@
-! Scheme: Synthwave
+! atom:set grammar=f90
 
-!#define bgtrns 80
-#define bkgrnd #050a14
-#define frgrnd #d1d9e8
+#include "Xcolour-synthwave.scheme"
 
-#define base00 #050a14
-#define base01 #de1d70
-#define base02 #28f78f
-#define base03 #f4c00b
-#define base04 #28b0f7
-#define base05 #8243e9
-#define base06 #0e66d9
-! #define base07 #a9aeb4
-#define base07 #d1d9e8
-#define base08 #d1d9e8
-#define base09 #de1d70
-#define base0A #28f78f
-#define base0B #f4c00b
-#define base0C #28b0f7
-#define base0D #8243e9
-#define base0E #0e66d9
-! #define base0F #a9aeb4
-#define base0F #d1d9e8
+! --- Colour Definitions --- !
+
+#ifndef bgtrns
+  #define bgt 100
+#else
+  #define bgt bgtrns
+#endif
+
+*background:   [bgt]bkgrnd
+*foreground:        frgrnd
+*cursorColor:       frgrnd
+
+! Black
+*.color0:	base00
+*color0:	base00
+*.color8:	base08
+*color8:	base08
+
+! Red
+*.color1:	base01
+*color1:	base01
+*.color9:	base09
+*color9:	base09
+
+! Green
+*.color2:	base02
+*color2:	base02
+*.color10:	base0A
+*color10:	base0A
+
+! Yellow
+*.color3:	base03
+*color3:	base03
+*.color11:	base0B
+*color11:	base0B
+
+! Blue
+*.color4:	base04
+*color4:	base04
+*.color12:	base0C
+*color12:	base0C
+
+! Magenta
+*.color5:	base05
+*color5:	base05
+*.color13:	base0D
+*color13:	base0D
+
+! Cyan
+*.color6:	base06
+*color6:	base06
+*.color14:	base0E
+*color14:	base0E
+
+! White
+*.color7:	base07
+*color7:	base07
+*.color15:	base0F
+*color15:	base0F
