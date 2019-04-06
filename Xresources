@@ -28,9 +28,11 @@ Xft.rgba:           rgb
 
 ! --- URxvt Font Settings --- !
 
-URxvt.font: xft:DejaVu Sans Mono for Powerline:size=10:minspace=False,\
-            xft:DejaVuSansMono Nerd Font:size=10:minspace=False,\
-            -*-unifont-*-*-*-*-*-*-*-*-*-*-*-*
+URxvt.font: xft:DejaVuSansMono Nerd Font Mono:size=10
+
+! URxvt.font: xft:DejaVu Sans Mono for Powerline:size=10:minspace=False,\
+!             xft:DejaVuSansMono Nerd Font:size=10:minspace=False,\
+!             -*-unifont-*-*-*-*-*-*-*-*-*-*-*-*
 
 URxvt.letterSpace: -1
 
