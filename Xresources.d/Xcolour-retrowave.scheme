@@ -1,0 +1,23 @@
+! Scheme: Retrowave
+
+#define bkgrnd #0c0e17
+#define frgrnd #d7d8e0
+
+#define base00 #0c0e17
+#define base01 #c41a63
+#define base02 #484f59
+#define base03 #689eb4
+#define base04 #616a73
+#define base05 #0f8182
+#define base06 #49b5b5
+! #define base07 #a9aeb4
+#define base07 #d7d8e0
+#define base08 #0c0e17
+#define base09 #c41a63
+#define base0A #484f59
+#define base0B #689eb4
+#define base0C #616a73
+#define base0D #0f8182
+#define base0E #49b5b5
+! #define base0F #a9aeb4
+#define base0F #d7d8e0
