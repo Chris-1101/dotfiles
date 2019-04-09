@@ -22,7 +22,7 @@ alias icp='cling'
 
 # Modifiers & Implicit Options
 alias grep='grep --colour=auto'
-alias ls='ls --color=auto'
+alias ls='colorls --sd --gs'
 alias rm='rm -Iv'
 
 # AUR Utilities
