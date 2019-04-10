@@ -9,7 +9,10 @@
 ! install:set type=user path=$HOME/.Xresources
 ! atom:set grammar=f90
 
-#include ".Xresources.d/Xcolour.scheme"
+! --- Cursor Appearance --- !
+
+Xcursor.theme:      Oxygen_White
+Xcursor.size:       48
 
 ! --- Text Rendering --- !
 
@@ -21,97 +24,10 @@ Xft.hinting:        1
 Xft.antialiasing:   1
 Xft.rgba:           rgb
 
-! --- Cursor Appearance --- !
+! --- Rxvt-Unicode Config --- !
 
-!Xcursor.theme:      Vanilla-DMZ-AA
-Xcursor.theme:      Oxygen_White
-Xcursor.size:       48
-
-! --- URxvt Settings --- !
-
-!URxvt.font:            xft:SauceCodePro Nerd Font:size=12
-!URxvt.font:            xft:xos4 Terminus:style=Bold:size=12:minspace=False
-URxvt.font:            xft:DejaVu Sans Mono for Powerline:size=10:minspace=False,\
-                       xft:DejaVuSansMono Nerd Font:size=10:minspace=False,\
-                       -*-unifont-*-*-*-*-*-*-*-*-*-*-*-*
-URxvt.letterSpace:     -1
-URxvt.scrollBar:       false
-URxvt.cursorUnderline: 1
-URxvt.internalBorder:  30
-URxvt.depth:           32
-
-! --- URxvt Plugin Configuration --- !
-
-URxvt.perl-ext-common: default,clipboard,matcher
-URxvt.iso14755: False
-URxvt.keysym.Shift-Control-C: perl:clipboard:copy
-URxvt.keysym.Shift-Control-V: perl:clipboard:paste
-URxvt.clipboard.copycmd: xsel -ib
-URxvt.clipboard.pastecmd: xsel -ob
-URxvt.url-launcher: /usr/bin/firefox
-URxvt.matcher.button: 1
-URxvt.matcher.rend.0: Bold fg5
+#include ".dotfiles/urxvt.conf"
 
 ! --- Colour Definitions --- !
 
-#ifndef bgtrns
-  #define bgt 100
-#else
-  #define bgt bgtrns
-#endif
-
-*background:   [bgt]bkgrnd
-*foreground:        frgrnd
-*cursorColor:       frgrnd
-
-! Black
-*.color0:	base00
-*color0:	base00
-*.color8:	base08
-*color8:	base08
-
-! Red
-*.color1:	base01
-*color1:	base01
-*.color9:	base09
-*color9:	base09
-
-! Green
-*.color2:	base02
-*color2:	base02
-*.color10:	base0A
-*color10:	base0A
-
-! Yellow
-*.color3:	base03
-*color3:	base03
-*.color11:	base0B
-*color11:	base0B
-
-! Blue
-*.color4:	base04
-*color4:	base04
-*.color12:	base0C
-*color12:	base0C
-
-! Magenta
-*.color5:	base05
-*color5:	base05
-*.color13:	base0D
-*color13:	base0D
-
-! Cyan
-*.color6:	base06
-*color6:	base06
-*.color14:	base0E
-*color14:	base0E
-
-! White
-*.color7:	base07
-*color7:	base07
-*.color15:	base0F
-*color15:	base0F
-
-! Black Unaffected by Bold Highlighting
-*.color66:  base00
-*color66:   base00
+#include ".Xresources.d/Xcolour.scheme"
