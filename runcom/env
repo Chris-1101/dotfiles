@@ -57,3 +57,6 @@ export LESS_TERMCAP_me=$(printf '\e[0m')       # Exit All
 
 # Remove Inverted Bold %
 export PROMPT_EOL_MARK=""
+
+# Fix Required By Patched Versions of Rxvt-Unicode
+unset LD_PRELOAD
