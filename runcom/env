@@ -20,7 +20,7 @@ export PAGER=less
 export ZDOTDIR=$HOME
 export GEM_HOME=$HOME/.gem
 export DOTFILES_DIR=$HOME/.dotfiles
-export FIGLET_FONTDIR=$HOME/.local/share/fonts/figlet-fonts/contributed/
+# export FIGLET_FONTDIR=$HOME/.local/share/fonts/figlet-fonts/contributed/
 
 # Video Acceleration
 export LIBVA_DRIVER_NAME=i965
