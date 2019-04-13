@@ -32,6 +32,7 @@ Plugin 'tpope/vim-fugitive'                 " Fugitive
 Plugin 'scrooloose/nerdtree'                " Nerd Tree
 Plugin 'joshdick/onedark.vim'               " One Dark Colour Theme
 Plugin 'dracula/vim'                        " Dracula Colour Theme
+Plugin 'ryanoasis/vim-devicons'             " Vim DevIcons
 call vundle#end()                           " </plugins>
 
 " ===============================
