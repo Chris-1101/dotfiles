@@ -28,7 +28,7 @@ ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg[blue]%}▲%{$reset_color%} "
 # ================================
 local working_dir="[%{$fg[cyan]%}%1~%{$reset_color%}]"
 local exit_code="%{$fg[red]%}%(?..%? )%{$reset_color%}"
-local prompt_char="%{$fg[green]%}»%{$reset_color%}"
+local prompt_char="%{$fg_bold[green]%}»%{$reset_color%}"
 
 PROMPT='${working_dir} ${exit_code}${prompt_char} ' # ┌╼ └───╼➤
 

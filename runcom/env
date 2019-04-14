@@ -20,7 +20,7 @@ export PAGER=less
 export ZDOTDIR=$HOME
 export GEM_HOME=$HOME/.gem
 export DOTFILES_DIR=$HOME/.dotfiles
-export FIGLET_FONTDIR=$HOME/.local/share/fonts/figlet-fonts/contributed/
+# export FIGLET_FONTDIR=$HOME/.local/share/fonts/figlet-fonts/contributed/
 
 # Video Acceleration
 export LIBVA_DRIVER_NAME=i965
@@ -57,3 +57,6 @@ export LESS_TERMCAP_me=$(printf '\e[0m')       # Exit All
 
 # Remove Inverted Bold %
 export PROMPT_EOL_MARK=""
+
+# Fix Required By Patched Versions of Rxvt-Unicode
+unset LD_PRELOAD
