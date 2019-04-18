@@ -68,14 +68,14 @@ SAVEHIST=1000
 bindkey -v
 
 # History Substring Search
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
 
 # Directory Navigation
-bindkey '^[^[[D' dir-back
-bindkey '^[^[[A' dir-parent
-bindkey '^[^[[B' dir-save
-bindkey '^[^[[C' dir-goto
+bindkey "^[$terminfo[kcub1]" dir-back
+bindkey "^[$terminfo[kcuu1]" dir-parent
+bindkey "^[$terminfo[kcud1]" dir-save
+bindkey "^[$terminfo[kcuf1]" dir-goto
 
 # Auto cd
 setopt autocd
