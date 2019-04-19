@@ -87,6 +87,10 @@
     useSmartcaseForSearch: true
   "vim-modeline":
     readLineNum: 10
+  "vim-modeline-filetypes":
+    "tmux": [
+      "source.tmux"
+    ]
   welcome:
     showOnStartup: false
 ".desc.ditroff.source":
