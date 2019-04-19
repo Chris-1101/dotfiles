@@ -88,7 +88,7 @@
   "vim-modeline":
     readLineNum: 10
   "vim-modeline-filetypes":
-    "tmux": [
+    tmux: [
       "source.tmux"
     ]
   welcome:
