@@ -1,5 +1,6 @@
 packages: [
   "arclight-syntax"
+  "ascii-unicode-escape"
   "atom-alignment"
   "atom-beautify"
   "atom-uniform"

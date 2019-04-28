@@ -1,0 +1,104 @@
+#                       _____ __
+#    ____  ____   _____/ ____\__| ____
+#  /  ___\/  _ \ /    \   __\|  |/ ___\
+#  \  \__(  (_) )   |  \  |  |  / /_/  >
+#   \___  >____/|___|  /__|  |__\___  /
+#       \/           \/        /_____/
+
+# install:set type=user path=$HOME/.atom/config.cson
+
+"*":
+  "atom-uniform":
+    autoFormat: {}
+    defaults: {}
+    less: {}
+    sass: {}
+    selection: {}
+  "character-table": {}
+  "charcode-display":
+    charcodeDisplayFormat: "[ %P ]"
+  core:
+    autoHideMenuBar: true
+    disabledPackages: [
+      "metrics"
+      "indent-guide-improved"
+      "atom-beautify"
+      "linter-jscs"
+    ]
+    packagesWithKeymapsDisabled: []
+    projectHome: "/home/chris/Repos"
+    telemetryConsent: "no"
+    themes: [
+      "one-dark-ui"
+      "arclight-syntax"
+    ]
+  editor:
+    fontFamily: "Menlo, Consolas, DejaVu Sans Code, PowerlineSymbols, monospace"
+    preferredLineLength: 150
+    scrollPastEnd: true
+    scrollSensitivity: 30
+    showIndentGuide: true
+    softWrap: true
+    tabLength: 4
+  "ex-mode": {}
+  "exception-reporting":
+    userId: "e6eaabca-1168-41ef-8b54-58591e8fa362"
+  "file-icons":
+    defaultIconClass: "text-icon"
+  fonts:
+    fontFamily: "DejaVu Mono"
+  "git-diff": {}
+  "language-generic-config":
+    automatchPattern: "^\\s*[;!#]\\s"
+  "line-ending-selector":
+    defaultLineEnding: "LF"
+  "linter-ui-default": {}
+  minimap:
+    plugins:
+      "highlight-selected": true
+      "highlight-selectedDecorationsZIndex": 0
+      pigments: true
+      pigmentsDecorationsZIndex: 0
+  "one-dark-ui": {}
+  "package-sync":
+    createOnChange: true
+    forceOverwrite: true
+  pigments:
+    markerType: "native-square-dot"
+  "relative-numbers": {}
+  "spell-check":
+    grammars: [
+      "source.asciidoc"
+      "source.gfm"
+      "text.git-commit"
+      "text.plain"
+      "text.plain.null-grammar"
+      "text.roff"
+    ]
+  "status-bar": {}
+  tabs: {}
+  "todo-show":
+    statusBarIndicator: true
+  "tree-view":
+    hideVcsIgnoredFiles: true
+    squashDirectoryNames: true
+  "vim-mode-plus":
+    statusBarModeStringStyle: "long"
+    useSmartcaseForSearch: true
+  "vim-modeline":
+    readLineNum: 10
+  "vim-modeline-filetypes":
+    tmux: [
+      "source.tmux"
+    ]
+  welcome:
+    showOnStartup: false
+".desc.ditroff.source":
+  editor:
+    tabLength: 8
+".ditroff.source":
+  editor:
+    tabLength: 8
+".source.viml":
+  editor:
+    scrollPastEnd: false
