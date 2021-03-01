@@ -1,0 +1,16 @@
+### Terraform
+.terraform
+
+### Editors
+.vscode
+.idea
+
+### Common
+build/
+out/
+
+### NodeJS
+node_modules
+
+### MacOS
+.DS_Store
