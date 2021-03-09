@@ -1,0 +1,26 @@
+! atom:set grammar=f
+
+!   ?88,  88P  88bd88b d8888b .d888b, d8888b  ?88   d8P  88bd88b d8888b  d8888b .d888b,
+!    `?8bd8P'  88P'  `d8b_,dP ?8b,   d8P' ?88 d88   88   88P'  `d8P' `P d8b_,dP ?8b,
+!    d8P?8b,  d88     88b       `?8b 88b  d88 ?8(  d88  d88     88b     88b       `?8b
+!   d8P' `?8bd88'     `?888P'`?888P' `?8888P' `?88P'?8bd88'     `?888P' `?888P'`?888P'
+
+! ~/.Xresources
+
+! ! --- Text Rendering --- !
+
+! Xft.dpi:          168
+Xft.autohint:       0
+Xft.lcdfilter:      lcddefault
+Xft.hintstyle:      hintfull
+Xft.hinting:        1
+Xft.antialiasing:   1
+Xft.rgba:           rgb
+
+! --- Rxvt-Unicode Config --- !
+
+#include ".config/urxvt.conf"
+
+! --- Colour Definitions --- !
+
+#include ".Xcolours"

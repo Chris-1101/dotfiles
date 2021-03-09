@@ -1,0 +1,51 @@
+! atom:set grammar=f
+!                               d8b
+!                              88P
+!                             d88
+!   ?88,  88P d8888b  d8888b  888  d8888b  ?88   d8P  88bd88b.d888b,
+!    `?8bd8P'd8P' `P d8P' ?88 ?88 d8P' ?88 d88   88   88P'  `?8b,
+!    d8P?8b, 88b     88b  d88 88b 88b  d88 ?8(  d88  d88       `?8b
+!   d8P' `?8b`?888P' `?8888P'  88b`?8888P' `?88P'?8bd88'    `?888P'
+
+! ~/.Xcolours
+
+! Window
+*.background:   #16161b
+*.foreground:   #d1d9e8
+*.cursorColor:  #d1d9e8
+
+! Selection
+*.highlightColor:    #d1d9e8
+*.highlighTextColor: #16161b
+
+! Black
+*.color0:	#16161b
+*.color8:	#686868
+
+! Red
+*.color1:	#d1267f
+*.color9:	#d1267f
+
+! Green
+*.color2:	#00da90
+*.color10:	#00da90
+
+! Yellow
+*.color3:	#f8fb3c
+*.color11:	#f8fb3c
+
+! Blue
+*.color4:	#009ce6
+*.color12:	#009ce6
+
+! Magenta
+*.color5:	#ec26cd
+*.color13:	#ec26cd
+
+! Cyan
+*.color6:	#13c7fe
+*.color14:	#13c7fe
+
+! White
+*.color7:	#d1d9e8
+*.color15:	#ffffff
