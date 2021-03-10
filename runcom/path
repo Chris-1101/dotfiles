@@ -1,0 +1,32 @@
+# atom:set grammar=sh
+#                               d8b
+#                          d8P   ?88
+#                       d888888P  88b
+#   ?88,.d88b,  d888b8b   ?88'    888888b
+#   `?88'  ?88 d8P' ?88   88P     88P `?8b
+#     88b  d8P 88b  ,88b  88b    d88   88P
+#     888888P' `?88P'`88b `?8b  d88'   88b
+#     88P'
+#    d88     entries
+#   ?8P
+
+# ===========================
+# ------- Add to PATH -------
+# ===========================
+
+# Directories to Add
+typeset -a path_dirs=()
+
+# NOTE: zsh indices start at 1 - for bash, skipping 0 handled by loop condition
+path_dirs[1]=$HOME/.local/bin
+# path_dirs[2]=$(ruby -e 'print Gem.user_dir')/bin
+
+# Append Directories That Exist & Are Not Duplicates
+for dir in "${path_dirs[@]}"; do
+  if [[ -d $dir && -z $(echo $PATH | grep -o $dir) ]]; then
+    export PATH=$dir:$PATH
+  fi
+done
+
+# Clear Variables
+unset path_dirs

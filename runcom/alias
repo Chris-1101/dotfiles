@@ -1,0 +1,90 @@
+# atom:set grammar=sh
+
+#              d8b   d8,
+#             88P    `8P
+#            d88
+#    d888b8b 888     88b  d888b8b   .d888b,
+#   d8P' ?88 ?88     88P d8P' ?88   ?8b,
+#   88b  ,88b 88b   d88  88b  ,88b    `?8b
+#   `?88P'`88b 88b d88'  `?88P'`88b`?888P'
+
+# =============
+# --- Alias ---
+# =============
+
+# System
+alias ls='colorls --sd --gs'
+alias ssh='TERM=xterm-256color ssh'
+alias grep='grep --colour=auto'
+alias diskinfo='dfc -dst -tmpfs,devtmpfs -p -/dev/nvme0n1p2,/dev/mapper/veracrypt -f'
+alias represent='clear && neofetch --backend chafa --source ~/Pictures/anonymous.png && diskinfo && echo && optimus-manager --status'
+alias xeve="xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf \"%-3s %s\n\", \$5, \$8 }'"
+
+# Malarkey
+alias please='sudo'
+alias kek='represent'
+alias boom='clear && ~/.local/bin/welcome'
+
+# =================
+# --- Functions ---
+# =================
+
+# Figlet & lolcat
+function lolban
+{
+  lolcat <<< $(figlet -ctf Whimsy.flf "$@")
+}
+
+# Check Updates
+function checkupdates
+{
+  local aor_updates=$(/usr/bin/checkupdates)
+  local aor_num=$(wc -l <<< "$aor_updates")
+
+  local aur_updates=$(/usr/bin/aur repo -u)
+  local aur_num=$(wc -l <<< "$aur_updates")
+
+  if [[ -n $aor_updates ]]; then
+    echo
+    local update_str="Update"
+    [[ $aor_num -gt 1 ]] && update_str+="s"
+
+    lolcat < <(echo "$aor_num Pending $update_str on the Arch Official Repositories")
+    column -t <<< $aor_updates
+  fi
+
+  if [[ -n $aur_updates ]]; then
+    echo
+    local update_str="Update"
+    [[ $aur_num -gt 1 ]] && update_str+="s"
+
+    lolcat < <(echo "$aur_num Pending $update_str on the Arch User Repository")
+    column -t <<< $aur_updates
+  fi
+}
+
+# Pattern Search
+function psearch
+{
+  local opts="-rnwl"
+  [[ $1 = "-l" ]] && opts="${opts%?}" && shift
+
+  if [[ $# -eq 2 ]]; then
+    grep $opts "$1" -e "$2" 2> /dev/null
+  elif [[ $# -eq 1 ]]; then
+    grep $opts "." -e "$1" 2> /dev/null
+  fi
+}
+
+# File Search
+function fsearch
+{
+  local opts="-name"
+  [[ $1 = "-i" ]] && opts="-i${opts:1}" && shift
+
+  if [[ $# -eq 2 ]]; then
+    find "$1" $opts "$2" 2> /dev/null
+  elif [[ $# -eq 1 ]]; then
+    find "." $opts "$1" 2> /dev/null
+  fi
+}
