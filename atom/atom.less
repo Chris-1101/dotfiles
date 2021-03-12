@@ -1,0 +1,216 @@
+
+//               d8P      UI Overrides
+//            d888888P
+//    d888b8b   ?88'  d8888b   88bd8b,d88b
+//   d8P' ?88   88P  d8P' ?88  88P'`?8P'?8b
+//   88b  ,88b  88b  88b  d88 d88  d88  88P
+//   `?88P'`88b `?8b `?8888P'd88' d88'  88b
+
+// ~/.atom/styles.less
+
+@import "ui-variables";
+@import "syntax-variables";
+
+// ======================
+// ------- Global -------
+// ======================
+atom-text-editor .cursor
+{
+  // Serious CPU Usage :<
+  // transition: opacity 0.3s linear;
+}
+
+// Vim Mode Block-Cursor Style
+atom-text-editor.vim-mode-plus.normal-mode.is-focused.editor,
+atom-text-editor.vim-mode-plus.visual-mode.is-focused.editor
+{
+  .cursor
+  {
+    background-color: rgba(140, 145, 155, 0);
+    border-bottom: 3px dashed white;
+  }
+}
+
+// Tabs
+.tab-bar
+{
+  @tabHeight: 35px;
+
+  height: @tabHeight;
+
+  .tab
+  {
+    height: @tabHeight;
+
+    .title
+    {
+      line-height: @tabHeight;
+    }
+
+    .close-icon
+    {
+      margin-top   : 3px;
+      margin-right : 3px;
+    }
+  }
+}
+
+// Git Diff Gutter Style
+atom-text-editor .gutter
+{
+  @gutterWidth     : 2px;
+  @gutterAddColour : rgba( 38, 255,  44, 1);
+  @gutterModColour : rgba(255, 124,  72, 1);
+  @gutterBGColour  : #0e1527;
+
+  .line-number.git-line-added
+  {
+    border-left-width: @gutterWidth;
+    border-image: -webkit-linear-gradient(
+      top,
+      @gutterBGColour  10%,
+      @gutterAddColour 10%,
+      @gutterAddColour 90%,
+      @gutterBGColour  90%
+    ) 1;
+  }
+
+  .line-number.git-line-modified
+  {
+    border-left-width: @gutterWidth;
+    border-image: -webkit-linear-gradient(
+      top,
+      @gutterBGColour  10%,
+      @gutterModColour 10%,
+      @gutterModColour 90%,
+      @gutterBGColour  90%
+    ) 1;
+  }
+}
+
+// Indent Guide
+atom-text-editor .indent-guide
+{
+  box-shadow: inset 1px 0 rgba(43, 70, 118, 0.7);
+}
+
+// Minimap
+atom-text-editor-minimap .minimap-visible-area::after
+{
+  background-color: rgba(43, 70, 118, 0.3) !important;
+}
+
+// Syntax Status Colour
+.grammar-status a
+{
+  color: rgb(  5, 173, 255);
+}
+
+// Git Branch Status Colour
+span.branch-label, span.icon-git-branch
+{
+  color: rgb(  5, 255, 173);
+}
+
+// Table Cell Borders
+table, th, td
+{
+  border-color: @base-border-color !important;
+}
+
+// ================================
+// ------- Markdown Preview -------
+// ================================
+div.markdown-preview atom-text-editor
+{
+  color: rgb(  5, 255, 173);
+}
+
+// =======================
+// ------- Ex Mode -------
+// =======================
+atom-panel.bottom
+{
+  border: 1px solid transparent !important;
+
+  div[is=ex-command-mode-input].command-mode-input
+  {
+    .ex-mode-editor
+    {
+      background-color : #182642 !important;
+      border-radius    : 0px !important;
+      margin           : auto;
+      width            : 99% !important;
+
+      .scroll-view
+      {
+        left: 3px !important;
+      }
+    }
+  }
+}
+
+// =============================
+// ------- Vim Mode Plus -------
+// =============================
+#status-bar-vim-mode-plus
+{
+  @normalBG   : rgb(  6, 223,  78);
+  @insertBG   : rgb(  5, 173, 255);
+  @visualBG   : rgb(255, 181,  42);
+  @operatorBG : rgb(209,  38, 127);
+
+  @lightFG : rgb(209, 217, 232);
+  @darkFG  : rgb(  5,  10,  20);
+
+  height: 100%;
+
+  .vim-mode-format
+  {
+    color          : @darkFG;
+    height         : 16px;
+    margin-top     : 7px;
+    padding        : 1px 7px;
+    font-weight    : bold;
+    line-height    : 16px;
+    text-transform : uppercase;
+    border-radius  : 6px;
+  }
+
+  .status-bar-vim-mode-plus-normal
+  {
+    background: @normalBG;
+    .vim-mode-format;
+  }
+
+  .status-bar-vim-mode-plus-insert
+  {
+    background: @insertBG;
+    .vim-mode-format;
+  }
+
+  .status-bar-vim-mode-plus-visual
+  {
+    background: @visualBG;
+    .vim-mode-format;
+  }
+
+  .status-bar-vim-mode-plus-operator-pending
+  {
+    background: @operatorBG;
+    .vim-mode-format;
+  }
+}
+
+// Floating Count
+.vim-mode-plus-hover
+{
+  border-radius: 7px;
+  box-shadow: 0 0 1px @orange;
+}
+
+// Package Edits
+// ~/.atom/packages/vim-mode-plus/lib/status-bar-manager.js
+// L26: {addRightTile} » {addLeftTile}
+// L27: addRightTile » addLeftTile
+// L27: priority: 20 » priority: 0

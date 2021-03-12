@@ -1,0 +1,20 @@
+
+#               d8P      Key Bindings
+#            d888888P
+#    d888b8b   ?88'  d8888b   88bd8b,d88b
+#   d8P' ?88   88P  d8P' ?88  88P'`?8P'?8b
+#   88b  ,88b  88b  88b  d88 d88  d88  88P
+#   `?88P'`88b `?8b `?8888P'd88' d88'  88b
+
+# ~/.atom/keymap.cson
+
+'atom-text-editor':
+  'ctrl-c': 'core:copy'                         # Restore Native Keymap
+  'ctrl-t': 'fuzzy-finder:toggle-file-finder'   # Restore Native Keymap
+  'ctrl-shift-I': 'window:toggle-dev-tools'     # Restore Native Keymap
+  'ctrl-<': 'vim-mode-plus:reset-normal-mode'   # Vim set Normal Mode Keymap
+  'ctrl-f': 'find-and-replace:toggle'           # Toggle Find Panel Instead of Show
+  'ctrl-r': 'find-and-replace:select-all'       # Toggle Find and Replace All
+
+'atom-text-editor.vim-mode-plus':
+  'ctrl-w ctrl-w': 'core:close'                 # Work Around Vim's ^W
