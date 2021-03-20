@@ -1,0 +1,5 @@
+# atom:set grammar=conf
+# /etc/sudoers.d/veracrypt
+
+# Automatically grant elevanted permissions for cryptsetup & mount
+%veracrypt ALL=(root) NOPASSWD:/usr/bin/veracrypt, /usr/bin/uptime

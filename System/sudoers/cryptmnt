@@ -1,0 +1,5 @@
+# atom:set grammar=conf
+# /etc/sudoers.d/cryptmnt
+
+# Automatically grant elevanted permissions for cryptsetup & mount
+%cryptmnt ALL=(root) NOPASSWD:/usr/bin/cryptsetup, /usr/bin/mount
