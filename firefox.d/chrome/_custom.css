@@ -1,0 +1,49 @@
+:root {
+  --sidebar-min-width: 30px;
+  --sidebar-visible-width: 250px;
+}
+
+#TabsToolBar {
+  visibility: collapse;
+}
+
+#tabbrowser-tabs {
+  visibility: hidden;
+}
+
+#sidebar {
+  min-width: 0px !important;
+  max-width: none !important;
+}
+
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] #sidebar-header {
+  visibility: collapse;
+}
+
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] + #sidebar-splitter {
+  pointer-events: none;
+}
+
+#sidebar-box:not([sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]) {
+	min-width: var(--sidebar-visible-width) !important;
+	max-width: none !important;
+}
+
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] {
+	position: relative !important;
+	transition: all 300ms !important;
+	min-width: var(--sidebar-min-width) !important;
+	max-width: var(--sidebar-min-width) !important;
+}
+
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:hover {
+	transition: all 300ms !important;
+	min-width: var(--sidebar-visible-width) !important;
+	max-width: var(--sidebar-visible-width) !important;
+	margin-right: calc((var(--sidebar-visible-width) - var(--sidebar--width)) * -1) !important;
+}
+
+#nav-bar {
+  margin-top: -60px;
+  /* padding-right: 150px; */
+}

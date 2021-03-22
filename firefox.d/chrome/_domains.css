@@ -1,0 +1,22 @@
+/* Domain-Specific CSS Tweaks */
+
+/* iQiYi */
+@-moz-document domain(iq.com) {
+  video { background-color: #000000; }
+}
+
+/* Skype Web */
+@-moz-document domain(web.skype.com) {
+  .noFocusOutline > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) {
+    visibility: collapse;
+  }
+}
+
+/* WhatsApp Web */
+@-moz-document domain(web.whatsapp.com) {
+  ._3QfZd {
+  	top: 0 !important;
+  	width: auto !important;
+  	height: 100% !important;
+  }
+}
