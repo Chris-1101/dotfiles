@@ -1,0 +1,18 @@
+# atom:set grammar=conf
+
+#    d888b8b   ?88   d8P   88bd88b
+#   d8P' ?88   d88   88    88P'  `
+#   88b  ,88b  ?8(  d88   d88
+#   `?88P'`88b `?88P'?8b d88'
+
+# /etc/pacman.d/aur
+
+# AUR Repo
+[options]
+CacheDir = /var/cache/pacman/pkg
+CacheDir = /var/cache/pacman/aur
+CleanMethod = KeepCurrent
+
+[aur]
+SigLevel = Optional TrustAll
+Server = file:///var/cache/pacman/aur
