@@ -1,0 +1,27 @@
+# atom:set grammar=ini
+#                      d8,                                  d8b                       d8b
+#                      `8P                                   ?88                       ?88
+#                                                             88b                       88b
+#   ?88,.d88b,  88bd88b 88b  88bd8b,d88b   d8888b     d8888b  888888b   d8888b  d8888b  888  d88'
+#   `?88'  ?88  88P'  ` 88P  88P'`?8P'?8b d8b_,dP    d8P' `P  88P `?8b d8b_,dP d8P' `P  888bd8P'
+#     88b  d8P d88     d88  d88  d88  88P 88b        88b     d88   88P 88b     88b     d88888b
+#     888888P'd88'    d88' d88' d88'  88b `?888P'    `?888P'd88'   88b `?888P' `?888P'd88' `?88b,
+#     88P'
+#    d88
+#   ?8P
+
+# /etc/systemd/system/prime@.service
+
+[Unit]
+Description=Run prime-offload for Optimus Manager after wake up if needed
+After=suspend.target
+
+[Service]
+User=%I
+Type=oneshot
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/sleep 5
+ExecStartPost=/home/%I/.local/bin/prime-check
+
+[Install]
+WantedBy=sleep.target
