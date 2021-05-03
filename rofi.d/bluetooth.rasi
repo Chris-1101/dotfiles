@@ -1,0 +1,46 @@
+/* atom:set grammar=css
+ *
+ *   d8b          d8b                                               d8b
+ *    ?88        88P                   d8P                     d8P   ?88
+ *     88b      d88                 d888888P                d888888P  88b
+ *     888888b  888 ?88   d8P d8888b  ?88'  d8888b   d8888b   ?88'    888888b
+ *     88P `?8b ?88 d88   88 d8b_,dP  88P  d8P' ?88 d8P' ?88  88P     88P `?8b
+ *    d88,  d88 88b ?8(  d88 88b      88b  88b  d88 88b  d88  88b    d88   88P
+ *   d88'`?88P'  88b`?88P'?8b`?888P'  `?8b `?8888P' `?8888P'  `?8b  d88'   88b
+ *
+ *   ~/.config/rofi/bluetooth.rasi   */
+
+configuration {
+	location: 1;
+	yoffset:  72;
+	xoffset:  350;
+  font:     "Comfortaa Bold 10";
+}
+
+* {
+  background-color: #16161B70;
+  text-color:       #acbcdae0;
+  spacing:          2;
+}
+
+inputbar {
+  enabled:  false;
+  children: [ ];
+}
+
+listview {
+  padding:   10px;
+  scrollbar: false;
+}
+
+element {
+  background-color: transparent;
+  border-color:     transparent;
+  border:           1px;
+  padding:          6px 8px 10px 8px;
+}
+
+element selected {
+  background-color: #acbcdae0;
+  text-color:       #16161B;
+}
