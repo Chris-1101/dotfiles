@@ -1,0 +1,47 @@
+/* atom:set grammar=css
+ *
+ *                     d8b                          d8b
+ *                    88P                          88P
+ *                    d88                         d88
+ *    d8888b  d888b8b 888   d8888b  88bd88b   d888888   d888b8b     88bd88b
+ *   d8P' `P d8P' ?88 ?88  d8b_,dP  88P' ?8b d8P' ?88  d8P' ?88     88P'  `
+ *   88b     88b  ,88b 88b 88b     d88   88P 88b  ,88b 88b  ,88b   d88
+ *   `?888P' `?88P'`88b 88b`?888P'd88'   88b `?88P'`88b`?88P'`88b d88'
+ *
+ *   ~/.config/rofi/calendar.rasi   */
+
+configuration {
+  width:    11;
+	location: 1;
+	yoffset:  72;
+	xoffset:  1610;
+  font:     "DejaVuSansMono Nerd Font 10";
+}
+
+* {
+  background-color: #16161B70;
+  text-color:       #acbcdae0;
+  spacing:          0;
+}
+
+inputbar {
+  enabled:  false;
+  children: [ ];
+}
+
+listview {
+  padding:   20px;
+  scrollbar: false;
+}
+
+element {
+  background-color: transparent;
+  border-color:     transparent;
+  border:           1px;
+  padding:          1px;
+}
+
+element active {
+  background-color: #acbcdae0;
+  text-color:       #16161B;
+}
