@@ -1,0 +1,40 @@
+/* atom:set grammar=css
+ *
+ *    .d888b, d8888b  88bd88b  .d888b, d8888b   88bd88b .d888b,
+ *    ?8b,   d8b_,dP  88P' ?8b ?8b,   d8P' ?88  88P'  ` ?8b,
+ *      `?8b 88b     d88   88P   `?8b 88b  d88 d88        `?8b
+ *   `?888P' `?888P'd88'   88b`?888P' `?8888P'd88'     `?888P'
+ *
+ *   ~/.config/rofi/sensors.rasi   */
+
+configuration {
+  width:    15;
+  lines:    10;
+	location: 1;
+	yoffset:  73;
+	xoffset:  27;
+  font:     "DejaVuSansMono Nerd Font 11";
+}
+
+* {
+  background-color: #16161B70;
+  text-color:       #acbcdae0;
+  spacing:          5;
+}
+
+inputbar {
+  enabled:  false;
+  children: [ ];
+}
+
+listview {
+  padding:   20px;
+  scrollbar: false;
+}
+
+element {
+  background-color: transparent;
+  border-color:     transparent;
+  border:           1px;
+  padding:          1px;
+}
