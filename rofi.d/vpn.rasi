@@ -1,0 +1,47 @@
+/* atom:set grammar=css
+ *
+ *   ?88   d8P ?88,.d88b,  88bd88b
+ *   d88  d8P' `?88'  ?88  88P' ?8b
+ *   ?8b ,88'    88b  d8P d88   88P
+ *   `?888P'     888888P'd88'   88b
+ *               88P'
+ *              d88
+ *             ?8P
+ *
+ *   ~/.config/rofi/vpn.rasi   */
+
+configuration {
+	location:      1;
+	yoffset:       72;
+	xoffset:       500;
+  scroll-method: 1;
+  font:          "Comfortaa Bold 10";
+}
+
+* {
+  background-color: #16161B70;
+  text-color:       #acbcdae0;
+  spacing:          2;
+}
+
+inputbar {
+  enabled:  false;
+  children: [ ];
+}
+
+listview {
+  padding:   10px;
+  scrollbar: false;
+}
+
+element {
+  background-color: transparent;
+  border-color:     transparent;
+  border:           1px;
+  padding:          6px 8px 10px 8px;
+}
+
+element selected {
+  background-color: #acbcdae0;
+  text-color:       #16161B;
+}
