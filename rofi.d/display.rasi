@@ -1,0 +1,49 @@
+/* atom:set grammar=css
+ *
+ *          d8b d8,                       d8b
+ *         88P  `8P                      88P
+ *        d88                           d88
+ *    d888888    88b .d888b,?88,.d88b, d88   d888b8b  ?88   d8P
+ *   d8P' ?88    88P ?8b,   `?88'  ?88 88(  d8P' ?88  d88   88
+ *   88b  ,88b  d88    `?8b   88b  d8P 88b  88b  ,88b ?8(  d88
+ *   `?88P'`88bd88' `?888P'   888888P' `88b `?88P'`88b`?88P'?8b
+ *                            88P'                          )88
+ *                           d88                           ,d8P
+ *                          ?8P                        `?888P'
+ *
+ *   ~/.config/rofi/display.rasi   */
+
+configuration {
+	location: 1;
+	yoffset:  72;
+	xoffset:  1300;
+  font:     "Comfortaa Bold 10";
+}
+
+* {
+  background-color: #16161B70;
+  text-color:       #acbcdae0;
+  spacing:          2;
+}
+
+inputbar {
+  enabled:  false;
+  children: [ ];
+}
+
+listview {
+  padding:   10px;
+  scrollbar: false;
+}
+
+element {
+  background-color: transparent;
+  border-color:     transparent;
+  border:           1px;
+  padding:          6px 8px 10px 8px;
+}
+
+element selected {
+  background-color: #acbcdae0;
+  text-color:       #16161B;
+}
