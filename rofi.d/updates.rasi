@@ -1,0 +1,87 @@
+/* atom:set grammar=css
+ *                             d8b
+ *                             88P             d8P
+ *                            d88           d888888P
+ *   ?88   d8P?88,.d88b,  d888888   d888b8b   ?88'  d8888b .d888b,
+ *   d88   88 `?88'  ?88 d8P' ?88  d8P' ?88   88P  d8b_,dP ?8b,
+ *   ?8(  d88   88b  d8P 88b  ,88b 88b  ,88b  88b  88b       `?8b
+ *   `?88P'?8b  888888P' `?88P'`88b`?88P'`88b `?8b `?888P'`?888P'
+ *              88P'
+ *              d88
+ *             ?8P
+ *
+ *   ~/.config/rofi/updates.rasi   */
+
+configuration {
+  xoffset:       27;
+	yoffset:       73;
+  location:      1;
+  columns:       1;
+  lines:         8;
+  scroll-method: 1;
+  font:          "DejaVuSansMono Nerd Font 11";
+}
+
+* {
+  background-color: #16161B80;
+  border-color:     #2e344f70;
+  text-color:       #acbcdae0;
+  spacing:          5;
+}
+
+mainbox {
+  children: [ inputbar, listview, textbox-info ];
+}
+
+inputbar {
+  border:   0 0 1px 0;
+  children: [ prompt, textbox-icon, entry ];
+  spacing:  0;
+}
+
+prompt {
+  font:    "Comfortaa Bold 10";
+  padding: 13px 12px 11px 12px;
+  border:  0 1px 0 0;
+}
+
+textbox-icon {
+  background-color: #2e344f70;
+  padding:          11px 24px 0 20px;
+  color:            #d7d8e0;
+  expand:           false;
+  str:              "ﮮ";
+  font:             "DejaVuSansMono Nerd Font 14";
+  spacing:          0;
+}
+
+entry {
+  padding: 13px 12px 11px 12px;
+}
+
+listview {
+  background-color: transparent;
+  cycle:     true;
+  margin:    0px 5px;
+  scrollbar: false;
+  dynamic:   false;
+}
+
+textbox-info {
+  margin:     0 5px 5px 5px;
+  padding:    12px;
+  border:     1px;
+  expand:     false;
+  text-color: #05ADFFB0;
+  font:       "DejaVu Sans Italic 8";
+  str:        "Entries can be filtered by name or type (pac/aur)";
+}
+
+element {
+  border:  1px;
+  padding: 12px;
+}
+
+element selected {
+  background-color: #2e344f70;
+}
