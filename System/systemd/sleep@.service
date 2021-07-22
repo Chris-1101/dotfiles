@@ -1,0 +1,29 @@
+# atom:set grammar=ini
+#
+#             d8b                             d8b                         d8b
+#            88P    lock screen                ?88                         ?88
+#           d88                                 88b                         88b
+#    .d888b,888  d8888b  d8888b ?88,.d88b,      888888b   d8888b   d8888b   888  d88'
+#    ?8b,   ?88 d8b_,dP d8b_,dP `?88'  ?88      88P `?8b d8P' ?88 d8P' ?88  888bd8P'
+#      `?8b 88b 88b     88b       88b  d8P     d88   88P 88b  d88 88b  d88 d88888b
+#   `?888P'  88b`?888P' `?888P'   888888P'    d88'   88b `?8888P' `?8888P'd88' `?88b,
+#                                 88P'
+#                                d88
+#                               ?8P
+
+# /etc/systemd/system/sleep@.service
+
+[Unit]
+Description=Run screen locker prior to system suspension
+Before=sleep.target
+
+[Service]
+User=%I
+Type=forking
+Environment=DISPLAY=:0
+Environment=XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
+ExecStart=/usr/bin/dm-tool switch-to-greeter
+ExecStartPost=/usr/bin/sleep 5
+
+[Install]
+WantedBy=sleep.target
