@@ -1,0 +1,13 @@
+
+#          d8b d8,         d8b
+#         88P  `8P          ?88
+#        d88                 88b
+#    d888888    88b .d888b,  888  d88' .d888b,
+#   d8P' ?88    88P ?8b,     888bd8P'  ?8b,
+#   88b  ,88b  d88    `?8b  d88888b      `?8b
+#   `?88P'`88bd88' `?888P' d88' `?88b,`?888P'
+
+# /etc/udev/rules.d/96-disks.rules
+
+# Call Polybar Hook on Disk Change
+SUBSYSTEM=="block", ACTION=="change", ENV{DEVTYPE}=="disk", RUN+="/usr/bin/su chris -c '$HOME/.local/bin/hookctl --polybar bottom fs-crypt 1'"
