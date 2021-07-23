@@ -1,0 +1,17 @@
+
+#               ,d8888b       d8b                 d8,
+#               88P'         88P                  `8P
+#            d888888P       d88
+#     88bd88b  ?88'     d888888   d8888b ?88   d8P 88b  d8888b  d8888b .d888b,
+#     88P'  `  88P     d8P' ?88  d8b_,dP d88  d8P' 88P d8P' `P d8b_,dP ?8b,
+#    d88      d88      88b  ,88b 88b     ?8b ,88' d88  88b     88b       `?8b
+#   d88'     d88'      `?88P'`88b`?888P' `?888P' d88'  `?888P' `?888P'`?888P'
+
+# /etc/udev/rules.d/97-rfdevices.rules
+
+# Call Polybar Hook on RF Device Connectivity Change
+SUBSYSTEM=="rfkill", ACTION=="change", RUN+="/usr/local/bin/rf-handler.sh %E{RFKILL_TYPE} %E{RFKILL_STATE}"
+
+# Call Polybar Hook on Bluetooth Device Events
+SUBSYSTEM=="bluetooth", ACTION=="add",    RUN+="/usr/local/bin/rf-handler.sh bluetooth connected"
+SUBSYSTEM=="bluetooth", ACTION=="remove", RUN+="/usr/local/bin/rf-handler.sh bluetooth disconnected"
