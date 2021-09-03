@@ -1,0 +1,99 @@
+{
+  "border": "normal",
+  "floating": "auto_off",
+  "layout": "splitv",
+  "percent": 0.589583333333333,
+  "type": "con",
+  "nodes": [
+    {
+      "border": "pixel",
+      "current_border_width": 0,
+      "floating": "auto_off",
+      "geometry": {
+        "height": 530,
+        "width": 1060,
+        "x": 0,
+        "y": 0
+      },
+      "percent": 0.340080971659919,
+      "swallows": [
+        {
+          "class": "^Alacritty$",
+          "instance": "^Alacritty$",
+          "title": "Ranger File Manager"
+        }
+      ],
+      "type": "con"
+    },
+    {
+      "border": "pixel",
+      "current_border_width": 0,
+      "floating": "auto_off",
+      "geometry": {
+        "height": 530,
+        "width": 1060,
+        "x": 0,
+        "y": 0
+      },
+      "percent": 0.659919028340082,
+      "swallows": [
+        {
+          "class": "^Alacritty$",
+          "instance": "^Alacritty$",
+          "title": "Terminal 1"
+        }
+      ],
+      "type": "con"
+    }
+  ]
+}
+
+{
+  "border": "normal",
+  "floating": "auto_off",
+  "layout": "splitv",
+  "percent": 0.410416666666667,
+  "type": "con",
+  "nodes": [
+    {
+      "border": "pixel",
+      "current_border_width": 0,
+      "floating": "auto_off",
+      "geometry": {
+        "height": 530,
+        "width": 1060,
+        "x": 0,
+        "y": 0
+      },
+      "percent": 0.838056680161943,
+      "swallows": [
+        {
+          "class": "^Alacritty$",
+          "instance": "^Alacritty$",
+          "title": "Terminal 2"
+        }
+      ],
+      "type": "con"
+    },
+    {
+      "border": "pixel",
+      "current_border_width": 0,
+      "floating": "auto_off",
+      "geometry": {
+        "height": 530,
+        "width": 1060,
+        "x": 0,
+        "y": 0
+      },
+      "percent": 0.161943319838057,
+      "swallows": [
+        {
+          "class": "^Alacritty$",
+          "instance": "^Alacritty$",
+          "title": "System Monitor"
+        }
+      ],
+      "type": "con"
+    }
+  ]
+}
