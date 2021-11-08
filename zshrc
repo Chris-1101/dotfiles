@@ -175,6 +175,7 @@ autoload -Uz compinit && compinit
 # ===================
 # ------- AWS -------
 # ===================
+source ~/.aws/peakrc                # AWS Maven Bucket
 source /usr/share/nvm/init-nvm.sh   # NodeJS Version Manager
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
