@@ -63,7 +63,7 @@ for i in $@; do
     -c | --clipboard)  options+="-e 'xclip -selection clipboard -target image/png -i \$f && rm \$f' " ;;
     -e | --encryption) crypt="/$(get_secret dataptr_mp)" ;;
     -f | --fullscreen) ;; # Allow it for readability
-    -s | --selection)  options+='--select -f ' ;;
+    -s | --selection)  options+='--select -f '; sleep 0.4 ;;   # sleep -> fix for 'pointer' issue
 
     *) printf '%s\n' "Unknown argument $i"; exit 1 ;;
   esac
@@ -74,14 +74,11 @@ scrot_dir="$HOME/Pictures/Screenshots$crypt"
 scrot_fmt="scrot-$(get_timestamp)-$(get_random_hash)"
 scrot_ext='png'
 
-# Pointer Fix
-sleep 0.2
-
 # Screenshot Location
 scrot_path="${scrot_dir}/${scrot_fmt}.${scrot_ext}"
 
-# Express disbelief at usage of eval, then parse & run command
-sleep 0.2 && eval "scrot $options \"$scrot_path\""
+# Parse & run command
+eval "scrot $options \"$scrot_path\""
 
 # Notify
 if [[ $? -eq 0 ]]; then
